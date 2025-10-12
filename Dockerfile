@@ -20,19 +20,19 @@ RUN pnpm install --frozen-lockfile
 # Copy source and build
 COPY . .
 
-# Show what script will run, then run with verbose reporter to expose real error
+# Show what script will run, then run the production build
 # Also dump pnpm debug log on failure to help diagnose
 RUN node -e "console.log('scripts:', require('./package.json').scripts)" \
- && (pnpm build --reporter=default || { echo '--- pnpm debug log ---'; cat /root/.pnpm-debug.log || true; exit 1; })
+ && (pnpm build || { echo '--- pnpm debug log ---'; cat /root/.pnpm-debug.log || true; exit 1; })
 
 # ---- Runtime stage ----
 FROM nginx:1.27-alpine
 
-# SSL: we expose 80/443 in case you mount certs via compose (recommended)
-EXPOSE 80 443
+EXPOSE 80
 
 # Copy Nginx config
 COPY nginx/default.conf /etc/nginx/conf.d/default.conf
+COPY nginx/snippets /etc/nginx/snippets
 
 # Copy built app
 COPY --from=build /app/dist /usr/share/nginx/html

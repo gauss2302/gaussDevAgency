@@ -60,7 +60,7 @@
               </li>
               <li>
                 <div class="node">
-                  <img class="node-img" src="/assets/sample.png" alt="Community" />
+                  <img class="node-img" src="/assets/mobile.png" alt="Community" />
                   <h5 class="node-title">Community</h5>
                   <p class="node-text">Open knowledge and responsible tech.</p>
                 </div>
