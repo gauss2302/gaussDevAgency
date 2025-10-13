@@ -14,7 +14,7 @@ FROM nginx:1.27-alpine
 EXPOSE 80 443
 
 # Copy Nginx config
-COPY gaussdev.conf /etc/nginx/conf.d/gaussdev.conf
+COPY nginx/gaussdev.conf /etc/nginx/conf.d/gaussdev.conf
 RUN rm -f /etc/nginx/conf.d/default.conf
 
 # Copy built files
