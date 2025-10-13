@@ -14,3 +14,10 @@ services:
       - ./nginx/snippets:/etc/nginx/snippets:ro
       # If you want to inspect logs on host:
       # - ./nginx/logs:/var/log/nginx
+  nginx:
+    build: .
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /etc/ssl/gaussdev:/etc/ssl/gaussdev:ro
