@@ -1,23 +1,14 @@
 version: "3.9"
 
 services:
-  web:
+  nginx:
     build:
       context: .
       dockerfile: Dockerfile
-    ports:
-      - "80:80"
-    restart: unless-stopped
-    volumes:
-      # Optional: replace/override Nginx config without rebuild
-      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
-      - ./nginx/snippets:/etc/nginx/snippets:ro
-      # If you want to inspect logs on host:
-      # - ./nginx/logs:/var/log/nginx
-  nginx:
-    build: .
+    container_name: gaussdevagency_nginx
     ports:
       - "80:80"
       - "443:443"
     volumes:
       - /etc/ssl/gaussdev:/etc/ssl/gaussdev:ro
+    restart: unless-stopped
