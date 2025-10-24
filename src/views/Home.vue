@@ -7,7 +7,7 @@
       @mouseleave="isHovered = false"
     >
       <video class="hero-video" autoplay loop muted playsinline preload="auto">
-        <source src="/assets/another.mp4" type="video/mp4" />
+        <source src="/assets/background.webm" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
       <div class="hero-overlay">
@@ -39,7 +39,10 @@
         v-for="(item, i) in features"
         :key="item.id"
         class="feature-section"
-        :class="[i % 2 === 1 ? 'is-reversed' : '', themeClass(i)]"
+        :class="[i % 2 === 1 ? 'is-reversed' : '', themeClass(i), { 'in-view': inView[i] }]"
+        :data-index="i"
+        :style="staggerStyle(i)"
+        :ref="(el) => setFeatureRef(el as HTMLElement, i)"
       >
         <div class="feature-copy">
           <h3 class="feature-kicker">{{ item.kicker }}</h3>
@@ -195,6 +198,61 @@ const features = ref<FeatureItem[]>([
 
 const themes = ['theme-a', 'theme-b', 'theme-c', 'theme-d']
 const themeClass = (i: number) => themes[i % themes.length]
+
+// --- Scroll reveal for feature sections ---
+const inView = ref<boolean[]>([])
+const featureRefs = ref<HTMLElement[]>([])
+
+const setFeatureRef = (el: HTMLElement | null, i: number) => {
+  if (!el) return
+  featureRefs.value[i] = el
+}
+
+const staggerStyle = (i: number) => ({
+  // лёгкая лесенка — 60мс между карточками
+  transitionDelay: `${Math.min(i * 60, 360)}ms`,
+})
+
+onMounted(() => {
+  // если пользователь предпочитает минимум анимаций — всё сразу видно
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  if (reduce) {
+    inView.value = features.value.map(() => true)
+    return
+  }
+
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        const target = entry.target as HTMLElement
+        const idx = Number(target.dataset.index)
+        if (entry.isIntersecting) {
+          inView.value[idx] = true
+          io.unobserve(target) // анимируем один раз
+        }
+      })
+    },
+    {
+      root: null,
+      threshold: 0.2, // 20% внутри экрана — запускаем
+      rootMargin: '0px 0px -10% 0px', // небольшой фокус на нижнем крае
+    },
+  )
+
+  // наблюдаем все секции
+  featureRefs.value.forEach((el) => el && io.observe(el))
+
+  // на всякий — слушаем добавление новых (если список динамический)
+  const reobserve = () => {
+    featureRefs.value.forEach((el, i) => {
+      if (el && !inView.value[i]) io.observe(el)
+    })
+  }
+  // микротаск — чтобы успел заполниться featureRefs
+  queueMicrotask(reobserve)
+
+  onUnmounted(() => io.disconnect())
+})
 </script>
 <style scoped>
 .hero-section {
@@ -530,6 +588,53 @@ const themeClass = (i: number) => themes[i % themes.length]
   }
   .feature-section {
     gap: 2rem;
+  }
+}
+
+/* --- Scroll reveal for feature sections --- */
+.feature-section {
+  /* изначально скрыта и сдвинута в сторону */
+  opacity: 0;
+  transform: translate3d(var(--reveal-offset, 4rem), 0, 0);
+  will-change: transform, opacity;
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s cubic-bezier(0.2, 0.65, 0.2, 1);
+}
+
+/* правые/левых выезды: для "зеркальной" верстки используем отрицательный оффсет */
+.feature-section.is-reversed {
+  --reveal-offset: -4rem;
+}
+
+/* как только попала во вьюпорт — показываем */
+.feature-section.in-view {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+/* лёгкий параллакс картинке при появлении — необязательно, но красиво */
+.feature-section .feature-image,
+.feature-section .feature-video {
+  transition: transform 0.9s cubic-bezier(0.2, 0.65, 0.2, 1);
+}
+.feature-section.in-view .feature-image {
+  transform: translateX(0);
+}
+.feature-section.is-reversed.in-view .feature-image {
+  transform: translateX(0);
+}
+
+/* если пользователь отключил анимации — не двигаем */
+@media (prefers-reduced-motion: reduce) {
+  .feature-section {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .feature-section .feature-image,
+  .feature-section .feature-video {
+    transition: none !important;
   }
 }
 </style>

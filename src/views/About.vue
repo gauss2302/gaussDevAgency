@@ -3,7 +3,7 @@
     <h2 class="about-title">About — Our Story in a Tree</h2>
 
     <!-- Binary tree -->
-    <ul class="tree">
+    <ul class="tree" data-level="0">
       <!-- ROOT -->
       <li>
         <div class="node">
@@ -15,7 +15,7 @@
         </div>
 
         <!-- LEVEL 1 -->
-        <ul>
+        <ul data-level="1">
           <li>
             <div class="node">
               <img class="node-img" src="/assets/mobile.png" alt="Vision & Principles" />
@@ -24,7 +24,7 @@
             </div>
 
             <!-- LEVEL 2 (left subtree) -->
-            <ul>
+            <ul data-level="2">
               <li>
                 <div class="node">
                   <img class="node-img" src="/assets/mobile.png" alt="Innovation" />
@@ -50,7 +50,7 @@
             </div>
 
             <!-- LEVEL 2 (right subtree) -->
-            <ul>
+            <ul data-level="3">
               <li>
                 <div class="node">
                   <img class="node-img" src="/assets/mobile.png" alt="Team" />
@@ -254,6 +254,158 @@
   .tree li::before,
   .tree li::after {
     width: 0.75rem;
+  }
+}
+
+/* === Progressive reveal on load (no JS) === */
+.about-binary {
+  --ink: #faeb92;
+  --muted: #c9c9c9;
+  --stroke: rgba(255, 255, 255, 0.12);
+  --card: rgba(255, 255, 255, 0.04);
+  --accent: linear-gradient(90deg, #9929ea, #cc66da);
+
+  /* тайминги для ступенчатого появления */
+  --stagger: 90ms; /* шаг внутри уровня (соседи) */
+  --level-gap: 240ms; /* задержка между уровнями дерева */
+}
+
+/* стартовые состояния */
+.tree li::before,
+.tree li::after,
+.tree li > .node::before {
+  transform-origin: center;
+  transform: scaleX(0);
+  opacity: 0;
+}
+
+.tree li > .node::before {
+  transform-origin: top;
+  transform: scaleY(0);
+}
+
+/* линии "рисуются" */
+@keyframes draw-h {
+  0% {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+@keyframes draw-v {
+  0% {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+/* карточки всплывают изнутри */
+@keyframes pop-in {
+  0% {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+    filter: blur(2px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* применяем анимации с задержками по уровню и порядку */
+.tree [data-level] > li {
+  /* линии к соседям (верхняя «скобка») */
+}
+.tree [data-level] > li::before,
+.tree [data-level] > li::after {
+  animation: draw-h 520ms cubic-bezier(0.2, 0.65, 0.2, 1) forwards;
+}
+.tree [data-level] > li > .node::before {
+  animation: draw-v 520ms cubic-bezier(0.2, 0.65, 0.2, 1) forwards;
+}
+
+.tree [data-level] > li > .node {
+  opacity: 0;
+  animation: pop-in 520ms cubic-bezier(0.2, 0.65, 0.2, 1) forwards;
+}
+
+/* считаем задержку: уровень * level-gap + порядковый * stagger */
+:root {
+  counter-reset: reveal;
+}
+
+/* helper: функция задержки через nth-child — расширяй по необходимости */
+@media (min-width: 0) {
+  /* level 0 (root) */
+  .tree[data-level='0'] > li > .node,
+  .tree[data-level='0'] > li::before,
+  .tree[data-level='0'] > li::after,
+  .tree[data-level='0'] > li > .node::before {
+    animation-delay: calc(0 * var(--level-gap));
+  }
+
+  /* level 1 */
+  .tree [data-level='1'] > li:nth-child(1) > .node,
+  .tree [data-level='1'] > li:nth-child(1)::before,
+  .tree [data-level='1'] > li:nth-child(1)::after,
+  .tree [data-level='1'] > li:nth-child(1) > .node::before {
+    animation-delay: calc(1 * var(--level-gap) + 0 * var(--stagger));
+  }
+  .tree [data-level='1'] > li:nth-child(2) > .node,
+  .tree [data-level='1'] > li:nth-child(2)::before,
+  .tree [data-level='1'] > li:nth-child(2)::after,
+  .tree [data-level='1'] > li:nth-child(2) > .node::before {
+    animation-delay: calc(1 * var(--level-gap) + 1 * var(--stagger));
+  }
+
+  /* level 2 (поддеревья) */
+  .tree [data-level='2'] > li:nth-child(1) > .node,
+  .tree [data-level='2'] > li:nth-child(1)::before,
+  .tree [data-level='2'] > li:nth-child(1)::after,
+  .tree [data-level='2'] > li:nth-child(1) > .node::before {
+    animation-delay: calc(2 * var(--level-gap) + 0 * var(--stagger));
+  }
+  .tree [data-level='2'] > li:nth-child(2) > .node,
+  .tree [data-level='2'] > li:nth-child(2)::before,
+  .tree [data-level='2'] > li:nth-child(2)::after,
+  .tree [data-level='2'] > li:nth-child(2) > .node::before {
+    animation-delay: calc(2 * var(--level-gap) + 1 * var(--stagger));
+  }
+}
+
+/* превращаем границы в «рисуемые» линии (нужно для анимации scale) */
+.tree li::before,
+.tree li::after {
+  transform: scaleX(0);
+  transform-origin: center;
+}
+.tree li > .node::before {
+  transform: scaleY(0);
+  transform-origin: top;
+}
+
+/* уважение к reduce-motion: всё сразу видно, без движения */
+@media (prefers-reduced-motion: reduce) {
+  .tree li::before,
+  .tree li::after,
+  .tree li > .node::before,
+  .tree [data-level] > li > .node {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
   }
 }
 </style>

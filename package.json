@@ -15,6 +15,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "dotenv": "^17.2.3",
     "resend": "^6.1.0",
     "vue": "^3.5.18",
     "vue-router": "4"

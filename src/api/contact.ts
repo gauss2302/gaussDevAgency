@@ -1,9 +1,19 @@
 // api/contact.ts
 import { Resend } from 'resend'
+import * as dotenv from 'dotenv'
 
-const RESEND_API_KEY = 're_JqB6vXYt_MVfb65wEuUzJKx9tzB7c9HE6'
-const CONTACT_TO = 'shilov6865@gmail.com'
-const CONTACT_FROM = 'https://66b66bb7f706.ngrok-free.app/contact'
+dotenv.config()
+
+// 1) правильный env-ключ
+const RESEND_API_KEY = process.env.RESEND_API_KEY
+if (!RESEND_API_KEY) {
+  throw new Error('RESEND_API_KEY is missing')
+}
+
+// 2) адреса
+// Отправитель ДОЛЖЕН быть с подтверждённого домена (см. чек-лист).
+const CONTACT_FROM = process.env.CONTACT_FROM ?? 'Contact <contact@gaussdev.com>'
+const CONTACT_TO = process.env.CONTACT_TO ?? 'shilov6865@gmail.com'
 
 const resend = new Resend(RESEND_API_KEY)
 
@@ -14,21 +24,25 @@ export default async function handler(req: any, res: any) {
   }
 
   try {
-    const body = parseContactPayload(req.body)
+    // гарантируем JSON
+    const body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body
+    const payload = parseContactPayload(body)
 
     // anti-bot
-    if (body.honeypot?.trim()) return res.status(200).json({ ok: true, bot: true })
-    if (body.startedAt && Date.now() - body.startedAt < 1500)
+    if (payload.honeypot?.trim()) return res.status(200).json({ ok: true, bot: true })
+    if (payload.startedAt && Date.now() - payload.startedAt < 1500)
       return res.status(200).json({ ok: true, tooFast: true })
 
     const { error } = await resend.emails.send({
-      to: CONTACT_TO!,
-      from: CONTACT_FROM!,
-      subject: `New contact from ${body.name}`,
-      // reply_to: body.email, // user’s own email
-      html: `<p><b>Name:</b> ${esc(body.name)}</p>
-             <p><b>Email:</b> ${esc(body.email)}</p>
-             <p style="white-space:pre-wrap">${esc(body.message)}</p>`,
+      to: CONTACT_TO,
+      from: CONTACT_FROM,
+      subject: `New contact from ${payload.name}`,
+      replyTo: payload.email, // <-- camelCase
+      html: `
+        <p><b>Name:</b> ${esc(payload.name)}</p>
+        <p><b>Email:</b> ${esc(payload.email)}</p>
+        <p style="white-space:pre-wrap">${esc(payload.message)}</p>
+      `,
     })
 
     if (error) {
@@ -36,7 +50,7 @@ export default async function handler(req: any, res: any) {
       return res.status(500).json({ ok: false, error: 'Email failed' })
     }
 
-    return res.status(200).json({ ok: true }) // ← always JSON
+    return res.status(200).json({ ok: true })
   } catch (e: any) {
     if (e?.code === 'BAD_INPUT')
       return res.status(400).json({ ok: false, error: 'Bad input', details: e.details })
@@ -73,7 +87,8 @@ function parseContactPayload(raw: unknown): ContactPayload {
 function pickString(value: unknown, key: string, min = 1) {
   if (typeof value !== 'string') throw badInput(`Field "${key}" must be a string`, { field: key })
   const trimmed = value.trim()
-  if (trimmed.length < min) throw badInput(`Field "${key}" must be at least ${min} characters long`, { field: key })
+  if (trimmed.length < min)
+    throw badInput(`Field "${key}" must be at least ${min} characters long`, { field: key })
   return trimmed
 }
 
@@ -98,7 +113,8 @@ function pickEmail(value: unknown) {
   const email = pickString(value, 'email')
   const normalized = email.toLowerCase()
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-  if (!emailRegex.test(normalized)) throw badInput('Field "email" must be a valid email address', { field: 'email' })
+  if (!emailRegex.test(normalized))
+    throw badInput('Field "email" must be a valid email address', { field: 'email' })
   return normalized
 }
 

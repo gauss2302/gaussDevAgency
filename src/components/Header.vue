@@ -38,6 +38,13 @@
           >About</router-link
         >
         <router-link
+          to="/services"
+          class="nav-link"
+          :class="{ active: route.path === '/services' }"
+          @click="closeMenu"
+          >Services</router-link
+        >
+        <router-link
           to="/contact"
           class="nav-link"
           :class="{ active: route.path === '/contact' }"

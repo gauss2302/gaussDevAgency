@@ -1,0 +1,60 @@
+name: CI/CD
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+concurrency:
+  group: production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Deploy via SSH (server builds Docker)
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Add server to known_hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H "${{ secrets.SSH_HOST }}" >> ~/.ssh/known_hosts
+
+      - name: Deploy on server
+        uses: appleboy/ssh-action@v1.0.3
+        env:
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }} # напр. /srv/gaussdev
+          GIT_BRANCH: ${{ github.ref_name }} # main
+        with:
+          host: ${{ secrets.SSH_HOST }} # 5.78.122.26
+          username: ${{ secrets.SSH_USERNAME }} # лучше deploy, но можно root
+          key: ${{ secrets.SSH_PRIVATE_KEY }} # приватный ключ gaussdev-actions
+          script_stop: true
+          script: |
+            set -euo pipefail
+
+            # Убедимся, что каталоги существуют
+            mkdir -p "$DEPLOY_PATH"
+            sudo mkdir -p /etc/ssl/gaussdev || true
+
+            cd "$DEPLOY_PATH"
+
+            # Если репо ещё не инициализировано — инициализируем
+            if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+              git init
+              git remote add origin git@github.com:${{ github.repository }}.git
+            fi
+
+            # Обновляем код до точного состояния origin/$GIT_BRANCH
+            git fetch origin "$GIT_BRANCH" --prune
+            git checkout -B "$GIT_BRANCH" "origin/$GIT_BRANCH"
+            git reset --hard "origin/$GIT_BRANCH"
+
+            # Проверим docker compose плагин
+            docker compose version
+
+            # Собираем и перезапускаем
+            docker compose up -d --build --remove-orphans
+
+            # (опционально) чистим висячие образы после сборки
+            docker image prune -f
