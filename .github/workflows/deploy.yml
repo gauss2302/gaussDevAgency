@@ -23,12 +23,12 @@ jobs:
       - name: Deploy on server
         uses: appleboy/ssh-action@v1.0.3
         env:
-          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }} # напр. /srv/gaussdev
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
           GIT_BRANCH: ${{ github.ref_name }} # main
         with:
-          host: ${{ secrets.SSH_HOST }} # 5.78.122.26
-          username: ${{ secrets.SSH_USERNAME }} # лучше deploy, но можно root
-          key: ${{ secrets.SSH_PRIVATE_KEY }} # приватный ключ gaussdev-actions
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
           script_stop: true
           script: |
             set -euo pipefail
