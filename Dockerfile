@@ -1,13 +1,23 @@
-# ---- Build stage ----
-FROM node:20-alpine AS build
+# ---- Base dependencies ----
+FROM node:20-alpine AS base
 WORKDIR /app
 RUN apk add --no-cache python3 make g++ libc6-compat
-ENV HUSKY=0 CI=true
+ENV HUSKY=0
 RUN corepack enable
 COPY package.json pnpm-lock.yaml ./
 RUN pnpm install --frozen-lockfile
 COPY . .
+
+# ---- Build stage ----
+FROM base AS build
+ENV CI=true
 RUN pnpm build
+
+# ---- Development stage ----
+FROM base AS dev
+ENV CI=false
+EXPOSE 5173
+CMD ["pnpm", "dev", "--host", "0.0.0.0", "--port", "5173"]
 
 # ---- Runtime stage (nginx) ----
 FROM nginx:1.27-alpine
