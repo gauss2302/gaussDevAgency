@@ -23,9 +23,14 @@ CMD ["pnpm", "dev", "--host", "0.0.0.0", "--port", "5173"]
 FROM nginx:1.27-alpine
 EXPOSE 80 443
 
-# Copy Nginx config
-COPY nginx/gaussdev.conf /etc/nginx/conf.d/gaussdev.conf
+# Copy Nginx configs
+COPY nginx/gaussdev.https.conf /etc/nginx/conf.d/gaussdev.https.conf
+COPY nginx/gaussdev.http.conf /etc/nginx/conf.d/gaussdev.http.conf
 RUN rm -f /etc/nginx/conf.d/default.conf
+
+# Switch between HTTPS and HTTP config on container start
+COPY docker/entrypoint/05-switch-config.sh /docker-entrypoint.d/05-switch-config.sh
+RUN chmod +x /docker-entrypoint.d/05-switch-config.sh
 
 # Copy built files
 COPY --from=build /app/dist /usr/share/nginx/html

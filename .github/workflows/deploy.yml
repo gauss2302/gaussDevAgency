@@ -36,6 +36,13 @@ jobs:
             # Убедимся, что каталоги существуют
             mkdir -p "$DEPLOY_PATH"
             sudo mkdir -p /etc/ssl/gaussdev || true
+            if [ -f /etc/letsencrypt/live/gaussdev.com/fullchain.pem ]; then
+              sudo ln -sf /etc/letsencrypt/live/gaussdev.com/fullchain.pem /etc/ssl/gaussdev/gaussdev_com.fullchain.crt
+              sudo ln -sf /etc/letsencrypt/live/gaussdev.com/privkey.pem /etc/ssl/gaussdev/gaussdev.com.key
+              if [ -f /etc/letsencrypt/live/gaussdev.com/chain.pem ]; then
+                sudo ln -sf /etc/letsencrypt/live/gaussdev.com/chain.pem /etc/ssl/gaussdev/gaussdev_com.ca-bundle
+              fi
+            fi
 
             cd "$DEPLOY_PATH"
 

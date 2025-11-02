@@ -111,20 +111,18 @@ type Props = {
   telegramHandle?: string
   linkedinUrl?: string
   hours?: string
-  compact?: boolean // уменьшенные отступы/размеры
-  rounded?: boolean // более «скруглённые» карточки
+  compact?: boolean
+  rounded?: boolean
 }
+
 withDefaults(defineProps<Props>(), {
-  // было: '/assets/sit2.png'
   imageSrc: '/sit2.png',
   compact: false,
   rounded: false,
 })
 
-
 defineEmits<{ (e: 'click', payload: { channel: 'email' | 'telegram' | 'linkedin' }): void }>()
 
-/** Вытаскиваем хост для подписи, если handle не задан */
 const urlHost = (url: string) => {
   try {
     const u = new URL(url)
