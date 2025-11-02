@@ -10,7 +10,6 @@
     </div>
 
     <div class="grid">
-      <!-- Фото слева -->
       <div class="media" v-if="imageSrc">
         <img :src="imageSrc" :alt="imageAlt || 'Contact image'" />
         <p v-if="hours" class="hours" aria-label="Working hours">
@@ -24,7 +23,6 @@
         </p>
       </div>
 
-      <!-- Иконки справа -->
       <div class="icons" role="list">
         <a
           v-if="email"
@@ -101,7 +99,7 @@
 </template>
 
 <script setup lang="ts">
-type Props = {
+interface Props {
   title?: string
   subtitle?: string
   imageSrc?: string
@@ -115,15 +113,17 @@ type Props = {
   rounded?: boolean
 }
 
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
   imageSrc: '/sit2.png',
   compact: false,
   rounded: false,
 })
 
-defineEmits<{ (e: 'click', payload: { channel: 'email' | 'telegram' | 'linkedin' }): void }>()
+defineEmits<{
+  click: [payload: { channel: 'email' | 'telegram' | 'linkedin' }]
+}>()
 
-const urlHost = (url: string) => {
+function urlHost(url: string): string {
   try {
     const u = new URL(url)
     return u.host.replace(/^www\./, '')
@@ -134,7 +134,6 @@ const urlHost = (url: string) => {
 </script>
 
 <style scoped>
-/* ——— tokens ——— */
 .contact-widget {
   --ink: #faeb92;
   --muted: #c9c9c9;
@@ -147,27 +146,28 @@ const urlHost = (url: string) => {
   background: transparent;
   isolation: isolate;
 }
+
 .contact-widget.compact {
   padding: 2rem 1rem;
 }
 
-/* ——— header ——— */
 .header {
   text-align: center;
   margin-bottom: 2rem;
 }
+
 .title {
   font-size: clamp(1.8rem, 3vw, 2.6rem);
   font-weight: 800;
   margin: 0 0 0.4rem;
 }
+
 .sub {
   color: var(--muted);
   margin: 0 auto;
   max-width: 560px;
 }
 
-/* ——— layout ——— */
 .grid {
   display: grid;
   grid-template-columns: 1.1fr 1fr;
@@ -177,6 +177,7 @@ const urlHost = (url: string) => {
   margin: 0 auto;
   align-items: center;
 }
+
 .media img {
   width: 100%;
   max-width: 580px;
@@ -185,6 +186,7 @@ const urlHost = (url: string) => {
   object-fit: cover;
   box-shadow: 0 20px 56px rgba(0, 0, 0, 0.45);
 }
+
 .hours {
   display: inline-flex;
   gap: 0.5rem;
@@ -193,18 +195,19 @@ const urlHost = (url: string) => {
   margin-top: 0.75rem;
   font-size: 0.95rem;
 }
+
 .icon.clock {
   width: 18px;
   height: 18px;
   opacity: 0.9;
 }
 
-/* ——— tiles ——— */
 .icons {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
+
 .tile {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -225,9 +228,11 @@ const urlHost = (url: string) => {
     background 0.22s ease,
     opacity 0.16s ease;
 }
+
 .round-xl .tile {
   border-radius: 1.25rem;
 }
+
 .round-lg .tile {
   border-radius: 1rem;
 }
@@ -236,10 +241,12 @@ const urlHost = (url: string) => {
   transform: translateY(-2px);
   box-shadow: 0 24px 56px rgba(153, 41, 234, 0.25);
 }
+
 .tile:active {
   transform: translateY(0);
   opacity: 0.95;
 }
+
 .tile:focus-visible {
   outline: none;
   box-shadow:
@@ -247,7 +254,6 @@ const urlHost = (url: string) => {
     0 0 0 6px rgba(153, 41, 234, 0.55);
 }
 
-/* icon cell */
 .tile-icon {
   display: grid;
   place-items: center;
@@ -257,40 +263,42 @@ const urlHost = (url: string) => {
   background: var(--card);
   border: 1px solid var(--stroke);
 }
+
 .icon {
   width: 40px;
   height: 40px;
 }
 
-/* text cell */
 .tile-body {
   display: grid;
   gap: 0.2rem;
 }
+
 .tile-title {
   font-weight: 800;
   font-size: 1.15rem;
   line-height: 1.2;
 }
+
 .tile-sub {
   color: var(--muted);
   font-size: 0.95rem;
 }
 
-/* compact mode */
 .contact-widget.compact .tile-icon {
   width: 68px;
   height: 68px;
 }
+
 .contact-widget.compact .icon {
   width: 36px;
   height: 36px;
 }
+
 .contact-widget.compact .tile {
   padding: 1rem 1.1rem;
 }
 
-/* responsive */
 @media (max-width: 960px) {
   .grid {
     grid-template-columns: 1fr;
@@ -305,7 +313,6 @@ const urlHost = (url: string) => {
   }
 }
 
-/* reduce motion */
 @media (prefers-reduced-motion: reduce) {
   .tile {
     transition: none;
