@@ -117,7 +117,8 @@ type Props = {
 withDefaults(defineProps<Props>(), {
   // было: '/assets/sit2.png'
   imageSrc: '/sit2.png',
-  ...
+  compact: false,
+  rounded: false,
 })
 
 
