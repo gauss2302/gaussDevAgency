@@ -1,25 +1,4 @@
 services:
-  app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      target: dev
-    container_name: gaussdevagency_app
-    profiles: ["dev"]
-    ports:
-      - "5173:5173"
-    environment:
-      - HOST=0.0.0.0
-    working_dir: /app
-    volumes:
-      - .:/app
-      - pnpm-store:/root/.local/share/pnpm/store
-      - pnpm-node-modules:/app/node_modules
-    command: >
-      sh -c "pnpm install --frozen-lockfile &&
-      pnpm dev --host 0.0.0.0 --port 5173"
-    restart: unless-stopped
-
   nginx:
     build:
       context: .
@@ -30,12 +9,4 @@ services:
       - "443:443"
     volumes:
       - ${SSL_CERT_SOURCE_DIR:-./nginx/ssl}:/etc/ssl/gaussdev:ro
-    environment:
-      - SSL_CERT_PATH=/etc/ssl/gaussdev/gaussdev_com.fullchain.crt
-      - SSL_KEY_PATH=/etc/ssl/gaussdev/gaussdev.com.key
-      - ALLOW_HTTP_FALLBACK=${ALLOW_HTTP_FALLBACK:-false}
     restart: unless-stopped
-
-volumes:
-  pnpm-store:
-  pnpm-node-modules:
