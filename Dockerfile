@@ -11,6 +11,7 @@ COPY . .
 # ---- Build stage ----
 FROM base AS build
 ENV CI=true
+RUN pnpm approve-builds || true
 RUN pnpm run type-check
 RUN pnpm run build-only
 
