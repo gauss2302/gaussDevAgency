@@ -9,4 +9,3 @@ docker-compose.yml
 *.log
 npm-debug.log*
 pnpm-debug.log*
-nginx/ssl

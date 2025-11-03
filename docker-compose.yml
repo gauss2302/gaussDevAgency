@@ -29,7 +29,7 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - ${SSL_CERT_SOURCE_DIR:-/etc/ssl/gaussdev}:/etc/ssl/gaussdev:ro
+      - ${SSL_CERT_SOURCE_DIR:-./nginx/ssl}:/etc/ssl/gaussdev:ro
     environment:
       - SSL_CERT_PATH=/etc/ssl/gaussdev/gaussdev_com.fullchain.crt
       - SSL_KEY_PATH=/etc/ssl/gaussdev/gaussdev.com.key

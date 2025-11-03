@@ -30,3 +30,7 @@ coverage
 *.sw?
 
 *.tsbuildinfo
+
+# SSL certificates (provided manually)
+nginx/ssl/*
+!nginx/ssl/.gitkeep

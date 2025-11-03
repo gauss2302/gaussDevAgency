@@ -28,6 +28,13 @@ COPY nginx/gaussdev.https.conf /etc/nginx/conf.d/gaussdev.https.conf
 COPY nginx/gaussdev.http.conf /etc/nginx/conf.d/gaussdev.http.conf
 RUN rm -f /etc/nginx/conf.d/default.conf
 
+# Copy SSL certificates (provided during build)
+COPY nginx/ssl/ /etc/ssl/gaussdev/
+RUN if [ -d /etc/ssl/gaussdev ]; then \
+      find /etc/ssl/gaussdev -type f -name '*.key' -exec chmod 600 {} +; \
+      find /etc/ssl/gaussdev -type f ! -name '*.key' -exec chmod 644 {} +; \
+    fi
+
 # Switch between HTTPS and HTTP config on container start
 COPY docker/entrypoint/05-switch-config.sh /docker-entrypoint.d/05-switch-config.sh
 RUN chmod +x /docker-entrypoint.d/05-switch-config.sh
