@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <section
     class="contact-widget"
     :class="[{ compact }, rounded ? 'round-xl' : 'round-lg']"
@@ -322,4 +322,4 @@ function urlHost(url: string): string {
     transform: none;
   }
 }
-</style>
+</style> -->
