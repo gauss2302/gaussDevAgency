@@ -15,6 +15,8 @@
 </template>
 
 <script setup lang="ts">
+import ContactWidget from '@/components/ContactWidget.vue'
+
 const onClick = (e: { channel: 'email' | 'telegram' | 'linkedin' }) => {
   console.log('contact click:', e.channel)
 }
