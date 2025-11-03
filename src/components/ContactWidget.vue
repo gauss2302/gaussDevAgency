@@ -29,7 +29,7 @@
           role="listitem"
           class="tile"
           :href="`mailto:${email}`"
-          @click="$emit('click', { channel: 'email' })"
+          @click="emit('click', { channel: 'email' })"
           aria-label="Email"
         >
           <span class="tile-icon" aria-hidden="true">
@@ -53,7 +53,7 @@
           :href="telegramUrl"
           target="_blank"
           rel="noopener"
-          @click="$emit('click', { channel: 'telegram' })"
+          @click="emit('click', { channel: 'telegram' })"
           aria-label="Telegram"
         >
           <span class="tile-icon" aria-hidden="true">
@@ -77,7 +77,7 @@
           :href="linkedinUrl"
           target="_blank"
           rel="noopener"
-          @click="$emit('click', { channel: 'linkedin' })"
+          @click="emit('click', { channel: 'linkedin' })"
           aria-label="LinkedIn"
         >
           <span class="tile-icon" aria-hidden="true">
@@ -113,13 +113,13 @@ interface Props {
   rounded?: boolean
 }
 
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
   imageSrc: '/sit2.png',
   compact: false,
   rounded: false,
 })
 
-defineEmits<{
+const emit = defineEmits<{
   (e: 'click', payload: { channel: 'email' | 'telegram' | 'linkedin' }): void
 }>()
 
