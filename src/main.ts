@@ -6,6 +6,7 @@ import Service from './views/Service.vue'
 import About from './views/About.vue'
 import Conract from './views/Conract.vue'
 
+// Main Route
 const router = createRouter({
   history: createWebHistory(),
   routes: [
