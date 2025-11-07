@@ -2,7 +2,7 @@
   <ContactWidget
     title="Contact"
     subtitle="We usually reply within one business day"
-    image-src="/sit2.png"
+    image-src="/assets/mobile.png"
     image-alt="Gauss Dev office"
     email="hello@gaussdev.com"
     telegram-url="https://t.me/nick230296"

@@ -136,9 +136,9 @@ const features = ref<FeatureItem[]>([
     title: 'Native-like experience across devices',
     desc: 'Fast, fluid, and offline-ready apps with elegant UX and predictable releases.',
     bullets: [
-      'iOS/Android or cross-platform',
-      'Design systems & tokens',
-      'Offline & sync strategies',
+      'Flutter cross-Platform development',
+      'Recent tech stack for your idea',
+      'Apple and Google Stores publication',
       'CI/CD with store pipelines',
     ],
     media: {
@@ -151,47 +151,37 @@ const features = ref<FeatureItem[]>([
     kicker: 'DevOps & Cloud',
     title: 'Frictionless releases, predictable infra costs',
     desc: 'We automate from commit to production and keep your platform observable and secure.',
-    bullets: [
-      'IaC (Terraform), GitOps',
-      'K8s/Docker, autoscaling',
-      'Zero-downtime deploys',
-      'Cost & perf dashboards',
-    ],
+    bullets: ['Coolify and Dokloy', 'K8s/Docker, autoscaling', 'Grafana and Prometeus'],
     media: {
       kind: 'image',
       src: '/assets/leo-improved.png',
     },
   },
+  // {
+  //   id: 5,
+  //   kicker: 'AI & Machine Learning',
+  //   title: 'Practical AI that moves business metrics',
+  //   desc: 'We integrate ML where it matters—recommendations, NLP, and computer vision.',
+  //   bullets: [
+  //     'Use-case validation',
+  //     'Data pipelines & evals',
+  //     'Human-in-the-loop',
+  //     'Privacy & compliance',
+  //   ],
+  //   media: {
+  //     kind: 'image',
+  //     src: '/assets/leo-improved.png',
+  //   },
+  // },
   {
     id: 5,
-    kicker: 'AI & Machine Learning',
-    title: 'Practical AI that moves business metrics',
-    desc: 'We integrate ML where it matters—recommendations, NLP, and computer vision.',
-    bullets: [
-      'Use-case validation',
-      'Data pipelines & evals',
-      'Human-in-the-loop',
-      'Privacy & compliance',
-    ],
-    media: {
-      kind: 'image',
-      src: '/assets/leo-improved.png',
-    },
-  },
-  {
-    id: 6,
     kicker: 'UI/UX & Design Systems',
     title: 'Interfaces that are clear, fast, and delightful',
     desc: 'We build modular systems, so your product stays consistent as it grows.',
-    bullets: [
-      'Design tokens & theming',
-      'Accessibility (WCAG 2.1+)',
-      'Rapid prototyping',
-      'Usability testing',
-    ],
+    bullets: ['Design tokens & theming', 'Rapid prototyping', 'Usability testing'],
     media: {
       kind: 'image',
-      src: '/assets/leo-improved.png',
+      src: '/assets/mobile.png',
     },
   },
 ])
@@ -538,25 +528,25 @@ onMounted(() => {
 }
 
 .theme-a {
-  --bg: #0b0b0f;
+  --bg: #000000;
   --fg: #faeb92;
   --muted: #d7d7bf;
   --accent: linear-gradient(90deg, #9929ea, #cc66da);
 }
 .theme-b {
-  --bg: #0b0f12;
+  --bg: #000000;
   --fg: #e6f3ff;
   --muted: #c7d7e4;
   --accent: linear-gradient(90deg, #ff7ac6, #b86bff);
 }
 .theme-c {
-  --bg: #0f0b12;
+  --bg: #000000;
   --fg: #ffe8f7;
   --muted: #e6cfe0;
   --accent: linear-gradient(90deg, #ff7ac6, #b86bff);
 }
 .theme-d {
-  --bg: #0f120b;
+  --bg: #000000;
   --fg: #e8ffe8;
   --muted: #cfe6cf;
   --accent: linear-gradient(90deg, #9929ea, #cc66da);

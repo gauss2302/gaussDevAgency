@@ -7,20 +7,20 @@
     <div class="header">
       <h2 id="contact-heading" class="title">{{ title }}</h2>
       <p v-if="subtitle" class="sub">{{ subtitle }}</p>
+      <p v-if="hours" class="hours-header" aria-label="Working hours">
+        <svg viewBox="0 0 24 24" class="icon clock" aria-hidden="true">
+          <path
+            fill="currentColor"
+            d="M12 1.75a10.25 10.25 0 1 0 0 20.5 10.25 10.25 0 0 0 0-20.5ZM12.75 6a.75.75 0 0 0-1.5 0v6c0 .2.08.39.22.53l3.5 3.5a.75.75 0 0 0 1.06-1.06l-3.28-3.28V6Z"
+          />
+        </svg>
+        <span>{{ hours }}</span>
+      </p>
     </div>
 
     <div class="grid">
       <div class="media" v-if="imageSrc">
         <img :src="imageSrc" :alt="imageAlt || 'Contact image'" />
-        <p v-if="hours" class="hours" aria-label="Working hours">
-          <svg viewBox="0 0 24 24" class="icon clock" aria-hidden="true">
-            <path
-              fill="currentColor"
-              d="M12 1.75a10.25 10.25 0 1 0 0 20.5 10.25 10.25 0 0 0 0-20.5ZM12.75 6a.75.75 0 0 0-1.5 0v6c0 .2.08.39.22.53l3.5 3.5a.75.75 0 0 0 1.06-1.06l-3.28-3.28V6Z"
-            />
-          </svg>
-          <span>{{ hours }}</span>
-        </p>
       </div>
 
       <div class="icons" role="list">
@@ -114,7 +114,7 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  imageSrc: '/sit2.png',
+  imageSrc: '/assets/mobile.png',
   compact: false,
   rounded: false,
 })
@@ -164,8 +164,24 @@ const urlHost = (url: string) => {
 
 .sub {
   color: var(--muted);
-  margin: 0 auto;
+  margin: 0 auto 0.75rem;
   max-width: 560px;
+}
+
+.hours-header {
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+  color: var(--muted);
+  margin: 0.75rem auto 0;
+  font-size: 0.95rem;
+  justify-content: center;
+}
+
+.icon.clock {
+  width: 18px;
+  height: 18px;
+  opacity: 0.9;
 }
 
 .grid {
@@ -185,21 +201,6 @@ const urlHost = (url: string) => {
   display: block;
   object-fit: cover;
   box-shadow: 0 20px 56px rgba(0, 0, 0, 0.45);
-}
-
-.hours {
-  display: inline-flex;
-  gap: 0.5rem;
-  align-items: center;
-  color: var(--muted);
-  margin-top: 0.75rem;
-  font-size: 0.95rem;
-}
-
-.icon.clock {
-  width: 18px;
-  height: 18px;
-  opacity: 0.9;
 }
 
 .icons {
@@ -302,14 +303,76 @@ const urlHost = (url: string) => {
 @media (max-width: 960px) {
   .grid {
     grid-template-columns: 1fr;
-    text-align: center;
+    gap: 2rem;
   }
+
+  .media {
+    order: 2;
+  }
+
   .icons {
-    align-items: center;
+    order: 1;
+    align-items: stretch;
   }
+
   .tile {
-    max-width: 520px;
-    text-align: left;
+    width: 100%;
+  }
+
+  .media img {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .contact-widget {
+    padding: 2rem 0.75rem 3rem;
+  }
+
+  .header {
+    margin-bottom: 1.5rem;
+  }
+
+  .title {
+    font-size: 1.75rem;
+  }
+
+  .sub {
+    font-size: 0.95rem;
+    padding: 0 0.5rem;
+  }
+
+  .hours-header {
+    font-size: 0.9rem;
+  }
+
+  .grid {
+    padding: 0;
+    gap: 1.5rem;
+  }
+
+  .tile {
+    padding: 1rem;
+    gap: 0.875rem;
+  }
+
+  .tile-icon {
+    width: 64px;
+    height: 64px;
+  }
+
+  .icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .tile-title {
+    font-size: 1.05rem;
+  }
+
+  .tile-sub {
+    font-size: 0.875rem;
   }
 }
 
