@@ -24,7 +24,6 @@ CMD ["pnpm", "dev", "--host", "0.0.0.0", "--port", "5173"]
 # ---- Runtime stage (nginx) ----
 FROM nginx:1.27-alpine
 EXPOSE 80 443
-COPY nginx/gaussdev.https.conf /etc/nginx/conf.d/gaussdev.conf
 RUN rm -f /etc/nginx/conf.d/default.conf
 COPY nginx/ssl/ /etc/ssl/gaussdev/
 RUN if [ -d /etc/ssl/gaussdev ]; then \
