@@ -1,85 +1,72 @@
 <template>
-  <section class="about-binary">
-    <h2 class="about-title">About — Our Story in a Tree</h2>
+  <section class="about-section">
+    <div class="hero">
+      <h1 class="hero-title">We build for startups that need to move fast</h1>
+      <p class="hero-lead">
+        When timing is everything, you need a team that understands the stakes. We've been
+        there—shipping under pressure, pivoting on feedback, scaling what works.
+      </p>
+    </div>
 
-    <!-- Binary tree -->
-    <ul class="tree" data-level="0">
-      <!-- ROOT -->
-      <li>
-        <div class="node">
-          <img class="node-img" src="/assets/mobile.png" alt="Founder" />
-          <h3 class="node-title">Founder’s Vision</h3>
-          <p class="node-text">
-            From day one, we believed software should anticipate tomorrow. Small team, bold mission.
-          </p>
-        </div>
+    <div class="story-grid">
+      <article class="story-block">
+        <div class="story-number">01</div>
+        <h2 class="story-title">Deep Expertise, Zero Waste</h2>
+        <p class="story-text">
+          We've built MVPs that became million-dollar platforms. We've refactored legacy systems
+          that couldn't scale. We know what founders need: clarity, speed, and code that lasts
+          longer than the next funding round.
+        </p>
+      </article>
 
-        <!-- LEVEL 1 -->
-        <ul data-level="1">
-          <li>
-            <div class="node">
-              <img class="node-img" src="/assets/mobile.png" alt="Vision & Principles" />
-              <h4 class="node-title">Principles</h4>
-              <p class="node-text">Clarity, reliability, and measurable impact over hype.</p>
-            </div>
+      <article class="story-block">
+        <div class="story-number">02</div>
+        <h2 class="story-title">Timing Is Everything</h2>
+        <p class="story-text">
+          Markets move. Competitors launch. Users expect more. Your window is narrow, and you can't
+          afford to rebuild twice. We ship production-ready software in weeks, not quarters—without
+          cutting corners on architecture or security.
+        </p>
+      </article>
 
-            <!-- LEVEL 2 (left subtree) -->
-            <ul data-level="2">
-              <li>
-                <div class="node">
-                  <img class="node-img" src="/assets/mobile.png" alt="Innovation" />
-                  <h5 class="node-title">Innovation</h5>
-                  <p class="node-text">AI/ML where it matters: real use-cases, real ROI.</p>
-                </div>
-              </li>
-              <li>
-                <div class="node">
-                  <img class="node-img" src="/assets/mobile.png" alt="Engineering Craft" />
-                  <h5 class="node-title">Craft</h5>
-                  <p class="node-text">Type-safe stacks, clean architecture, testability.</p>
-                </div>
-              </li>
-            </ul>
-          </li>
+      <article class="story-block">
+        <div class="story-number">03</div>
+        <h2 class="story-title">Built for SaaS Teams</h2>
+        <p class="story-text">
+          We speak your language: multi-tenancy, observability, CI/CD, compliance baselines. Whether
+          you're pre-seed or Series A, we integrate into your workflow like we've always been part
+          of your team.
+        </p>
+      </article>
 
-          <li>
-            <div class="node">
-              <img class="node-img" src="/assets/mobile.png" alt="First Clients" />
-              <h4 class="node-title">First Clients</h4>
-              <p class="node-text">Early partners who trusted us with their hardest problems.</p>
-            </div>
+      <article class="story-block">
+        <div class="story-number">04</div>
+        <h2 class="story-title">No Surprises, No Hype</h2>
+        <p class="story-text">
+          We don't oversell AI or promise 10x results. We scope honestly, communicate constantly,
+          and deliver incrementally. You'll know exactly what you're getting, when you're getting
+          it, and what it costs.
+        </p>
+      </article>
+    </div>
 
-            <!-- LEVEL 2 (right subtree) -->
-            <ul data-level="3">
-              <li>
-                <div class="node">
-                  <img class="node-img" src="/assets/mobile.png" alt="Team" />
-                  <h5 class="node-title">Team</h5>
-                  <p class="node-text">Designers + engineers work alongside</p>
-                </div>
-              </li>
-              <li>
-                <div class="node">
-                  <img class="node-img" src="/assets/mobile.png" alt="Community" />
-                  <h5 class="node-title">Community</h5>
-                  <p class="node-text">Open knowledge and responsible tech.</p>
-                </div>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
+    <div class="cta-block">
+      <h2 class="cta-title">Ready to ship?</h2>
+      <p class="cta-text">
+        Let's talk about your timeline, your tech stack, and how we can help you hit your next
+        milestone.
+      </p>
+      <router-link to="/contact" class="cta-button">Start a Conversation</router-link>
+    </div>
   </section>
 </template>
 
 <script setup lang="ts">
-// No JS needed. Images are small & lazy by default via browser heuristics.
-// Replace the /assets/*.jpg with your actual small thumbnails (webp/jpg).
+// Pure presentation component—no state needed
 </script>
 
 <style scoped>
-.about-binary {
+.about-section {
   --ink: #faeb92;
   --muted: #c9c9c9;
   --stroke: rgba(255, 255, 255, 0.12);
@@ -88,324 +75,168 @@
 
   background: #000;
   color: var(--ink);
-  padding: 3rem 1rem 4rem;
-  position: relative;
-  isolation: isolate;
+  padding: 0;
+  min-height: 100vh;
 }
 
-.about-title {
+/* === HERO === */
+.hero {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: clamp(3rem, 8vw, 6rem) 1.5rem clamp(3rem, 6vw, 5rem);
   text-align: center;
+}
+
+.hero-title {
+  font-size: clamp(2.2rem, 5vw, 4rem);
   font-weight: 800;
-  font-size: clamp(1.8rem, 3.2vw, 2.6rem);
-  margin-bottom: 2.5rem;
+  line-height: 1.1;
+  margin: 0 0 1.5rem;
+  background: var(--accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-/* TREE: ul/li pattern with connector lines */
-.tree,
-.tree ul {
-  padding-top: 1.5rem; /* vertical spacing between levels */
-  position: relative;
-  padding-left: 0;
+.hero-lead {
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* === STORY GRID === */
+.story-grid {
+  max-width: 720px;
   margin: 0 auto;
+  padding: 0 1.5rem clamp(3rem, 6vw, 5rem);
   display: flex;
-  justify-content: center;
-  gap: clamp(1rem, 3vw, 3rem);
+  flex-direction: column;
+  gap: 2rem;
 }
 
-.tree ul {
-  /* children row */
-}
-
-.tree li {
-  list-style-type: none;
-  text-align: center;
-  position: relative;
-  padding: 1.5rem 0 0 0;
-}
-
-/* Connectors: draw lines from parent to children */
-.tree li::before,
-.tree li::after {
-  content: '';
-  position: absolute;
-  top: 0; /* start at top of each child node block */
-  width: 50%;
-  height: 1.5rem;
-  border-top: 1px solid var(--stroke);
-}
-
-.tree li::before {
-  right: 50%;
-  border-right: 1px solid var(--stroke);
-  border-top-left-radius: 10px;
-}
-
-.tree li::after {
-  left: 50%;
-  border-left: 1px solid var(--stroke);
-  border-top-right-radius: 10px;
-}
-
-/* Remove half-lines on single children */
-.tree li:only-child::before,
-.tree li:only-child::after {
-  display: none;
-}
-.tree li:only-child {
-  padding-top: 0;
-}
-
-/* Connect upwards line from node to parent’s connector */
-.tree li > .node::before {
-  content: '';
-  position: absolute;
-  top: -1.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 1.5rem;
-  border-left: 1px solid var(--stroke);
-}
-
-/* Root node does not need the vertical line up */
-.tree > li > .node::before {
-  display: none;
-}
-
-/* NODE CARD */
-.node {
-  position: relative;
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 0.85rem 1rem;
-  align-items: center;
-  text-align: left;
-
-  min-width: 250px;
-  max-width: 360px;
-  margin: 0 auto;
-
+.story-block {
   background: var(--card);
   border: 1px solid var(--stroke);
-  border-radius: 1rem;
-  padding: 0.85rem 1rem;
-
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
-}
-
-/* small image (not big) */
-.node-img {
-  grid-row: span 2;
-  width: 56px;
-  height: 56px;
-  border-radius: 10px;
-  object-fit: cover;
-  display: block;
-}
-
-/* Titles and text */
-.node-title {
-  margin: 0;
-  font-weight: 800;
-  font-size: 1rem;
-  line-height: 1.2;
-  color: var(--ink);
-}
-.node-text {
-  margin: 0;
-  color: var(--muted);
-  font-size: 0.95rem;
-  line-height: 1.5;
-}
-
-/* Subtle hover */
-.node:hover {
-  outline: 1px solid transparent;
-  background:
-    linear-gradient(#0c0c10, #0c0c10) padding-box,
-    var(--accent) border-box;
-  border: 1px solid transparent;
-  transform: translateY(-2px);
+  border-radius: 1.25rem;
+  padding: 2rem 1.75rem;
+  position: relative;
   transition:
     transform 0.2s ease,
-    background 0.25s ease;
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
 }
 
-/* Responsiveness */
-@media (max-width: 1024px) {
-  .tree,
-  .tree ul {
-    gap: 1.25rem;
-  }
-  .node {
-    min-width: 230px;
-  }
+.story-block:hover {
+  transform: translateY(-4px);
+  border-color: rgba(153, 41, 234, 0.4);
+  box-shadow: 0 20px 48px rgba(153, 41, 234, 0.15);
 }
 
-@media (max-width: 640px) {
-  /* On small screens stack each level vertically, keep connectors simple */
-  .tree,
-  .tree ul {
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    padding-top: 1rem;
-  }
-  .tree li::before,
-  .tree li::after {
-    width: 0.75rem;
-  }
+.story-number {
+  font-size: 3rem;
+  font-weight: 900;
+  line-height: 1;
+  background: var(--accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: 0.6;
+  margin-bottom: 1rem;
 }
 
-/* === Progressive reveal on load (no JS) === */
-.about-binary {
-  --ink: #faeb92;
-  --muted: #c9c9c9;
-  --stroke: rgba(255, 255, 255, 0.12);
-  --card: rgba(255, 255, 255, 0.04);
-  --accent: linear-gradient(90deg, #9929ea, #cc66da);
-
-  /* тайминги для ступенчатого появления */
-  --stagger: 90ms; /* шаг внутри уровня (соседи) */
-  --level-gap: 240ms; /* задержка между уровнями дерева */
+.story-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin: 0 0 1rem;
+  color: var(--ink);
 }
 
-/* стартовые состояния */
-.tree li::before,
-.tree li::after,
-.tree li > .node::before {
-  transform-origin: center;
-  transform: scaleX(0);
-  opacity: 0;
+.story-text {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--muted);
+  margin: 0;
 }
 
-.tree li > .node::before {
-  transform-origin: top;
-  transform: scaleY(0);
+/* === CTA BLOCK === */
+.cta-block {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: clamp(3rem, 6vw, 5rem) 1.5rem clamp(4rem, 8vw, 6rem);
+  text-align: center;
 }
 
-/* линии "рисуются" */
-@keyframes draw-h {
-  0% {
-    transform: scaleX(0);
-    opacity: 0;
-  }
-  100% {
-    transform: scaleX(1);
-    opacity: 1;
-  }
-}
-@keyframes draw-v {
-  0% {
-    transform: scaleY(0);
-    opacity: 0;
-  }
-  100% {
-    transform: scaleY(1);
-    opacity: 1;
-  }
+.cta-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin: 0 0 1rem;
 }
 
-/* карточки всплывают изнутри */
-@keyframes pop-in {
-  0% {
-    opacity: 0;
-    transform: translateY(8px) scale(0.98);
-    filter: blur(2px);
-  }
-  60% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-    filter: blur(0);
-  }
-  100% {
-    opacity: 1;
-    transform: none;
-  }
+.cta-text {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 0 0 2rem;
 }
 
-/* применяем анимации с задержками по уровню и порядку */
-.tree [data-level] > li {
-  /* линии к соседям (верхняя «скобка») */
-}
-.tree [data-level] > li::before,
-.tree [data-level] > li::after {
-  animation: draw-h 520ms cubic-bezier(0.2, 0.65, 0.2, 1) forwards;
-}
-.tree [data-level] > li > .node::before {
-  animation: draw-v 520ms cubic-bezier(0.2, 0.65, 0.2, 1) forwards;
-}
-
-.tree [data-level] > li > .node {
-  opacity: 0;
-  animation: pop-in 520ms cubic-bezier(0.2, 0.65, 0.2, 1) forwards;
+.cta-button {
+  display: inline-block;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: #0b0b0f;
+  background: var(--accent);
+  border-radius: 1rem;
+  box-shadow: 0 12px 32px rgba(153, 41, 234, 0.3);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
-/* считаем задержку: уровень * level-gap + порядковый * stagger */
-:root {
-  counter-reset: reveal;
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 48px rgba(153, 41, 234, 0.4);
 }
 
-/* helper: функция задержки через nth-child — расширяй по необходимости */
-@media (min-width: 0) {
-  /* level 0 (root) */
-  .tree[data-level='0'] > li > .node,
-  .tree[data-level='0'] > li::before,
-  .tree[data-level='0'] > li::after,
-  .tree[data-level='0'] > li > .node::before {
-    animation-delay: calc(0 * var(--level-gap));
+.cta-button:active {
+  transform: translateY(0);
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  .story-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 
-  /* level 1 */
-  .tree [data-level='1'] > li:nth-child(1) > .node,
-  .tree [data-level='1'] > li:nth-child(1)::before,
-  .tree [data-level='1'] > li:nth-child(1)::after,
-  .tree [data-level='1'] > li:nth-child(1) > .node::before {
-    animation-delay: calc(1 * var(--level-gap) + 0 * var(--stagger));
-  }
-  .tree [data-level='1'] > li:nth-child(2) > .node,
-  .tree [data-level='1'] > li:nth-child(2)::before,
-  .tree [data-level='1'] > li:nth-child(2)::after,
-  .tree [data-level='1'] > li:nth-child(2) > .node::before {
-    animation-delay: calc(1 * var(--level-gap) + 1 * var(--stagger));
+  .hero {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
   }
 
-  /* level 2 (поддеревья) */
-  .tree [data-level='2'] > li:nth-child(1) > .node,
-  .tree [data-level='2'] > li:nth-child(1)::before,
-  .tree [data-level='2'] > li:nth-child(1)::after,
-  .tree [data-level='2'] > li:nth-child(1) > .node::before {
-    animation-delay: calc(2 * var(--level-gap) + 0 * var(--stagger));
+  .story-block {
+    padding: 1.75rem 1.5rem;
   }
-  .tree [data-level='2'] > li:nth-child(2) > .node,
-  .tree [data-level='2'] > li:nth-child(2)::before,
-  .tree [data-level='2'] > li:nth-child(2)::after,
-  .tree [data-level='2'] > li:nth-child(2) > .node::before {
-    animation-delay: calc(2 * var(--level-gap) + 1 * var(--stagger));
+
+  .cta-block {
+    padding-top: 2.5rem;
+    padding-bottom: 3rem;
   }
 }
 
-/* превращаем границы в «рисуемые» линии (нужно для анимации scale) */
-.tree li::before,
-.tree li::after {
-  transform: scaleX(0);
-  transform-origin: center;
-}
-.tree li > .node::before {
-  transform: scaleY(0);
-  transform-origin: top;
-}
-
-/* уважение к reduce-motion: всё сразу видно, без движения */
 @media (prefers-reduced-motion: reduce) {
-  .tree li::before,
-  .tree li::after,
-  .tree li > .node::before,
-  .tree [data-level] > li > .node {
-    animation: none !important;
-    opacity: 1 !important;
-    transform: none !important;
-    filter: none !important;
+  .story-block,
+  .cta-button {
+    transition: none;
+  }
+  .story-block:hover,
+  .cta-button:hover,
+  .cta-button:active {
+    transform: none;
   }
 }
 </style>
