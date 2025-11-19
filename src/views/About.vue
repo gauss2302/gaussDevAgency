@@ -1,68 +1,67 @@
 <template>
   <section class="about-section">
-    <div class="hero">
-      <h1 class="hero-title">We build for startups that need to move fast</h1>
-      <p class="hero-lead">
-        When timing is everything, you need a team that understands the stakes. We've been
-        there—shipping under pressure, pivoting on feedback, scaling what works.
-      </p>
-    </div>
-
-    <div class="story-grid">
-      <article class="story-block">
-        <div class="story-number">01</div>
-        <h2 class="story-title">Deep Expertise, Zero Waste</h2>
-        <p class="story-text">
-          We've built MVPs that became million-dollar platforms. We've refactored legacy systems
-          that couldn't scale. We know what founders need: clarity, speed, and code that lasts
-          longer than the next funding round.
+    <div class="content-wrapper">
+      <div class="hero">
+        <h1 class="hero-title">We build for startups that need to move fast</h1>
+        <p class="hero-lead">
+          When timing is everything, you need a team that understands the stakes. We've been
+          there—shipping under pressure, pivoting on feedback, scaling what works.
         </p>
-      </article>
+      </div>
 
-      <article class="story-block">
-        <div class="story-number">02</div>
-        <h2 class="story-title">Timing Is Everything</h2>
-        <p class="story-text">
-          Markets move. Competitors launch. Users expect more. Your window is narrow, and you can't
-          afford to rebuild twice. We ship production-ready software in weeks, not quarters—without
-          cutting corners on architecture or security.
-        </p>
-      </article>
+      <div class="interactive-list">
+        <div
+          v-for="(item, index) in items"
+          :key:="index"
+          class="list-item"
+          :class="{ active: activeIndex === index }"
+          @mouseenter="activeIndex = index"
+          @click="activeIndex = index"
+        >
+          <div class="item-header">
+            <span class="item-number">0{{ index + 1 }}</span>
+            <h2 class="item-title">{{ item.title }}</h2>
+            <span class="item-icon">+</span>
+          </div>
+          <div class="item-body">
+            <div class="item-content">
+              <p>{{ item.text }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
 
-      <article class="story-block">
-        <div class="story-number">03</div>
-        <h2 class="story-title">Built for SaaS Teams</h2>
-        <p class="story-text">
-          We speak your language: multi-tenancy, observability, CI/CD, compliance baselines. Whether
-          you're pre-seed or Series A, we integrate into your workflow like we've always been part
-          of your team.
-        </p>
-      </article>
-
-      <article class="story-block">
-        <div class="story-number">04</div>
-        <h2 class="story-title">No Surprises, No Hype</h2>
-        <p class="story-text">
-          We don't oversell AI or promise 10x results. We scope honestly, communicate constantly,
-          and deliver incrementally. You'll know exactly what you're getting, when you're getting
-          it, and what it costs.
-        </p>
-      </article>
-    </div>
-
-    <div class="cta-block">
-      <h2 class="cta-title">Ready to ship?</h2>
-      <p class="cta-text">
-        Let's talk about your timeline, your tech stack, and how we can help you hit your next
-        milestone.
-      </p>
-      <router-link to="/contact" class="cta-button">Start a Conversation</router-link>
+      <div class="cta-block">
+        <h2 class="cta-title">Ready to ship?</h2>
+        <router-link to="/contact" class="cta-button">Start a Conversation</router-link>
+      </div>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
-// Pure presentation component—no state needed
+import { ref } from 'vue'
+
+const activeIndex = ref(0)
+
+const items = [
+  {
+    title: 'Deep Expertise, Zero Waste',
+    text: "We've built MVPs that became million-dollar platforms. We've refactored legacy systems that couldn't scale. We know what founders need: clarity, speed, and code that lasts longer than the next funding round.",
+  },
+  {
+    title: 'Timing Is Everything',
+    text: "Markets move. Competitors launch. Users expect more. Your window is narrow, and you can't afford to rebuild twice. We ship production-ready software in weeks, not quarters—without cutting corners on architecture or security.",
+  },
+  {
+    title: 'Built for SaaS Teams',
+    text: "We speak your language: multi-tenancy, observability, CI/CD, compliance baselines. Whether you're pre-seed or Series A, we integrate into your workflow like we've always been part of your team.",
+  },
+  {
+    title: 'No Surprises, No Hype',
+    text: "We don't oversell AI or promise 10x results. We scope honestly, communicate constantly, and deliver incrementally. You'll know exactly what you're getting, when you're getting it, and what it costs.",
+  },
+]
 </script>
 
 <style scoped>
@@ -70,173 +69,195 @@
   --ink: #faeb92;
   --muted: #c9c9c9;
   --stroke: rgba(255, 255, 255, 0.12);
-  --card: rgba(255, 255, 255, 0.04);
-  --accent: linear-gradient(90deg, #9929ea, #cc66da);
+  --accent: #9929ea;
+  --accent-gradient: linear-gradient(90deg, #9929ea, #cc66da);
 
   background: #000;
   color: var(--ink);
-  padding: 0;
   min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: clamp(4rem, 8vw, 8rem) 1.5rem;
+}
+
+.content-wrapper {
+  max-width: 1000px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(4rem, 8vw, 6rem);
 }
 
 /* === HERO === */
 .hero {
-  max-width: 880px;
-  margin: 0 auto;
-  padding: clamp(3rem, 8vw, 6rem) 1.5rem clamp(3rem, 6vw, 5rem);
   text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .hero-title {
-  font-size: clamp(2.2rem, 5vw, 4rem);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
   font-weight: 800;
   line-height: 1.1;
-  margin: 0 0 1.5rem;
-  background: var(--accent);
+  margin-bottom: 1.5rem;
+  background: var(--accent-gradient);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  letter-spacing: -0.02em;
 }
 
 .hero-lead {
-  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
   line-height: 1.6;
   color: var(--muted);
-  margin: 0;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
-/* === STORY GRID === */
-.story-grid {
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 0 1.5rem clamp(3rem, 6vw, 5rem);
+/* === INTERACTIVE LIST === */
+.interactive-list {
   display: flex;
   flex-direction: column;
+  border-top: 1px solid var(--stroke);
+}
+
+.list-item {
+  border-bottom: 1px solid var(--stroke);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.list-item:hover {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.item-header {
+  display: flex;
+  align-items: center;
+  padding: 2rem 0;
   gap: 2rem;
 }
 
-.story-block {
-  background: var(--card);
-  border: 1px solid var(--stroke);
-  border-radius: 1.25rem;
-  padding: 2rem 1.75rem;
-  position: relative;
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    border-color 0.2s ease;
+.item-number {
+  font-family: monospace;
+  font-size: 1.2rem;
+  color: var(--accent);
+  opacity: 0.7;
 }
 
-.story-block:hover {
-  transform: translateY(-4px);
-  border-color: rgba(153, 41, 234, 0.4);
-  box-shadow: 0 20px 48px rgba(153, 41, 234, 0.15);
+.item-title {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 600;
+  margin: 0;
+  flex-grow: 1;
+  color: var(--muted);
+  transition: color 0.3s ease;
 }
 
-.story-number {
-  font-size: 3rem;
-  font-weight: 900;
-  line-height: 1;
-  background: var(--accent);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  opacity: 0.6;
-  margin-bottom: 1rem;
-}
-
-.story-title {
-  font-size: 1.5rem;
-  font-weight: 800;
-  line-height: 1.2;
-  margin: 0 0 1rem;
+.list-item.active .item-title,
+.list-item:hover .item-title {
   color: var(--ink);
 }
 
-.story-text {
-  font-size: 1.05rem;
-  line-height: 1.65;
+.item-icon {
+  font-size: 2rem;
+  font-weight: 300;
   color: var(--muted);
-  margin: 0;
+  transition: transform 0.4s ease;
 }
 
-/* === CTA BLOCK === */
+.list-item.active .item-icon {
+  transform: rotate(45deg);
+  color: var(--accent);
+}
+
+.item-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.list-item.active .item-body {
+  grid-template-rows: 1fr;
+}
+
+.item-content {
+  overflow: hidden;
+}
+
+.item-content p {
+  padding-bottom: 2.5rem;
+  padding-left: 3.5rem; /* Align with title */
+  margin: 0;
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: var(--muted);
+  max-width: 700px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 0.4s ease 0.1s,
+    transform 0.4s ease 0.1s;
+}
+
+.list-item.active .item-content p {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* === CTA === */
 .cta-block {
-  max-width: 720px;
-  margin: 0 auto;
-  padding: clamp(3rem, 6vw, 5rem) 1.5rem clamp(4rem, 8vw, 6rem);
   text-align: center;
+  margin-top: 2rem;
 }
 
 .cta-title {
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 800;
-  line-height: 1.1;
-  margin: 0 0 1rem;
-}
-
-.cta-text {
-  font-size: 1.15rem;
-  line-height: 1.6;
-  color: var(--muted);
-  margin: 0 0 2rem;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: var(--ink);
 }
 
 .cta-button {
   display: inline-block;
-  padding: 1rem 2rem;
+  padding: 1.2rem 3rem;
   font-size: 1.1rem;
   font-weight: 700;
   text-decoration: none;
-  color: #0b0b0f;
-  background: var(--accent);
-  border-radius: 1rem;
-  box-shadow: 0 12px 32px rgba(153, 41, 234, 0.3);
+  color: #000;
+  background: var(--ink);
+  border-radius: 100px;
   transition:
     transform 0.2s ease,
-    box-shadow 0.2s ease;
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
 }
 
 .cta-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 16px 48px rgba(153, 41, 234, 0.4);
-}
-
-.cta-button:active {
-  transform: translateY(0);
+  transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(250, 235, 146, 0.3);
+  background: #fff;
 }
 
 /* === RESPONSIVE === */
 @media (max-width: 768px) {
-  .story-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
+  .item-header {
+    gap: 1rem;
+    padding: 1.5rem 0;
   }
 
-  .hero {
-    padding-top: 2.5rem;
-    padding-bottom: 2.5rem;
+  .item-number {
+    font-size: 1rem;
   }
 
-  .story-block {
-    padding: 1.75rem 1.5rem;
+  .item-content p {
+    padding-left: 0;
+    padding-bottom: 1.5rem;
+    font-size: 1rem;
   }
 
-  .cta-block {
-    padding-top: 2.5rem;
-    padding-bottom: 3rem;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .story-block,
-  .cta-button {
-    transition: none;
-  }
-  .story-block:hover,
-  .cta-button:hover,
-  .cta-button:active {
-    transform: none;
+  .hero-title {
+    font-size: 2.5rem;
   }
 }
 </style>
