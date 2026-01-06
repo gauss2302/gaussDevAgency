@@ -4,7 +4,7 @@
     subtitle="We usually reply within one business day"
     image-src="/assets/mobile.png"
     image-alt="Gauss Dev office"
-    email="hello@gaussdev.com"
+    email="devshilov@gmail.com"
     telegram-url="https://t.me/nick230296"
     telegram-handle="@nick230296"
     linkedin-url="https://www.linkedin.com/company/104642717/"
