@@ -13,7 +13,7 @@
         <p>Phone: <a href="tel:+998 940603405" class="contact-link">+998 (94) 064-3405</a></p>
       </div>
     </div>
-    <p class="footer-copyright">&copy; 2025 Gauss Dev. All rights reserved.</p>
+    <p class="footer-copyright">&copy; 2026 Gauss Dev. All rights reserved.</p>
   </footer>
 </template>
 

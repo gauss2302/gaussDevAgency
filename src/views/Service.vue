@@ -20,25 +20,40 @@
       <h2 class="section-title">Technologies We Master</h2>
       <div class="tech-categories">
         <article
-          v-for="category in techStack"
+          v-for="(category, catIndex) in techStack"
           :key="category.id"
           class="tech-category"
-          :class="categoryTheme(category.id)"
+          :class="[categoryTheme(category.id), { 'in-view': categoryInView[catIndex] }]"
+          :data-category-index="catIndex"
+          :ref="(el) => setCategoryRef(el as HTMLElement, catIndex)"
+          @mousemove="handleCategoryMouseMove($event, catIndex)"
+          @mouseleave="handleCategoryMouseLeave(catIndex)"
+          :style="getCategoryStyle(catIndex)"
         >
+          <div class="category-background"></div>
+          <div class="category-particles"></div>
           <div class="category-header">
             <h3 class="category-title">{{ category.name }}</h3>
-            <span class="category-badge">{{ category.technologies.length }}</span>
+            <span class="category-badge">
+              <span class="badge-number">{{ category.technologies.length }}</span>
+            </span>
           </div>
           <div class="tech-grid">
             <div
-              v-for="tech in category.technologies"
+              v-for="(tech, techIndex) in category.technologies"
               :key="tech.name"
               class="tech-item"
-              @mouseenter="hoveredTech = tech.name"
-              @mouseleave="hoveredTech = null"
+              :class="{ 'is-hovered': hoveredTech === tech.name }"
+              :style="getTechItemStyle(catIndex, techIndex, tech)"
+              @mouseenter="handleTechHover(tech.name, $event)"
+              @mouseleave="handleTechLeave"
+              @mousemove="handleTechMouseMove($event)"
             >
-              <div class="tech-icon" :style="{ backgroundColor: tech.color }">
-                {{ tech.icon }}
+              <div class="tech-icon-wrapper">
+                <div class="tech-icon" :style="{ backgroundColor: tech.color }">
+                  <span class="tech-icon-symbol">{{ tech.icon }}</span>
+                </div>
+                <div class="tech-icon-glow" :style="{ backgroundColor: tech.color }"></div>
               </div>
               <span class="tech-name">{{ tech.name }}</span>
             </div>
@@ -110,7 +125,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 
 interface Technology {
   name: string
@@ -141,62 +156,66 @@ interface ProcessStep {
 
 const hoveredTech = ref<string | null>(null)
 const activeStep = ref<number>(0)
+const categoryInView = ref<boolean[]>([])
+const categoryRefs = ref<HTMLElement[]>([])
+const categoryMousePos = ref<{ x: number; y: number }[]>([])
+const techMousePos = ref<{ x: number; y: number } | null>(null)
 
 const techStack = ref<TechCategory[]>([
   {
     id: 1,
     name: 'Frontend',
     technologies: [
-      { name: 'Vue.js', icon: 'V', color: '#42b883' },
-      { name: 'React', icon: 'R', color: '#61dafb' },
-      { name: 'TypeScript', icon: 'TS', color: '#3178c6' },
-      { name: 'Tailwind', icon: 'T', color: '#06b6d4' },
-      { name: 'Next.js', icon: 'N', color: '#000000' },
-      { name: 'Nuxt', icon: 'N', color: '#00dc82' },
+      { name: 'Vue.js', icon: '⚡', color: '#42b883' },
+      { name: 'React', icon: '⚛', color: '#61dafb' },
+      { name: 'TypeScript', icon: '📘', color: '#3178c6' },
+      { name: 'Tailwind', icon: '🎨', color: '#06b6d4' },
+      { name: 'Next.js', icon: '▲', color: '#000000' },
+      { name: 'Nuxt', icon: '💚', color: '#00dc82' },
     ],
   },
   {
     id: 2,
     name: 'Backend',
     technologies: [
-      { name: 'Node.js', icon: 'N', color: '#339933' },
-      { name: 'Python', icon: 'P', color: '#3776ab' },
-      { name: 'Go', icon: 'G', color: '#00add8' },
-      { name: 'PostgreSQL', icon: 'PG', color: '#336791' },
-      { name: 'MongoDB', icon: 'M', color: '#47a248' },
-      { name: 'Redis', icon: 'R', color: '#dc382d' },
+      { name: 'Node.js', icon: '🟢', color: '#339933' },
+      { name: 'Python', icon: '🐍', color: '#3776ab' },
+      { name: 'Go', icon: '🐹', color: '#00add8' },
+      { name: 'PostgreSQL', icon: '🐘', color: '#336791' },
+      { name: 'MongoDB', icon: '🍃', color: '#47a248' },
+      { name: 'Redis', icon: '🔴', color: '#dc382d' },
     ],
   },
   {
     id: 3,
     name: 'Mobile',
     technologies: [
-      { name: 'React Native', icon: 'RN', color: '#61dafb' },
-      { name: 'Flutter', icon: 'F', color: '#02569b' },
-      { name: 'Swift', icon: 'S', color: '#f05138' },
-      { name: 'Kotlin', icon: 'K', color: '#7f52ff' },
+      { name: 'React Native', icon: '📱', color: '#61dafb' },
+      { name: 'Flutter', icon: '💙', color: '#02569b' },
+      { name: 'Swift', icon: '🦉', color: '#f05138' },
+      { name: 'Kotlin', icon: '🔷', color: '#7f52ff' },
     ],
   },
   {
     id: 4,
     name: 'DevOps & Cloud',
     technologies: [
-      { name: 'Docker', icon: 'D', color: '#2496ed' },
-      { name: 'Kubernetes', icon: 'K', color: '#326ce5' },
-      { name: 'AWS', icon: 'A', color: '#ff9900' },
-      { name: 'GCP', icon: 'G', color: '#4285f4' },
-      { name: 'Terraform', icon: 'T', color: '#7b42bc' },
-      { name: 'GitHub Actions', icon: 'GA', color: '#2088ff' },
+      { name: 'Docker', icon: '🐳', color: '#2496ed' },
+      { name: 'Kubernetes', icon: '☸', color: '#326ce5' },
+      { name: 'AWS', icon: '☁', color: '#ff9900' },
+      { name: 'GCP', icon: '🌐', color: '#4285f4' },
+      { name: 'Terraform', icon: '🏗', color: '#7b42bc' },
+      { name: 'GitHub Actions', icon: '⚙', color: '#2088ff' },
     ],
   },
   {
     id: 5,
     name: 'AI & ML',
     technologies: [
-      { name: 'TensorFlow', icon: 'TF', color: '#ff6f00' },
-      { name: 'PyTorch', icon: 'PT', color: '#ee4c2c' },
-      { name: 'OpenAI', icon: 'AI', color: '#412991' },
-      { name: 'Langchain', icon: 'L', color: '#1c3c3c' },
+      { name: 'TensorFlow', icon: '🧠', color: '#ff6f00' },
+      { name: 'PyTorch', color: '#ee4c2c', icon: '🔥' },
+      { name: 'OpenAI', icon: '🤖', color: '#412991' },
+      { name: 'Langchain', icon: '🔗', color: '#1c3c3c' },
     ],
   },
 ])
@@ -299,6 +318,145 @@ const serviceTheme = (index: number) => {
   const themes = ['service-purple', 'service-yellow', 'service-blue', 'service-green']
   return themes[index % themes.length]
 }
+
+// Scroll reveal для категорий
+const setCategoryRef = (el: HTMLElement | null, index: number) => {
+  if (!el) return
+  categoryRefs.value[index] = el
+}
+
+const getCategoryStyle = (index: number) => {
+  const pos = categoryMousePos.value[index] || { x: 0, y: 0 }
+  const rotateX = pos.y * 2
+  const rotateY = pos.x * 2
+  const translateX = pos.x * 8
+  const translateY = pos.y * 8
+  
+  return {
+    '--mouse-x': `${(pos.x + 0.5) * 100}%`,
+    '--mouse-y': `${(pos.y + 0.5) * 100}%`,
+    transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateX(${translateX}px) translateY(${translateY}px)`,
+  } as Record<string, string>
+}
+
+const getTechItemStyle = (catIndex: number, techIndex: number, tech: Technology) => {
+  const delay = Math.min((catIndex * 100 + techIndex * 50), 800)
+  const pos = techMousePos.value
+  const isHovered = hoveredTech.value === tech.name
+  
+  let style: Record<string, string> = {
+    '--stagger-delay': `${delay}ms`,
+  }
+  
+  if (isHovered && pos) {
+    const rotateX = pos.y * 15
+    const rotateY = pos.x * 15
+    const translateX = pos.x * 12
+    const translateY = pos.y * 12
+    
+    style['--tech-mouse-x'] = `${(pos.x + 0.5) * 100}%`
+    style['--tech-mouse-y'] = `${(pos.y + 0.5) * 100}%`
+    style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateX(${translateX}px) translateY(${translateY}px) scale(1.05)`
+  }
+  
+  return style
+}
+
+// Mouse handlers для magnetic эффектов
+const handleCategoryMouseMove = (event: MouseEvent, index: number) => {
+  const rect = (event.currentTarget as HTMLElement).getBoundingClientRect()
+  categoryMousePos.value[index] = {
+    x: (event.clientX - rect.left) / rect.width - 0.5,
+    y: (event.clientY - rect.top) / rect.height - 0.5,
+  }
+}
+
+const handleCategoryMouseLeave = (index: number) => {
+  categoryMousePos.value[index] = { x: 0, y: 0 }
+}
+
+const handleTechHover = (techName: string, event: MouseEvent) => {
+  hoveredTech.value = techName
+  const rect = (event.currentTarget as HTMLElement).getBoundingClientRect()
+  techMousePos.value = {
+    x: (event.clientX - rect.left) / rect.width - 0.5,
+    y: (event.clientY - rect.top) / rect.height - 0.5,
+  }
+}
+
+const handleTechLeave = () => {
+  hoveredTech.value = null
+  techMousePos.value = null
+}
+
+const handleTechMouseMove = (event: MouseEvent) => {
+  const rect = (event.currentTarget as HTMLElement).getBoundingClientRect()
+  techMousePos.value = {
+    x: (event.clientX - rect.left) / rect.width - 0.5,
+    y: (event.clientY - rect.top) / rect.height - 0.5,
+  }
+}
+
+// IntersectionObserver для scroll reveal
+onMounted(() => {
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  if (reduce) {
+    categoryInView.value = techStack.value.map(() => true)
+    return
+  }
+
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        const target = entry.target as HTMLElement
+        const idx = Number(target.dataset.categoryIndex)
+        if (entry.isIntersecting) {
+          categoryInView.value[idx] = true
+          io.unobserve(target)
+        }
+      })
+    },
+    {
+      root: null,
+      threshold: 0.15,
+      rootMargin: '0px 0px -10% 0px',
+    },
+  )
+
+  // Инициализация позиций мыши
+  categoryMousePos.value = techStack.value.map(() => ({ x: 0, y: 0 }))
+
+  // Наблюдаем категории после микротаска
+  queueMicrotask(() => {
+    categoryRefs.value.forEach((el) => el && io.observe(el))
+  })
+
+  // Анимация обновления стилей для magnetic эффектов
+  let animationFrameId: number | null = null
+  const updateStyles = () => {
+    categoryRefs.value.forEach((el, index) => {
+      if (el) {
+        const style = getCategoryStyle(index)
+        Object.entries(style).forEach(([key, value]) => {
+          if (key !== 'transform') {
+            el.style.setProperty(key, value)
+          } else {
+            el.style.transform = value as string
+          }
+        })
+      }
+    })
+    animationFrameId = requestAnimationFrame(updateStyles)
+  }
+  updateStyles()
+
+  onUnmounted(() => {
+    io.disconnect()
+    if (animationFrameId !== null) {
+      cancelAnimationFrame(animationFrameId)
+    }
+  })
+})
 </script>
 
 <style scoped>
@@ -373,117 +531,448 @@ const serviceTheme = (index: number) => {
   padding: 5rem 2rem;
   max-width: 1400px;
   margin: 0 auto;
+  position: relative;
 }
 
 .section-title {
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 800;
   text-align: center;
-  margin-bottom: 3rem;
-  background: linear-gradient(90deg, #faeb92, #cc66da);
+  margin-bottom: 4rem;
+  background: linear-gradient(90deg, #faeb92, #cc66da, #9929ea, #cc66da, #faeb92);
+  background-size: 300% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  animation: gradient-shift 5s ease infinite;
+  letter-spacing: -0.03em;
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, #cc66da, transparent);
+  border-radius: 2px;
+  animation: title-underline 3s ease infinite;
+}
+
+@keyframes title-underline {
+  0%,
+  100% {
+    width: 100px;
+    opacity: 0.5;
+  }
+  50% {
+    width: 200px;
+    opacity: 1;
+  }
 }
 
 .tech-categories {
   display: grid;
-  gap: 2rem;
+  gap: 3rem;
 }
 
 .tech-category {
   --accent: #9929ea;
-  background: rgba(255, 255, 255, 0.03);
+  --accent-glow: rgba(153, 41, 234, 0.3);
+  position: relative;
+  background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 1.5rem;
-  padding: 2rem;
-  transition: transform 0.3s ease;
+  border-radius: 2rem;
+  padding: 2.5rem;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(3rem) scale(0.95);
+  will-change: transform, opacity;
+  transition:
+    opacity 0.8s cubic-bezier(0.2, 0.65, 0.2, 1),
+    transform 0.8s cubic-bezier(0.2, 0.65, 0.2, 1),
+    border-color 0.4s ease;
+  transform-style: preserve-3d;
 }
 
-.tech-category:hover {
-  transform: translateY(-4px);
+.tech-category.in-view {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.tech-category::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 2rem;
+  padding: 2px;
+  background: linear-gradient(135deg, var(--accent), transparent, var(--accent));
+  background-size: 200% 200%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  animation: border-gradient 3s ease infinite;
+}
+
+.tech-category:hover::before {
+  opacity: 1;
+}
+
+.category-background {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    var(--accent-glow) 0%,
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.tech-category:hover .category-background {
+  opacity: 0.4;
+}
+
+.category-particles {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, var(--accent) 1px, transparent 1px);
+  background-size: 30px 30px;
+  opacity: 0.1;
+  animation: particles-float 20s linear infinite;
+  pointer-events: none;
+}
+
+.category-particles::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, var(--accent) 1px, transparent 1px);
+  background-size: 25px 25px;
+  animation: particles-float-reverse 25s linear infinite;
+  opacity: 0.08;
+}
+
+@keyframes particles-float {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(30px, 30px);
+  }
+}
+
+@keyframes particles-float-reverse {
+  0% {
+    transform: translate(30px, 30px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes border-gradient {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
 }
 
 .category-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 2;
 }
 
 .category-title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--accent);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--accent), #faeb92, var(--accent));
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.02em;
+  animation: title-gradient 4s ease infinite;
+  position: relative;
+}
+
+@keyframes title-gradient {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
 }
 
 .category-badge {
+  position: relative;
   background: var(--accent);
   color: #000;
-  padding: 0.25rem 0.75rem;
-  border-radius: 1rem;
+  padding: 0.4rem 1rem;
+  border-radius: 2rem;
   font-size: 0.875rem;
-  font-weight: 700;
+  font-weight: 800;
+  box-shadow: 0 4px 16px var(--accent-glow);
+  overflow: hidden;
+}
+
+.category-badge::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  background-size: 200% 100%;
+  animation: badge-shine 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes badge-shine {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.badge-number {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  transform: scale(0);
+  animation: badge-pop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation-delay: calc(var(--stagger-delay, 0ms) + 300ms);
+}
+
+.tech-category.in-view .badge-number {
+  animation: badge-pop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes badge-pop {
+  0% {
+    transform: scale(0) rotate(-180deg);
+  }
+  50% {
+    transform: scale(1.2) rotate(10deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
 }
 
 .tech-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 1.25rem;
+  position: relative;
+  z-index: 2;
 }
 
 .tech-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
-  padding: 1rem;
+  gap: 0.75rem;
+  padding: 1.5rem 1rem;
   background: rgba(255, 255, 255, 0.02);
-  border-radius: 0.75rem;
-  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 1rem;
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(1.5rem) scale(0.9);
+  transition:
+    all 0.4s cubic-bezier(0.2, 0.65, 0.2, 1),
+    transform 0.1s ease-out;
+  transition-delay: var(--stagger-delay, 0ms);
 }
 
-.tech-item:hover {
-  background: rgba(255, 255, 255, 0.08);
-  transform: scale(1.05);
+.tech-category.in-view .tech-item {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.tech-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at var(--tech-mouse-x, 50%) var(--tech-mouse-y, 50%),
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.tech-item:hover::before {
+  opacity: 1;
+}
+
+.tech-item {
+  transform-style: preserve-3d;
+}
+
+.tech-item:hover,
+.tech-item.is-hovered {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow:
+    0 12px 32px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.tech-icon-wrapper {
+  position: relative;
+  width: 64px;
+  height: 64px;
 }
 
 .tech-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 0.5rem;
+  width: 64px;
+  height: 64px;
+  border-radius: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 900;
-  font-size: 1.25rem;
-  color: #fff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 2;
+  transition: all 0.4s cubic-bezier(0.2, 0.65, 0.2, 1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.tech-icon-symbol {
+  font-weight: 400;
+  font-size: 2rem;
+  line-height: 1;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.tech-icon-glow {
+  position: absolute;
+  inset: -8px;
+  border-radius: 1.25rem;
+  opacity: 0;
+  filter: blur(12px);
+  transition: opacity 0.4s ease;
+  z-index: 1;
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.1);
+  }
+}
+
+.tech-item:hover .tech-icon {
+  transform: scale(1.1) rotateZ(5deg);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+}
+
+.tech-item:hover .tech-icon-symbol {
+  transform: scale(1.15) rotateZ(-5deg);
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
+}
+
+.tech-item:hover .tech-icon-glow {
+  opacity: 0.8;
+  animation: pulse-glow-active 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-glow-active {
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
 }
 
 .tech-name {
   font-size: 0.875rem;
-  font-weight: 500;
+  font-weight: 600;
   color: #c9c9c9;
   text-align: center;
+  transition: all 0.3s ease;
+  letter-spacing: 0.01em;
+  position: relative;
+}
+
+.tech-item:hover .tech-name {
+  color: #fff;
+  transform: translateY(-2px);
+  text-shadow: 0 2px 8px rgba(255, 255, 255, 0.2);
+}
+
+.tech-item:hover .tech-name::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  animation: underline-expand 0.4s ease forwards;
+}
+
+@keyframes underline-expand {
+  to {
+    width: 80%;
+  }
 }
 
 /* Theme colors for categories */
 .theme-purple {
   --accent: #9929ea;
+  --accent-glow: rgba(153, 41, 234, 0.3);
 }
 .theme-blue {
   --accent: #61dafb;
+  --accent-glow: rgba(97, 218, 251, 0.3);
 }
 .theme-green {
   --accent: #42b883;
+  --accent-glow: rgba(66, 184, 131, 0.3);
 }
 .theme-orange {
   --accent: #ff9900;
+  --accent-glow: rgba(255, 153, 0, 0.3);
 }
 .theme-pink {
   --accent: #cc66da;
+  --accent-glow: rgba(204, 102, 218, 0.3);
 }
 
 /* Services Section */
@@ -809,6 +1298,18 @@ const serviceTheme = (index: number) => {
   * {
     animation: none !important;
     transition: none !important;
+  }
+  .tech-category {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .tech-item {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .badge-number {
+    transform: scale(1) !important;
+    animation: none !important;
   }
 }
 </style>
