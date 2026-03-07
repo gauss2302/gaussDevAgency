@@ -4,11 +4,11 @@
     :class="[{ compact }, rounded ? 'round-xl' : 'round-lg']"
     aria-labelledby="contact-heading"
   >
-    <div class="header">
-      <h2 id="contact-heading" class="title">{{ title }}</h2>
-      <p v-if="subtitle" class="sub">{{ subtitle }}</p>
-      <p v-if="hours" class="hours-header" aria-label="Working hours">
-        <svg viewBox="0 0 24 24" class="icon clock" aria-hidden="true">
+    <div class="contact-widget__header">
+      <h2 v-if="title" id="contact-heading" class="contact-widget__title">{{ title }}</h2>
+      <p v-if="subtitle" class="contact-widget__sub">{{ subtitle }}</p>
+      <p v-if="hours" class="contact-widget__hours" aria-label="Working hours">
+        <svg viewBox="0 0 24 24" class="contact-widget__clock" aria-hidden="true">
           <path
             fill="currentColor"
             d="M12 1.75a10.25 10.25 0 1 0 0 20.5 10.25 10.25 0 0 0 0-20.5ZM12.75 6a.75.75 0 0 0-1.5 0v6c0 .2.08.39.22.53l3.5 3.5a.75.75 0 0 0 1.06-1.06l-3.28-3.28V6Z"
@@ -18,79 +18,79 @@
       </p>
     </div>
 
-    <div class="grid">
-      <div class="media" v-if="imageSrc">
+    <div class="contact-widget__grid">
+      <div class="contact-widget__media" v-if="imageSrc">
         <img :src="imageSrc" :alt="imageAlt || 'Contact image'" />
       </div>
 
-      <div class="icons" role="list">
+      <div class="contact-widget__icons" role="list">
         <a
           v-if="email"
           role="listitem"
-          class="tile"
+          class="contact-widget__tile"
           :href="`mailto:${email}`"
           @click="emit('click', { channel: 'email' })"
           aria-label="Email"
         >
-          <span class="tile-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" class="icon">
+          <span class="contact-widget__tile-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" class="contact-widget__icon">
               <path
                 fill="currentColor"
                 d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5L4 8V6l8 5 8-5z"
               />
             </svg>
           </span>
-          <span class="tile-body">
-            <span class="tile-title">Email</span>
-            <span class="tile-sub">{{ email }}</span>
+          <span class="contact-widget__tile-body">
+            <span class="contact-widget__tile-title">Email</span>
+            <span class="contact-widget__tile-sub">{{ email }}</span>
           </span>
         </a>
 
         <a
           v-if="telegramUrl"
           role="listitem"
-          class="tile"
+          class="contact-widget__tile"
           :href="telegramUrl"
           target="_blank"
           rel="noopener"
           @click="emit('click', { channel: 'telegram' })"
           aria-label="Telegram"
         >
-          <span class="tile-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" class="icon">
+          <span class="contact-widget__tile-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" class="contact-widget__icon">
               <path
                 fill="currentColor"
                 d="M9.03 15.88 8.9 18.6a1 1 0 0 0 1.6.84l2.32-1.7 3.6 2.65c.66.49 1.6.12 1.78-.68l3.03-13.6a1 1 0 0 0-1.36-1.14L2.6 10.2a1 1 0 0 0 .03 1.84l4.93 1.89 9.12-7.23-7.65 8.18z"
               />
             </svg>
           </span>
-          <span class="tile-body">
-            <span class="tile-title">Telegram</span>
-            <span class="tile-sub">{{ telegramHandle || urlHost(telegramUrl) }}</span>
+          <span class="contact-widget__tile-body">
+            <span class="contact-widget__tile-title">Telegram</span>
+            <span class="contact-widget__tile-sub">{{ telegramHandle || urlHost(telegramUrl) }}</span>
           </span>
         </a>
 
         <a
           v-if="linkedinUrl"
           role="listitem"
-          class="tile"
+          class="contact-widget__tile"
           :href="linkedinUrl"
           target="_blank"
           rel="noopener"
           @click="emit('click', { channel: 'linkedin' })"
           aria-label="LinkedIn"
         >
-          <span class="tile-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" class="icon">
+          <span class="contact-widget__tile-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" class="contact-widget__icon">
               <path
                 fill="currentColor"
                 d="M4.98 3.5a2.5 2.5 0 1 1 0 5.001 2.5 2.5 0 0 1 0-5zM3 8.98h3.96V21H3zM9.48 8.98H13v1.64h.06c.49-.93 1.69-1.91 3.48-1.91 3.72 0 4.41 2.45 4.41 5.63V21H17V14.6c0-1.53-.03-3.49-2.13-3.49-2.13 0-2.46 1.66-2.46 3.38V21H9.48z"
               />
             </svg>
           </span>
-          <span class="tile-body">
-            <span class="tile-title">LinkedIn</span>
-            <span class="tile-sub">{{ urlHost(linkedinUrl) }}</span>
+          <span class="contact-widget__tile-body">
+            <span class="contact-widget__tile-title">LinkedIn</span>
+            <span class="contact-widget__tile-sub">{{ urlHost(linkedinUrl) }}</span>
           </span>
         </a>
       </div>
@@ -134,192 +134,186 @@ const urlHost = (url: string) => {
 </script>
 
 <style scoped>
+/* Match Home.vue: surface, gold, purple, pink, muted, card borders */
 .contact-widget {
-  --ink: #faeb92;
-  --muted: #c9c9c9;
-  --stroke: rgba(255, 255, 255, 0.12);
-  --card: rgba(255, 255, 255, 0.05);
-  --accent: linear-gradient(90deg, #9929ea, #cc66da);
+  --surface: #08080c;
+  --gold: #faeb92;
+  --purple: #9929ea;
+  --pink: #cc66da;
+  --muted: #a1a1aa;
 
-  color: var(--ink);
-  padding: 3rem 1rem 4rem;
+  color: #f0f0f0;
+  padding: clamp(2.5rem, 6vw, 4rem) clamp(1.5rem, 5vw, 4rem);
   background: transparent;
   isolation: isolate;
 }
 
 .contact-widget.compact {
-  padding: 2rem 1rem;
+  padding: 2rem clamp(1rem, 3vw, 2rem);
 }
 
-.header {
+.contact-widget__header {
   text-align: center;
   margin-bottom: 2rem;
 }
 
-.title {
-  font-size: clamp(1.8rem, 3vw, 2.6rem);
+.contact-widget__title {
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
   font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #fff;
   margin: 0 0 0.4rem;
 }
 
-.sub {
+.contact-widget__sub {
   color: var(--muted);
-  margin: 0 auto 0.75rem;
-  max-width: 560px;
+  margin: 0 auto 0.6rem;
+  max-width: 520px;
+  font-size: 1rem;
+  line-height: 1.65;
 }
 
-.hours-header {
+.contact-widget__hours {
   display: inline-flex;
   gap: 0.5rem;
   align-items: center;
   color: var(--muted);
-  margin: 0.75rem auto 0;
-  font-size: 0.95rem;
-  justify-content: center;
+  margin: 0.5rem auto 0;
+  font-size: 0.9rem;
 }
 
-.icon.clock {
+.contact-widget__clock {
   width: 18px;
   height: 18px;
-  opacity: 0.9;
+  opacity: 0.85;
 }
 
-.grid {
+.contact-widget__grid {
   display: grid;
   grid-template-columns: 1.1fr 1fr;
   gap: clamp(1.25rem, 3vw, 3rem);
   max-width: 1200px;
-  padding: 0 1rem;
   margin: 0 auto;
   align-items: center;
 }
 
-.media img {
+.contact-widget__media img {
   width: 100%;
-  max-width: 580px;
-  border-radius: 1.25rem;
+  max-width: 560px;
+  border-radius: 1.2rem;
   display: block;
   object-fit: cover;
-  box-shadow: 0 20px 56px rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
 }
 
-.icons {
+.contact-widget__icons {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-.tile {
+/* Tiles: same card style as Home features — subtle border, soft bg, purple glow on hover */
+.contact-widget__tile {
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 1rem;
   align-items: center;
   padding: 1.1rem 1.25rem;
   border-radius: 1rem;
-  background:
-    linear-gradient(#0c0c10, #0c0c10) padding-box,
-    var(--accent) border-box;
-  border: 1px solid transparent;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.07);
   text-decoration: none;
-  color: var(--ink);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
-  transition:
-    transform 0.16s ease,
-    box-shadow 0.16s ease,
-    background 0.22s ease,
-    opacity 0.16s ease;
+  color: #f0f0f0;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
 }
 
-.round-xl .tile {
-  border-radius: 1.25rem;
+.round-xl .contact-widget__tile {
+  border-radius: 1.2rem;
 }
 
-.round-lg .tile {
+.round-lg .contact-widget__tile {
   border-radius: 1rem;
 }
 
-.tile:hover {
+.contact-widget__tile:hover {
+  border-color: rgba(204, 102, 218, 0.35);
+  box-shadow: 0 16px 48px rgba(153, 41, 234, 0.12);
   transform: translateY(-2px);
-  box-shadow: 0 24px 56px rgba(153, 41, 234, 0.25);
 }
 
-.tile:active {
+.contact-widget__tile:active {
   transform: translateY(0);
-  opacity: 0.95;
 }
 
-.tile:focus-visible {
+.contact-widget__tile:focus-visible {
   outline: none;
-  box-shadow:
-    0 0 0 3px rgba(12, 12, 16, 0.9),
-    0 0 0 6px rgba(153, 41, 234, 0.55);
+  box-shadow: 0 0 0 3px var(--surface), 0 0 0 5px rgba(153, 41, 234, 0.4);
 }
 
-.tile-icon {
+.contact-widget__tile-icon {
   display: grid;
   place-items: center;
-  width: 80px;
-  height: 80px;
-  border-radius: 1rem;
-  background: var(--card);
-  border: 1px solid var(--stroke);
+  width: 72px;
+  height: 72px;
+  border-radius: 0.85rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.icon {
-  width: 40px;
-  height: 40px;
+.contact-widget__icon {
+  width: 36px;
+  height: 36px;
+  color: var(--gold);
 }
 
-.tile-body {
+.contact-widget__tile-body {
   display: grid;
   gap: 0.2rem;
 }
 
-.tile-title {
+.contact-widget__tile-title {
   font-weight: 800;
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   line-height: 1.2;
+  color: #fff;
 }
 
-.tile-sub {
+.contact-widget__tile-sub {
   color: var(--muted);
-  font-size: 0.95rem;
+  font-size: 0.92rem;
 }
 
-.contact-widget.compact .tile-icon {
-  width: 68px;
-  height: 68px;
+.contact-widget.compact .contact-widget__tile-icon {
+  width: 64px;
+  height: 64px;
 }
 
-.contact-widget.compact .icon {
-  width: 36px;
-  height: 36px;
+.contact-widget.compact .contact-widget__icon {
+  width: 32px;
+  height: 32px;
 }
 
-.contact-widget.compact .tile {
+.contact-widget.compact .contact-widget__tile {
   padding: 1rem 1.1rem;
 }
 
 @media (max-width: 960px) {
-  .grid {
+  .contact-widget__grid {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
 
-  .media {
+  .contact-widget__media {
     order: 2;
   }
 
-  .icons {
+  .contact-widget__icons {
     order: 1;
     align-items: stretch;
   }
 
-  .tile {
-    width: 100%;
-  }
-
-  .media img {
+  .contact-widget__media img {
     max-width: 100%;
     margin: 0 auto;
   }
@@ -327,61 +321,43 @@ const urlHost = (url: string) => {
 
 @media (max-width: 640px) {
   .contact-widget {
-    padding: 2rem 0.75rem 3rem;
+    padding: 2rem clamp(1rem, 4vw, 1.5rem) 3rem;
   }
 
-  .header {
+  .contact-widget__header {
     margin-bottom: 1.5rem;
   }
 
-  .title {
-    font-size: 1.75rem;
+  .contact-widget__title {
+    font-size: 1.6rem;
   }
 
-  .sub {
-    font-size: 0.95rem;
-    padding: 0 0.5rem;
+  .contact-widget__grid {
+    gap: 1.25rem;
   }
 
-  .hours-header {
-    font-size: 0.9rem;
-  }
-
-  .grid {
-    padding: 0;
-    gap: 1.5rem;
-  }
-
-  .tile {
+  .contact-widget__tile {
     padding: 1rem;
     gap: 0.875rem;
   }
 
-  .tile-icon {
-    width: 64px;
-    height: 64px;
+  .contact-widget__tile-icon {
+    width: 60px;
+    height: 60px;
   }
 
-  .icon {
-    width: 32px;
-    height: 32px;
-  }
-
-  .tile-title {
-    font-size: 1.05rem;
-  }
-
-  .tile-sub {
-    font-size: 0.875rem;
+  .contact-widget__icon {
+    width: 28px;
+    height: 28px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .tile {
+  .contact-widget__tile {
     transition: none;
   }
-  .tile:hover,
-  .tile:active {
+  .contact-widget__tile:hover,
+  .contact-widget__tile:active {
     transform: none;
   }
 }

@@ -1,19 +1,26 @@
 <template>
   <footer class="footer">
-    <div class="footer-container">
-      <div class="footer-brand">
-        <h2 class="footer-logo">Gauss Dev</h2>
-        <p class="footer-tagline">Building the Future, One Solution at a Time</p>
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <h2 class="footer__logo">Gauss Dev</h2>
+        <p class="footer__tagline">Building the future, one solution at a time.</p>
       </div>
-      <div class="footer-contact">
-        <p>
-          Email:
-          <a href="mailto:devshilov@gmail.com" class="contact-link">devshilov@gmail.com</a>
-        </p>
-        <p>Phone: <a href="tel:+998 940603405" class="contact-link">+998 (94) 064-3405</a></p>
+
+      <div class="footer__links">
+        <router-link to="/">Home</router-link>
+        <router-link to="/services">Services</router-link>
+        <router-link to="/contact">Contact</router-link>
+      </div>
+
+      <div class="footer__contact">
+        <a href="mailto:devshilov@gmail.com">devshilov@gmail.com</a>
+        <a href="tel:+998940603405">+998 (94) 060-3405</a>
       </div>
     </div>
-    <p class="footer-copyright">&copy; 2026 Gauss Dev. All rights reserved.</p>
+
+    <div class="footer__bottom">
+      <p>&copy; 2026 Gauss Dev. All rights reserved.</p>
+    </div>
   </footer>
 </template>
 
@@ -21,65 +28,94 @@
 
 <style scoped>
 .footer {
-  background-color: #000000;
-  color: white;
-  padding: 2rem 1rem;
+  --surface: #08080c;
+  --muted: #a1a1aa;
+
+  background: var(--surface);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding: clamp(2.5rem, 6vw, 3.5rem) clamp(1.5rem, 5vw, 4rem) 1.5rem;
+  color: var(--muted);
 }
 
-.footer-container {
-  max-width: 1200px;
+.footer__inner {
+  max-width: 1320px;
   margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: clamp(1.5rem, 4vw, 2.5rem);
+  align-items: start;
+}
+
+.footer__logo {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #fff;
+  margin: 0 0 0.35rem;
+  letter-spacing: -0.02em;
+}
+
+.footer__tagline {
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.footer__links {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  gap: 0.45rem;
 }
 
-.footer-brand {
-  flex: 1;
+.footer__links a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 600;
+  transition: color 0.2s ease;
 }
 
-.footer-logo {
-  font-size: 1.25rem;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-  color: #faeb92;
+.footer__links a:hover {
+  color: #f0f0f0;
 }
 
-.footer-tagline {
-  font-size: 1rem;
-  color: #faeb92;
-}
-
-.footer-contact {
-  flex: 1;
-  color: #faeb92;
+.footer__contact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
   text-align: right;
 }
 
-.contact-link {
-  color: rgb(204, 102, 218);
+.footer__contact a {
+  color: var(--muted);
   text-decoration: none;
+  font-size: 0.88rem;
+  transition: color 0.2s ease;
 }
 
-.contact-link:hover {
-  text-decoration: underline;
+.footer__contact a:hover {
+  color: #f0f0f0;
 }
 
-.footer-copyright {
+.footer__bottom {
+  max-width: 1320px;
+  margin: clamp(1.5rem, 4vw, 2rem) auto 0;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
   text-align: center;
-  margin-top: 1rem;
-  font-size: 0.875rem;
-  color: #d1d5db;
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.35);
 }
 
 @media (max-width: 768px) {
-  .footer-container {
-    flex-direction: column;
-    gap: 1rem;
+  .footer__inner {
+    grid-template-columns: 1fr;
     text-align: center;
+    gap: 1.5rem;
   }
 
-  .footer-contact {
+  .footer__contact {
     text-align: center;
   }
 }

@@ -4,6 +4,7 @@ export interface FeatureItem {
   title: string
   desc: string
   bullets: string[]
+  image?: string
   media: FeatureMedia
 }
 

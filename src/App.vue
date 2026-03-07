@@ -27,13 +27,13 @@ body {
   padding: 0;
   width: 100%;
   overflow-x: hidden;
-  background-color: #000000;
+  background-color: #08080c;
 }
 
 body {
-  /* Убираем overlay scrolling для более стабильного поведения */
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
 #app {
@@ -45,8 +45,8 @@ body {
 
 <style scoped>
 .app-container {
-  font-family: Arial, sans-serif;
-  background-color: #000000;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: #08080c;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -55,9 +55,8 @@ body {
 }
 
 .main-content {
-  max-width: 1200px;
   width: 100%;
-  margin: 0 auto;
+  margin: 0;
   padding: 0;
 }
 </style>

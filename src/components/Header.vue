@@ -1,54 +1,38 @@
 <template>
   <header class="header" :class="{ scrolled: isScrolled }">
-    <div class="header-container">
-      <h1 class="logo">Gauss Dev</h1>
-      <button class="burger-menu" @click="toggleMenu" aria-label="Toggle Menu">
+    <div class="header__inner">
+      <router-link to="/" class="header__logo">Gauss Dev</router-link>
+
+      <button class="header__burger" @click="toggleMenu" aria-label="Toggle menu">
         <svg
-          width="24"
-          height="24"
+          width="22"
+          height="22"
           viewBox="0 0 24 24"
           fill="none"
-          stroke="#FAEB92"
+          stroke="currentColor"
           stroke-width="2"
         >
           <path v-if="!isMenuOpen" d="M3 6h18M3 12h18M3 18h18" />
           <path v-else d="M6 6L18 18M6 18L18 6" />
         </svg>
       </button>
-      <nav class="nav-links" :class="{ open: isMenuOpen }">
+
+      <nav class="header__nav" :class="{ open: isMenuOpen }">
         <router-link
           to="/"
-          class="nav-link"
+          class="header__link"
           :class="{ active: route.path === '/' }"
           @click="closeMenu"
           >Home</router-link
         >
-        <!-- <router-link
-          to="/services"
-          class="nav-link"
-          :class="{ active: route.path === '/services' }"
-          @click="closeMenu"
-          >Services</router-link
-        > -->
-        <router-link
-          to="/about"
-          class="nav-link"
-          :class="{ active: route.path === '/about' }"
-          @click="closeMenu"
-          >About</router-link
-        >
         <router-link
           to="/services"
-          class="nav-link"
+          class="header__link"
           :class="{ active: route.path === '/services' }"
           @click="closeMenu"
           >Services</router-link
         >
-        <router-link
-          to="/contact"
-          class="nav-link"
-          :class="{ active: route.path === '/contact' }"
-          @click="closeMenu"
+        <router-link to="/contact" class="header__link header__link--cta" @click="closeMenu"
           >Contact</router-link
         >
       </nav>
@@ -67,20 +51,17 @@ const isMenuOpen = ref(false)
 const handleScroll = () => {
   isScrolled.value = window.scrollY > 50
 }
-
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value
 }
-
 const closeMenu = () => {
   isMenuOpen.value = false
 }
 
 onMounted(() => {
   window.addEventListener('scroll', handleScroll)
-  handleScroll() // Initial check
+  handleScroll()
 })
-
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
 })
@@ -88,144 +69,135 @@ onUnmounted(() => {
 
 <style scoped>
 .header {
-  background-color: #000000; /* Opaque black at top */
-  color: #faeb92;
-  padding: 0.75rem;
+  --surface: #08080c;
+  --muted: #a1a1aa;
+
   position: sticky;
   top: 0;
-  z-index: 10;
-  border-radius: 1rem;
-  font-family: 'Inter', sans-serif;
+  z-index: 100;
+  background: rgba(8, 8, 12, 0.65);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid transparent;
   transition:
-    background-color 0.3s ease,
-    backdrop-filter 0.3s ease;
+    background 0.3s ease,
+    border-color 0.3s ease;
 }
 
 .header.scrolled {
-  background-color: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(4px);
+  background: rgba(8, 8, 12, 0.92);
+  border-bottom-color: rgba(255, 255, 255, 0.06);
 }
 
-.header-container {
-  max-width: 1200px;
+.header__inner {
+  max-width: 1320px;
   margin: 0 auto;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 0 1rem;
+  justify-content: space-between;
+  padding: 0.85rem clamp(1.5rem, 5vw, 4rem);
 }
 
-.logo {
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: #faeb92;
+.header__logo {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: -0.02em;
+  transition:
+    color 0.2s ease,
+    opacity 0.2s ease;
 }
 
-.burger-menu {
-  display: none; /* Hidden on desktop */
+.header__logo:hover {
+  opacity: 0.85;
+}
+
+.header__burger {
+  display: none;
   background: none;
   border: none;
   cursor: pointer;
-  padding: 0.5rem;
+  color: #fff;
+  padding: 0.4rem;
 }
 
-.nav-links {
+.header__nav {
   display: flex;
-  gap: 1.5rem;
-  position: relative;
+  align-items: center;
+  gap: 0.25rem;
 }
 
-.nav-link {
-  color: #faeb92;
+.header__link {
+  color: var(--muted);
   text-decoration: none;
-  padding: 0.5rem;
-  font-size: 1rem;
+  font-size: 0.88rem;
   font-weight: 600;
-  position: relative;
+  padding: 0.5rem 0.9rem;
+  border-radius: 0.5rem;
   transition:
-    color 0.3s ease,
-    transform 0.2s ease;
+    color 0.2s ease,
+    background 0.2s ease;
 }
 
-.nav-link:hover,
-.nav-link.active {
-  color: #cc66da;
-  transform: scale(1.05);
+.header__link:hover,
+.header__link.active {
+  color: #f0f0f0;
+  background: rgba(255, 255, 255, 0.05);
 }
 
-.nav-link::before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: linear-gradient(to right, #9929ea, #cc66da);
-  transition: width 0.3s ease;
+.header__link--cta {
+  background: #fff;
+  color: var(--surface) !important;
+  margin-left: 0.5rem;
+  border-radius: 0.6rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
 }
 
-.nav-link:hover::before,
-.nav-link.active::before {
-  width: 100%;
+.header__link--cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  opacity: 0.95;
 }
 
 @media (max-width: 768px) {
-  .header {
-    border-radius: 0.5rem;
-    padding: 0.5rem;
+  .header__inner {
+    padding: 0.75rem clamp(1rem, 4vw, 2rem);
   }
 
-  .header-container {
-    flex-direction: row; /* Keep logo and burger inline */
-    gap: 0.5rem;
+  .header__burger {
+    display: block;
   }
 
-  .logo {
-    font-size: 1.25rem;
-  }
-
-  .burger-menu {
-    display: block; /* Show on mobile */
-  }
-
-  .nav-links {
-    display: none; /* Hidden by default */
+  .header__nav {
+    display: none;
     position: fixed;
-    top: 0;
-    right: 0;
-    height: 100vh;
-    width: 250px;
-    background-color: rgba(0, 0, 0, 0.9);
-    backdrop-filter: blur(4px);
+    inset: 0;
+    z-index: 200;
+    background: rgba(8, 8, 12, 0.97);
+    backdrop-filter: blur(16px);
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 2rem;
-    transform: translateX(100%); /* Off-screen right */
-    transition: transform 0.3s ease; /* Smooth slide-in */
-    z-index: 20;
+    gap: 1.25rem;
   }
 
-  .nav-links.open {
-    display: flex; /* Show when open */
-    transform: translateX(0); /* Slide in */
+  .header__nav.open {
+    display: flex;
   }
 
-  .nav-link {
-    font-size: 1.25rem;
-    padding: 1rem;
+  .header__link {
+    font-size: 1.15rem;
+    padding: 0.75rem 1.5rem;
   }
 
-  .nav-link::before {
-    width: 100%;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-  }
-
-  .nav-link:hover::before,
-  .nav-link.active::before {
-    width: 100%;
+  .header__link--cta {
+    margin-left: 0;
+    margin-top: 0.5rem;
   }
 }
 </style>
