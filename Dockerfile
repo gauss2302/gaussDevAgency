@@ -1,14 +1,17 @@
-# ────── Stage 1: Build the frontend (Vite/React/Vue/whatever you use) ──────
+# ────── Stage 1: Build the frontend (Vite/Vue, pnpm) ──────
 FROM node:20-alpine AS build
 WORKDIR /app
 
+# Enable pnpm via corepack (no extra image layer)
+RUN corepack enable && corepack prepare pnpm@latest --activate
+
 # Copy only package files first (better caching)
-COPY package*.json ./
-RUN npm ci
+COPY package.json pnpm-lock.yaml ./
+RUN pnpm install --frozen-lockfile
 
 # Copy source and build
 COPY . .
-RUN npm run build
+RUN pnpm run build
 # → this creates /app/dist (or /app/build if you use Create-React-App)
 
 # ────── Stage 2: Serve with nginx ──────
