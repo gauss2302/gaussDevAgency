@@ -493,7 +493,8 @@ onMounted(() => {
 .tl__card-body { padding: 1.4rem 1.5rem; }
 
 .tl__card-title {
-  font-size: 1.15rem; font-weight: 700; line-height: 1.3; color: rgba(255,255,255,0.6);
+  font-size: clamp(1.35rem, 2vw, 1.6rem); font-weight: 700; line-height: 1.25; color: rgba(255,255,255,0.6);
+  letter-spacing: -0.01em;
   transition: color 0.3s ease; margin: 0 0 0.5rem;
 }
 .tl__card-title.active { color: #fff; }
