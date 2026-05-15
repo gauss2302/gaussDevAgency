@@ -1,0 +1,22 @@
+# https://gaussdev.com — crawl directives
+# Open to everyone; nothing under a login here.
+
+User-agent: *
+Allow: /
+Disallow: /api/
+
+# Big-eight LLM crawlers — explicitly allow (no real PII, marketing site)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# Sitemap
+Sitemap: https://gaussdev.com/sitemap.xml
