@@ -194,13 +194,34 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, ref, watchEffect } from 'vue'
 import { useRoute } from 'vue-router'
 import { findPrivacyApp } from '@/data/privacyApps'
+import { useSeo } from '@/composables/useSeo'
 
 const route = useRoute()
 const slug = computed(() => String(route.params.app ?? ''))
 const config = computed(() => findPrivacyApp(slug.value))
+
+// Per-app meta — reactive on the route param so /privacy/prayer and
+// /privacy/<other-app> get distinct titles + canonicals.
+useSeo({
+  path: '/privacy',  // default; updated below once slug resolves
+  title: 'Privacy Policy',
+  description: 'Privacy policy for a Gauss Dev mobile application.',
+  type: 'article',
+})
+watchEffect(() => {
+  if (config.value) {
+    // Re-call to refresh per-app metadata when the route param changes.
+    useSeo({
+      path: `/privacy/${slug.value}`,
+      title: `${config.value.appName} — Privacy Policy`,
+      description: `Privacy policy for the ${config.value.appName} mobile app (${config.value.platforms}). Plain-English, no tracking pixels, no dark patterns.`,
+      type: 'article',
+    })
+  }
+})
 
 const mounted = ref(false)
 onMounted(() => requestAnimationFrame(() => { mounted.value = true }))

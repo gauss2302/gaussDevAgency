@@ -230,7 +230,15 @@
 
 <script setup lang="ts">
 import DottedSurface from '@/components/ui/DottedSurface.vue'
+import { useSeo } from '@/composables/useSeo'
 import { ref, computed, onMounted, onBeforeUnmount, watch } from 'vue'
+
+useSeo({
+  path: '/',
+  title: 'Senior Software Development Agency',
+  description:
+    'Senior product team building production-grade web, mobile, and AI software. We design, engineer, and ship — strategy, design, and engineering under one roof.',
+})
 
 /* ───────────────────────── HERO state ───────────────────────── */
 const mounted = ref(false)

@@ -296,6 +296,14 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { useSeo } from '@/composables/useSeo'
+
+useSeo({
+  path: '/services',
+  title: 'Services — Web, Mobile, AI, Cloud Development',
+  description:
+    'Six disciplines, one delivery team. Custom software development: web platforms, mobile apps, AI integration, cloud infrastructure, and product design.',
+})
 
 /* ─── hero reveal flag ─── */
 const mounted = ref(false)

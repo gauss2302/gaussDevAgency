@@ -34,6 +34,14 @@
 <script setup lang="ts">
 import ContactWidget from '@/components/ContactWidget.vue'
 import { ref, onMounted } from 'vue'
+import { useSeo } from '@/composables/useSeo'
+
+useSeo({
+  path: '/contact',
+  title: 'Contact — Start a Project',
+  description:
+    'Tell us about what you are shipping. We reply within one business day with a sharper question, a small plan, or a polite "this is not us — try X instead."',
+})
 
 const mounted = ref(false)
 onMounted(() => requestAnimationFrame(() => { mounted.value = true }))

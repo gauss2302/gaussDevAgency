@@ -32,6 +32,13 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import { privacyApps } from '@/data/privacyApps'
+import { useSeo } from '@/composables/useSeo'
+
+useSeo({
+  path: '/privacy',
+  title: 'Privacy Policies',
+  description: 'Privacy policies for every Gauss Dev mobile application.',
+})
 
 const apps = privacyApps
 const mounted = ref(false)
