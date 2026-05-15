@@ -2,11 +2,16 @@
 FROM node:20-alpine AS build
 WORKDIR /app
 
-# Enable pnpm via corepack (no extra image layer)
-RUN corepack enable && corepack prepare pnpm@latest --activate
-
-# Copy only package files first (better caching)
+# Copy package files first so corepack can read the `packageManager`
+# field from package.json (gives us a single source of truth for the
+# pnpm version, shared with the local dev environment).
 COPY package.json pnpm-lock.yaml ./
+
+# Enable corepack and install the exact pnpm version pinned in
+# package.json's `packageManager` field. NEVER use `pnpm@latest` here:
+# recent pnpm 11.x releases depend on `node:sqlite` which only exists
+# in Node 22.5+, so they crash on this `node:20-alpine` base image.
+RUN corepack enable && corepack install
 RUN pnpm install --frozen-lockfile
 
 # Copy source and build
