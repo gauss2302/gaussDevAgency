@@ -2,16 +2,126 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#08080c" />
+
+    <!-- Primary meta — fallback for routes the bot hasn't rendered JS for -->
+    <title>Gauss Dev — Senior Software Development Agency</title>
+    <meta
+      name="description"
+      content="Senior product team building production-grade web, mobile, and AI software. From discovery to launch — no handoffs, no agency theatre."
+    />
+    <meta name="author" content="Gauss Dev" />
+    <link rel="canonical" href="https://gaussdev.com/" />
+
+    <!-- Icons -->
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Open Graph (Facebook, LinkedIn, Telegram, Slack, Discord) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Gauss Dev" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:url" content="https://gaussdev.com/" />
+    <meta property="og:title" content="Gauss Dev — Senior Software Development Agency" />
+    <meta
+      property="og:description"
+      content="Senior product team building production-grade web, mobile, and AI software. From discovery to launch — no handoffs, no agency theatre."
+    />
+    <meta property="og:image" content="https://gaussdev.com/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Gauss Dev — building digital products that scale" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Gauss Dev — Senior Software Development Agency" />
+    <meta
+      name="twitter:description"
+      content="Senior product team building production-grade web, mobile, and AI software."
+    />
+    <meta name="twitter:image" content="https://gaussdev.com/og-image.png" />
+
+    <!-- Crawler directives -->
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+    <meta name="googlebot" content="index, follow" />
+
+    <!-- Font preconnect + Inter (subsetted, swap) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
     />
-    <title>Gauss Dev — Software Development Agency</title>
+
+    <!-- DNS prefetch for Unsplash (still used by /privacy assets in some cases) -->
+    <link rel="dns-prefetch" href="https://images.unsplash.com" />
+
+    <!-- Structured data: Organization + WebSite (rich results) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://gaussdev.com/#organization",
+            "name": "Gauss Dev",
+            "url": "https://gaussdev.com",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://gaussdev.com/og-image.png",
+              "width": 1200,
+              "height": 630
+            },
+            "description": "Senior software development agency. Web, mobile, AI, and cloud — built by one team, no handoffs.",
+            "email": "devshilov@gmail.com",
+            "telephone": "+998-94-060-3405",
+            "sameAs": [
+              "https://t.me/nick230296",
+              "https://www.linkedin.com/company/104642717/"
+            ],
+            "address": {
+              "@type": "PostalAddress",
+              "addressCountry": "UZ"
+            },
+            "knowsAbout": [
+              "Web Application Development",
+              "Mobile App Development",
+              "AI Integration",
+              "Cloud Infrastructure",
+              "Product Design",
+              "Product Strategy"
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://gaussdev.com/#website",
+            "url": "https://gaussdev.com",
+            "name": "Gauss Dev",
+            "publisher": { "@id": "https://gaussdev.com/#organization" },
+            "inLanguage": "en"
+          },
+          {
+            "@type": "ProfessionalService",
+            "@id": "https://gaussdev.com/#service",
+            "name": "Gauss Dev — Software Development Agency",
+            "provider": { "@id": "https://gaussdev.com/#organization" },
+            "areaServed": "Worldwide",
+            "serviceType": [
+              "Custom Software Development",
+              "Web Application Development",
+              "Mobile Application Development",
+              "AI and Machine Learning",
+              "Cloud Infrastructure",
+              "UI/UX Design"
+            ]
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
     <div id="app"></div>
