@@ -21,3 +21,31 @@
   outline-offset: 2px;
   border-radius: 6px;
 }
+
+/* Interactive controls hit the 44×44 touch-target minimum */
+a,
+button,
+[role='button'],
+input[type='submit'],
+input[type='button'] {
+  min-height: 44px;
+}
+
+/* Footer link rows are dense; widen the hit area without changing layout */
+.footer a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding-block: 0.35rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
