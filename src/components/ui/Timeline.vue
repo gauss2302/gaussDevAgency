@@ -131,7 +131,10 @@ onUnmounted(() => {
                 :key="`${item.id}-${imgIndex}`"
                 :src="img"
                 :alt="`${item.title} preview ${imgIndex + 1}`"
+                width="1200"
+                height="800"
                 loading="lazy"
+                decoding="async"
                 class="timeline-image"
               />
             </div>

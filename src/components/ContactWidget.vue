@@ -21,7 +21,14 @@
 
     <div class="contact-widget__grid">
       <div class="contact-widget__media" v-if="imageSrc">
-        <img :src="imageSrc" :alt="imageAlt || 'Contact image'" />
+        <img
+          :src="imageSrc"
+          :alt="imageAlt || 'Contact image'"
+          width="560"
+          height="700"
+          loading="lazy"
+          decoding="async"
+        />
       </div>
 
       <div class="contact-widget__icons" role="list">

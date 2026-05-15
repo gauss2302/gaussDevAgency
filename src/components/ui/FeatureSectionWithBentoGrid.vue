@@ -75,9 +75,13 @@ const bentoItems = computed(() =>
             <div class="absolute inset-0">
               <img
                 :src="item.imageUrl"
-                :alt="`${item.title} background`"
+                alt=""
+                aria-hidden="true"
+                width="1200"
+                height="675"
                 class="h-full w-full object-cover opacity-40 transition duration-500 group-hover:scale-105 group-hover:opacity-50"
                 loading="lazy"
+                decoding="async"
               />
             </div>
             <div
