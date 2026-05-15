@@ -15,12 +15,15 @@
         <router-link
           v-for="app in apps"
           :key="app.slug"
-          :to="`/privacy/${app.slug}`"
+          :to="app.customRoute ?? `/privacy/${app.slug}`"
           class="app-card"
         >
           <div class="app-card__main">
             <h2 class="app-card__title">{{ app.appName }}</h2>
-            <p class="app-card__meta">{{ app.platforms }} · Updated {{ app.effectiveDate }}</p>
+            <p class="app-card__meta">
+              {{ app.platforms }} · Updated {{ app.effectiveDate }}
+              <span v-if="app.hasTerms"> · Privacy + Terms</span>
+            </p>
           </div>
           <span class="app-card__arrow" aria-hidden="true">→</span>
         </router-link>

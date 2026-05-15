@@ -1,15 +1,23 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
 import Footer from './components/Footer.vue'
 import Header from './components/Header.vue'
+
+// `standalone` route meta hides the agency Header + Footer so the route
+// can render as a self-contained, brand-isolated page — used by the
+// Havamind legal pages which have their own nav and footer-less layout.
+const route = useRoute()
+const standalone = computed(() => Boolean(route.meta?.standalone))
 </script>
 
 <template>
   <div class="app-container">
-    <Header />
+    <Header v-if="!standalone" />
     <main id="main" class="main-content">
       <router-view></router-view>
     </main>
-    <Footer />
+    <Footer v-if="!standalone" />
   </div>
 </template>
 

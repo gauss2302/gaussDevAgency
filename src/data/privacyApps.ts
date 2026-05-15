@@ -16,9 +16,18 @@ export interface AppPrivacyConfig {
   dataCollected: readonly string[]
   dataUsage: readonly string[]
   thirdPartyServices: readonly ThirdPartyService[]
+  /**
+   * Optional override for the privacy-policy detail URL. When set, the
+   * privacy index uses this as the link target (instead of the generic
+   * /privacy/<slug>) and PrivacyView redirects to it. Used for apps
+   * with their own branded legal page — e.g. Havamind.
+   */
+  customRoute?: string
+  /** Whether this app also has a Terms of Service page. */
+  hasTerms?: boolean
 }
 
-export const privacyApps = [
+export const privacyApps: readonly AppPrivacyConfig[] = [
   {
     slug: 'prayer',
     appName: 'Prayer',
@@ -49,7 +58,55 @@ export const privacyApps = [
       },
     ],
   },
-] as const satisfies readonly AppPrivacyConfig[]
+  {
+    slug: 'havamind',
+    appName: 'Havamind AI Notes',
+    platforms: 'iOS / Android',
+    contactEmail: 'general@gaussdev.com',
+    effectiveDate: 'May 15, 2026',
+    collectsPersonalData: true,
+    hasAds: false,
+    customRoute: '/privacy/havamind',
+    hasTerms: true,
+    dataCollected: [
+      'Audio recordings created within the App to generate notes',
+      'Transcriptions produced from your recordings',
+      'AI-processed text derived from your voice input',
+      'Email address and authentication tokens (if you sign in)',
+      'Anonymous device identifiers, device model, OS and app version',
+      'Feature usage events, session length, crash diagnostics',
+    ],
+    dataUsage: [
+      'To transcribe your voice recordings into text notes',
+      'To apply AI refinement and structuring (upon your request)',
+      'To sync your notes across your devices',
+      'To diagnose crashes and improve performance',
+    ],
+    thirdPartyServices: [
+      {
+        name: 'OpenAI (Whisper + GPT)',
+        description:
+          'Transcribes audio and refines notes. Operated by OpenAI, LLC. Audio is transmitted over encrypted HTTPS and deleted server-side within 24 hours.',
+        privacyUrl: 'https://openai.com/policies/privacy-policy',
+        privacyLabel: 'OpenAI Privacy Policy',
+      },
+      {
+        name: 'Supabase',
+        description:
+          'Database storage, authentication, and cloud sync of your notes. Operated by Supabase, Inc.',
+        privacyUrl: 'https://supabase.com/privacy',
+        privacyLabel: 'Supabase Privacy Policy',
+      },
+      {
+        name: 'Google Firebase Analytics & Crashlytics',
+        description:
+          'Anonymous usage analytics and crash reporting. Operated by Google LLC.',
+        privacyUrl: 'https://firebase.google.com/support/privacy',
+        privacyLabel: 'Firebase Privacy',
+      },
+    ],
+  },
+]
 
 export function findPrivacyApp(slug: string): AppPrivacyConfig | undefined {
   return privacyApps.find((app) => app.slug === slug)
