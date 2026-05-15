@@ -51,6 +51,16 @@ function getSceneParams() {
 function initScene() {
   if (!containerRef.value) return
 
+  // WebGL can fail (disabled by user, sandboxed env, GPU blacklisted, headless).
+  // If creation throws, bail silently — the dotted background is decoration,
+  // and a throw here would break the parent component's lifecycle.
+  let renderer: THREE.WebGLRenderer
+  try {
+    renderer = new THREE.WebGLRenderer({ alpha: true, antialias: !isMobile() })
+  } catch {
+    return
+  }
+
   const params = getSceneParams()
   const { SEPARATION, AMOUNTX, AMOUNTY, pointSize, waveAmplitude, pixelRatio, cameraZ, cameraY } = params
   const theme = getPreferredTheme()
@@ -67,11 +77,6 @@ function initScene() {
 
   const camera = new THREE.PerspectiveCamera(60, width / height, 1, 10000)
   camera.position.set(0, cameraY, cameraZ)
-
-  const renderer = new THREE.WebGLRenderer({
-    alpha: true,
-    antialias: !isMobile(),
-  })
   renderer.setPixelRatio(pixelRatio)
   renderer.setSize(width, height)
   renderer.setClearColor(scene.fog.color, 0)
