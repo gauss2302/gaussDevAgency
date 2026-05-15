@@ -1,1 +1,23 @@
 @import 'tailwindcss';
+
+:root {
+  color-scheme: dark;
+
+  --surface: #08080c;
+  --fg: #f0f0f0;
+  --muted: #a1a1aa;
+  --dim: #71717a;
+  --border: rgba(255, 255, 255, 0.08);
+  --gutter: clamp(1.5rem, 5vw, 4rem);
+
+  --gold: #faeb92;
+  --purple: #9929ea;
+  --pink: #cc66da;
+  --cyan: #61dafb;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--pink);
+  outline-offset: 2px;
+  border-radius: 6px;
+}

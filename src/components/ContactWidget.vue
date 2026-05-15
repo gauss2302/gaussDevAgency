@@ -134,15 +134,8 @@ const urlHost = (url: string) => {
 </script>
 
 <style scoped>
-/* Match Home.vue: surface, gold, purple, pink, muted, card borders */
 .contact-widget {
-  --surface: #08080c;
-  --gold: #faeb92;
-  --purple: #9929ea;
-  --pink: #cc66da;
-  --muted: #a1a1aa;
-
-  color: #f0f0f0;
+  color: var(--fg);
   padding: clamp(2.5rem, 6vw, 4rem) clamp(1.5rem, 5vw, 4rem);
   background: transparent;
   isolation: isolate;

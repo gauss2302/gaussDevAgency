@@ -272,16 +272,6 @@ onMounted(() => {
 </script>
 
 <style scoped>
-/* ── tokens ── */
-:root {
-  --gold: #faeb92;
-  --purple: #9929ea;
-  --pink: #cc66da;
-  --cyan: #61dafb;
-  --surface: #08080c;
-  --muted: #a1a1aa;
-}
-
 .home {
   background: var(--surface);
   color: #f0f0f0;

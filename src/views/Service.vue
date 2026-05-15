@@ -129,14 +129,6 @@ const timelineMilestones = ref<TimelineItem[]>([
 </script>
 
 <style scoped>
-:root {
-  --surface: #08080c;
-  --fg: #f0f0f0;
-  --dim: #71717a;
-  --border: rgba(255,255,255,0.08);
-  --gutter: clamp(1.5rem, 5vw, 4rem);
-}
-
 .page { background: var(--surface); color: var(--fg); }
 
 /* ═══════════════════════════════════════════
