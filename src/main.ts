@@ -5,6 +5,8 @@ import './style.css'
 import Home from './views/Home.vue'
 import Service from './views/Service.vue'
 import Conract from './views/Conract.vue'
+import PrivacyIndex from './views/privacy/PrivacyIndex.vue'
+import PrivacyView from './views/privacy/PrivacyView.vue'
 
 // Main Route
 const router = createRouter({
@@ -13,6 +15,8 @@ const router = createRouter({
     { path: '/', component: Home },
     { path: '/services', component: Service },
     { path: '/contact', component: Conract },
+    { path: '/privacy', component: PrivacyIndex },
+    { path: '/privacy/:app', component: PrivacyView },
   ],
 })
 
