@@ -34,3 +34,4 @@ coverage
 # SSL certificates (provided manually)
 nginx/ssl/*
 !nginx/ssl/.gitkeep
+.gstack/
