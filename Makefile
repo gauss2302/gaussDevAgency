@@ -50,7 +50,7 @@ format:         ## Run Prettier on src/
 
 ## ─ Docker: production stack ─────────────────────────────────────────
 
-.PHONY: build up down restart rebuild logs logs-tail ps status sh nginx-test nginx-reload config-reload clean prune
+.PHONY: build up down restart rebuild hard-reset nuke logs logs-tail ps status sh nginx-test nginx-reload config-reload clean prune
 build:          ## Build the Docker image (no container start)
 	$(COMPOSE) build $(SERVICE)
 
@@ -66,6 +66,19 @@ restart:        ## Restart the container without rebuilding the image
 rebuild:        ## ★ Rebuild image and recreate container — the main "ship my changes" command
 	$(COMPOSE) build $(SERVICE)
 	$(COMPOSE) up -d --force-recreate $(SERVICE)
+
+hard-reset:     ## Stop, remove orphans (incl. renamed _<hash>_ leftovers), and bring back up
+	-$(COMPOSE) down --remove-orphans
+	-docker rm -f $(CONTAINER) 2>/dev/null
+	-docker ps -a --filter "name=_$(CONTAINER)" -q | xargs -r docker rm -f
+	$(COMPOSE) up -d $(SERVICE)
+
+nuke:           ## Nuke everything (orphans + image) and rebuild from scratch
+	-$(COMPOSE) down --remove-orphans --rmi local
+	-docker rm -f $(CONTAINER) 2>/dev/null
+	-docker ps -a --filter "name=_$(CONTAINER)" -q | xargs -r docker rm -f
+	$(COMPOSE) build --no-cache $(SERVICE)
+	$(COMPOSE) up -d $(SERVICE)
 
 logs:           ## Follow container logs (Ctrl-C to stop)
 	$(COMPOSE) logs -f --tail=$(TAIL) $(SERVICE)
