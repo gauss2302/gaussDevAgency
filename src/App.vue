@@ -26,12 +26,14 @@ body {
   margin: 0;
   padding: 0;
   width: 100%;
-  overflow-x: hidden;
-  background-color: #08080c;
+  /* `overflow-x: clip` prevents horizontal page scroll without creating
+     a scroll container, so descendants can still use `position: sticky`.
+     The older `overflow-x: hidden` would silently break sticky pinning. */
+  overflow-x: clip;
+  background-color: var(--surface);
 }
 
 body {
-  overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
 }
