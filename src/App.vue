@@ -6,9 +6,9 @@ import Header from './components/Header.vue'
 <template>
   <div class="app-container">
     <Header />
-    <div class="main-content">
+    <main id="main" class="main-content">
       <router-view></router-view>
-    </div>
+    </main>
     <Footer />
   </div>
 </template>

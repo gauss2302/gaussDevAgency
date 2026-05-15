@@ -2,7 +2,7 @@
   <footer class="footer">
     <div class="footer__inner">
       <div class="footer__brand">
-        <h2 class="footer__logo">Gauss Dev</h2>
+        <p class="footer__logo" aria-label="Gauss Dev">Gauss Dev</p>
         <p class="footer__tagline">Building the future, one solution at a time.</p>
       </div>
 
@@ -10,6 +10,7 @@
         <router-link to="/">Home</router-link>
         <router-link to="/services">Services</router-link>
         <router-link to="/contact">Contact</router-link>
+        <router-link to="/privacy">Privacy</router-link>
       </div>
 
       <div class="footer__contact">
@@ -28,9 +29,6 @@
 
 <style scoped>
 .footer {
-  --surface: #08080c;
-  --muted: #a1a1aa;
-
   background: var(--surface);
   border-top: 1px solid rgba(255, 255, 255, 0.06);
   padding: clamp(2.5rem, 6vw, 3.5rem) clamp(1.5rem, 5vw, 4rem) 1.5rem;
