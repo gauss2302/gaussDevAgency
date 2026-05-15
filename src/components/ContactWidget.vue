@@ -2,9 +2,10 @@
   <section
     class="contact-widget"
     :class="[{ compact }, rounded ? 'round-xl' : 'round-lg']"
-    aria-labelledby="contact-heading"
+    :aria-labelledby="title ? 'contact-heading' : undefined"
+    :aria-label="!title ? 'Contact' : undefined"
   >
-    <div class="contact-widget__header">
+    <div class="contact-widget__header" v-if="title || subtitle || hours">
       <h2 v-if="title" id="contact-heading" class="contact-widget__title">{{ title }}</h2>
       <p v-if="subtitle" class="contact-widget__sub">{{ subtitle }}</p>
       <p v-if="hours" class="contact-widget__hours" aria-label="Working hours">
@@ -52,7 +53,7 @@
           class="contact-widget__tile"
           :href="telegramUrl"
           target="_blank"
-          rel="noopener"
+          rel="noopener noreferrer"
           @click="emit('click', { channel: 'telegram' })"
           aria-label="Telegram"
         >
@@ -76,7 +77,7 @@
           class="contact-widget__tile"
           :href="linkedinUrl"
           target="_blank"
-          rel="noopener"
+          rel="noopener noreferrer"
           @click="emit('click', { channel: 'linkedin' })"
           aria-label="LinkedIn"
         >
