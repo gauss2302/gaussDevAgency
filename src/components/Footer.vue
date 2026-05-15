@@ -15,7 +15,8 @@
 
       <div class="footer__contact">
         <a href="mailto:devshilov@gmail.com">devshilov@gmail.com</a>
-        <a href="tel:+998940603405">+998 (94) 060-3405</a>
+        <a href="tel:+998940603405" aria-label="Phone, Uzbekistan">+998 (94) 060-3405</a>
+        <a href="tel:+14153584559" aria-label="Phone, United States">+1 (415) 358-4559</a>
       </div>
     </div>
 
