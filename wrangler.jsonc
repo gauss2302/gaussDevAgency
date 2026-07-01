@@ -1,0 +1,21 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "gaussdevagency",
+  "compatibility_date": "2026-07-01",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "not_found_handling": "single-page-application"
+  },
+  "routes": [
+    {
+      "pattern": "gaussdev.com",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.gaussdev.com",
+      "custom_domain": true
+    }
+  ]
+}
