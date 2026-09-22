@@ -157,6 +157,65 @@ export const privacyApps: readonly AppPrivacyConfig[] = [
       },
     ],
   },
+  {
+    slug: 'petchecker',
+    appName: 'Pet Checker',
+    platforms: 'iOS / Android',
+    contactEmail: 'general@gaussdev.com',
+    effectiveDate: 'September 22, 2026',
+    collectsPersonalData: true,
+    hasAds: false,
+    customRoute: '/privacy/petchecker',
+    hasTerms: true,
+    dataCollected: [
+      'Email address used to sign in, plus authentication tokens (Supabase Auth, Sign in with Google, Sign in with Apple)',
+      'Display name and profile photo',
+      'Pets: name, species, breed, sex, birth date, weight, photos, notes',
+      'Care data: medications and dose logs, feeding schedules and logs, reminders, activities and walks',
+      'Health records (vet visits, vaccinations, weight) and the files you attach to them',
+      'AI conversations about a health record, stored with that record',
+      'Co-ownership data: pet members and pending invitations',
+      'Push notification token and the device time zone used to schedule reminders',
+    ],
+    dataUsage: [
+      'To store your pets and their care history and sync it across your devices',
+      'To share a pet with the caretakers you invite, and keep their view current',
+      'To send reminder notifications at the times you set, in the pet\u2019s time zone',
+      'To explain a health record with AI when you ask for it',
+      'To check subscription status and apply free-tier limits',
+      'To keep the service secure and diagnose problems',
+    ],
+    thirdPartyServices: [
+      {
+        name: 'Supabase',
+        description:
+          'Authentication, database, file storage for pet photos and health-record attachments, and the server functions that dispatch reminders and run AI explanations. Access is scoped per pet by row-level security. Operated by Supabase, Inc.',
+        privacyUrl: 'https://supabase.com/privacy',
+        privacyLabel: 'Supabase Privacy Policy',
+      },
+      {
+        name: 'OpenAI',
+        description:
+          'Generates health-record explanations, as our processor. Receives the health record and its attached files only when you request an explanation, sent from our servers over encrypted HTTPS. Operated by OpenAI, LLC.',
+        privacyUrl: 'https://openai.com/policies/privacy-policy',
+        privacyLabel: 'OpenAI Privacy Policy',
+      },
+      {
+        name: 'RevenueCat',
+        description:
+          'Validates App Store / Play Store purchases and resolves subscription status. Receives receipt data, not card details. Operated by RevenueCat, Inc.',
+        privacyUrl: 'https://www.revenuecat.com/privacy',
+        privacyLabel: 'RevenueCat Privacy Policy',
+      },
+      {
+        name: 'Firebase Cloud Messaging',
+        description:
+          'Delivers reminder and care notifications. Receives a device push token and the notification content. Operated by Google LLC.',
+        privacyUrl: 'https://firebase.google.com/support/privacy',
+        privacyLabel: 'Firebase Privacy',
+      },
+    ],
+  },
 ]
 
 export function findPrivacyApp(slug: string): AppPrivacyConfig | undefined {

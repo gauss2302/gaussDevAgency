@@ -10,6 +10,7 @@ import PrivacyIndex from './views/privacy/PrivacyIndex.vue'
 import PrivacyView from './views/privacy/PrivacyView.vue'
 import HavamindLegal from './views/legal/HavamindLegal.vue'
 import LumiLegal from './views/legal/LumiLegal.vue'
+import PetCheckerLegal from './views/legal/PetCheckerLegal.vue'
 
 // Main Route
 const router = createRouter({
@@ -25,6 +26,8 @@ const router = createRouter({
     { path: '/terms/havamind', component: HavamindLegal, meta: { standalone: true } },
     { path: '/privacy/lumi', component: LumiLegal, meta: { standalone: true } },
     { path: '/terms/lumi', component: LumiLegal, meta: { standalone: true } },
+    { path: '/privacy/petchecker', component: PetCheckerLegal, meta: { standalone: true } },
+    { path: '/terms/petchecker', component: PetCheckerLegal, meta: { standalone: true } },
     { path: '/privacy/:app', component: PrivacyView },
   ],
   // Restore scroll-to-top on route change; preserves saved position on back/forward.

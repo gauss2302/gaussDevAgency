@@ -38,4 +38,24 @@
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
+  <url>
+    <loc>https://gaussdev.com/privacy/lumi</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://gaussdev.com/terms/lumi</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://gaussdev.com/privacy/petchecker</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://gaussdev.com/terms/petchecker</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
 </urlset>
