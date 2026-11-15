@@ -12,6 +12,7 @@
         <router-link to="/contact">Contact</router-link>
         <router-link to="/privacy">Privacy</router-link>
         <router-link to="/terms">Terms</router-link>
+        <router-link to="/privacy/apps">Apps</router-link>
       </div>
 
       <div class="footer__contact">

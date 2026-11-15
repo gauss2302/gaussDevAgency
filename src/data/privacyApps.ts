@@ -99,8 +99,7 @@ export const privacyApps: readonly AppPrivacyConfig[] = [
       },
       {
         name: 'Google Firebase Analytics & Crashlytics',
-        description:
-          'Anonymous usage analytics and crash reporting. Operated by Google LLC.',
+        description: 'Anonymous usage analytics and crash reporting. Operated by Google LLC.',
         privacyUrl: 'https://firebase.google.com/support/privacy',
         privacyLabel: 'Firebase Privacy',
       },
@@ -211,6 +210,59 @@ export const privacyApps: readonly AppPrivacyConfig[] = [
         name: 'Firebase Cloud Messaging',
         description:
           'Delivers reminder and care notifications. Receives a device push token and the notification content. Operated by Google LLC.',
+        privacyUrl: 'https://firebase.google.com/support/privacy',
+        privacyLabel: 'Firebase Privacy',
+      },
+    ],
+  },
+  {
+    slug: 'onsitefit',
+    appName: 'OnSiteFit',
+    platforms: 'iOS / Android',
+    contactEmail: 'general@gaussdev.com',
+    effectiveDate: 'November 15, 2026',
+    collectsPersonalData: false,
+    hasAds: false,
+    customRoute: '/privacy/onsitefit',
+    hasTerms: true,
+    dataCollected: [
+      'Onboarding answers, workouts, energy check-ins, focus sessions and progress, stored only on the device',
+      'Anonymous subscription identifier, store transaction details and basic device data processed by RevenueCat',
+      'Crash reports processed by Sentry, without personal information, logs or session replay',
+      'Push token and installation identifier, only if optional news notifications are turned on',
+    ],
+    dataUsage: [
+      'To run plans, workouts, timers, reminders, statistics and widgets on the device',
+      'To check and restore OnSiteFit Plus subscriptions',
+      'To find and fix crashes',
+      'To send news announcements only when that setting is on',
+    ],
+    thirdPartyServices: [
+      {
+        name: 'RevenueCat',
+        description:
+          'Checks whether OnSiteFit Plus is active and restores purchases. Processes an anonymous identifier and store transaction details, not card details. Operated by RevenueCat, Inc.',
+        privacyUrl: 'https://www.revenuecat.com/privacy/',
+        privacyLabel: 'RevenueCat Privacy Policy',
+      },
+      {
+        name: 'Apple App Store and Google Play',
+        description:
+          'Sell OnSiteFit Plus and process payment. Gauss Dev does not receive card details.',
+        privacyUrl: 'https://www.apple.com/legal/privacy/',
+        privacyLabel: 'Apple Privacy Policy',
+      },
+      {
+        name: 'Sentry',
+        description:
+          'Receives crash reports with the error, stack trace, app version and device model. Personal information, logs, tracing, profiling and session replay are turned off. Operated by Functional Software, Inc.',
+        privacyUrl: 'https://sentry.io/privacy/',
+        privacyLabel: 'Sentry Privacy Policy',
+      },
+      {
+        name: 'Firebase Cloud Messaging',
+        description:
+          'Delivers optional “News from OnSiteFit” announcements when that setting is on. Workout reminders stay on the device. Operated by Google LLC.',
         privacyUrl: 'https://firebase.google.com/support/privacy',
         privacyLabel: 'Firebase Privacy',
       },

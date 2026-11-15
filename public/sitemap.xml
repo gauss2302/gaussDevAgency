@@ -68,4 +68,14 @@
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
+  <url>
+    <loc>https://gaussdev.com/privacy/onsitefit</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://gaussdev.com/terms/onsitefit</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
 </urlset>
