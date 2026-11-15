@@ -59,7 +59,8 @@
         <section class="doc__section">
           <h2>4. Third-Party Services</h2>
           <p>
-            The App relies on the following third-party {{ pluralize('SDK', config.thirdPartyServices.length) }}
+            The App relies on the following third-party
+            {{ pluralize('SDK', config.thirdPartyServices.length) }}
             to collect anonymous analytics and crash diagnostics:
           </p>
           <div class="cards">
@@ -185,10 +186,8 @@
     <div class="missing">
       <p class="missing__eyebrow">404</p>
       <h1 class="missing__title">Privacy policy not found</h1>
-      <p class="missing__sub">
-        We don't have a privacy policy registered for “{{ slug }}”.
-      </p>
-      <router-link to="/privacy" class="missing__link">View all privacy policies</router-link>
+      <p class="missing__sub">We don't have a privacy policy registered for “{{ slug }}”.</p>
+      <router-link to="/privacy/apps" class="missing__link">View app privacy policies</router-link>
     </div>
   </div>
 </template>
@@ -206,7 +205,7 @@ const config = computed(() => findPrivacyApp(slug.value))
 // Per-app meta — reactive on the route param so /privacy/prayer and
 // /privacy/<other-app> get distinct titles + canonicals.
 useSeo({
-  path: '/privacy',  // default; updated below once slug resolves
+  path: '/privacy', // default; updated below once slug resolves
   title: 'Privacy Policy',
   description: 'Privacy policy for a Gauss Dev mobile application.',
   type: 'article',
@@ -224,7 +223,11 @@ watchEffect(() => {
 })
 
 const mounted = ref(false)
-onMounted(() => requestAnimationFrame(() => { mounted.value = true }))
+onMounted(() =>
+  requestAnimationFrame(() => {
+    mounted.value = true
+  }),
+)
 
 const pluralize = (word: string, count: number) => (count === 1 ? word : `${word}s`)
 </script>
@@ -254,13 +257,23 @@ const pluralize = (word: string, count: number) => (count === 1 ? word : `${word
 .pg-header__meta {
   opacity: 0;
   transform: translateY(16px);
-  transition: opacity 0.6s cubic-bezier(0.2, 0.6, 0.2, 1),
+  transition:
+    opacity 0.6s cubic-bezier(0.2, 0.6, 0.2, 1),
     transform 0.6s cubic-bezier(0.2, 0.6, 0.2, 1);
 }
-.pg-header__title { transition-delay: 0.05s; }
-.pg-header__sub { transition-delay: 0.1s; }
-.pg-header__meta { transition-delay: 0.15s; }
-.visible { opacity: 1 !important; transform: translateY(0) !important; }
+.pg-header__title {
+  transition-delay: 0.05s;
+}
+.pg-header__sub {
+  transition-delay: 0.1s;
+}
+.pg-header__meta {
+  transition-delay: 0.15s;
+}
+.visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
 
 .pg-header__eyebrow {
   font-size: 0.78rem;
@@ -309,7 +322,10 @@ const pluralize = (word: string, count: number) => (count === 1 ? word : `${word
   padding: 2rem 0;
   border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
-.doc__section:first-child { border-top: none; padding-top: 1rem; }
+.doc__section:first-child {
+  border-top: none;
+  padding-top: 1rem;
+}
 
 .doc h2 {
   font-size: clamp(1.1rem, 1.8vw, 1.3rem);
@@ -333,7 +349,9 @@ const pluralize = (word: string, count: number) => (count === 1 ? word : `${word
   color: #c4c4cc;
   margin: 0 0 1rem;
 }
-.doc p:last-child { margin-bottom: 0; }
+.doc p:last-child {
+  margin-bottom: 0;
+}
 
 .doc ul {
   margin: 0 0 1rem;
@@ -345,15 +363,22 @@ const pluralize = (word: string, count: number) => (count === 1 ? word : `${word
   line-height: 1.7;
   margin-bottom: 0.4rem;
 }
-.doc li::marker { color: #71717a; }
+.doc li::marker {
+  color: #71717a;
+}
 
-.doc strong { color: #fff; font-weight: 600; }
+.doc strong {
+  color: #fff;
+  font-weight: 600;
+}
 
 .link {
   color: #fff;
   text-decoration: none;
   border-bottom: 1px solid rgba(255, 255, 255, 0.25);
-  transition: border-color 0.2s ease, color 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease;
 }
 .link:hover {
   color: #faeb92;
@@ -373,7 +398,9 @@ const pluralize = (word: string, count: number) => (count === 1 ? word : `${word
   display: grid;
   gap: 0.55rem;
 }
-.doc__contact li { font-size: 0.95rem; }
+.doc__contact li {
+  font-size: 0.95rem;
+}
 
 /* ═══════════════════════════════════════════
    THIRD-PARTY CARDS
@@ -388,7 +415,9 @@ const pluralize = (word: string, count: number) => (count === 1 ? word : `${word
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 0.7rem;
   background: rgba(255, 255, 255, 0.015);
-  transition: border-color 0.2s ease, background 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
 }
 .card:hover {
   border-color: rgba(255, 255, 255, 0.16);
@@ -405,7 +434,9 @@ const pluralize = (word: string, count: number) => (count === 1 ? word : `${word
   text-decoration: none;
   letter-spacing: 0.01em;
 }
-.card__link:hover { text-decoration: underline; }
+.card__link:hover {
+  text-decoration: underline;
+}
 
 /* ═══════════════════════════════════════════
    404 STATE
@@ -416,7 +447,10 @@ const pluralize = (word: string, count: number) => (count === 1 ? word : `${word
   justify-content: center;
   padding: clamp(5rem, 12vh, 7rem) 1.5rem;
 }
-.missing { text-align: center; max-width: 460px; }
+.missing {
+  text-align: center;
+  max-width: 460px;
+}
 .missing__eyebrow {
   font-size: 0.78rem;
   letter-spacing: 0.18em;
@@ -448,14 +482,20 @@ const pluralize = (word: string, count: number) => (count === 1 ? word : `${word
   text-decoration: none;
   transition: transform 0.2s ease;
 }
-.missing__link:hover { transform: translateY(-1px); }
+.missing__link:hover {
+  transform: translateY(-1px);
+}
 
 /* ═══════════════════════════════════════════
    RESPONSIVE
    ═══════════════════════════════════════════ */
 @media (max-width: 640px) {
-  .pg-header { padding-top: 4rem; }
-  .doc__section { padding: 1.6rem 0; }
+  .pg-header {
+    padding-top: 4rem;
+  }
+  .doc__section {
+    padding: 1.6rem 0;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

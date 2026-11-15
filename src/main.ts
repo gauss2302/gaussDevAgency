@@ -8,6 +8,7 @@ import Service from './views/Service.vue'
 import Conract from './views/Conract.vue'
 import PrivacyIndex from './views/privacy/PrivacyIndex.vue'
 import PrivacyView from './views/privacy/PrivacyView.vue'
+import AgencyLegal from './views/legal/AgencyLegal.vue'
 import HavamindLegal from './views/legal/HavamindLegal.vue'
 import LumiLegal from './views/legal/LumiLegal.vue'
 import PetCheckerLegal from './views/legal/PetCheckerLegal.vue'
@@ -19,9 +20,11 @@ const router = createRouter({
     { path: '/', component: Home },
     { path: '/services', component: Service },
     { path: '/contact', component: Conract },
-    { path: '/privacy', component: PrivacyIndex },
-    // Havamind has its own branded legal page; declare BEFORE the generic
-    // /privacy/:app route so it takes precedence over PrivacyView matching.
+    { path: '/privacy', component: AgencyLegal },
+    { path: '/terms', component: AgencyLegal },
+    { path: '/privacy/apps', component: PrivacyIndex },
+    // App legal pages are declared BEFORE the generic /privacy/:app route
+    // so they take precedence over PrivacyView matching.
     { path: '/privacy/havamind', component: HavamindLegal, meta: { standalone: true } },
     { path: '/terms/havamind', component: HavamindLegal, meta: { standalone: true } },
     { path: '/privacy/lumi', component: LumiLegal, meta: { standalone: true } },

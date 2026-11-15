@@ -5,7 +5,9 @@
         <p class="pg-header__eyebrow" :class="{ visible: mounted }">Legal</p>
         <h1 class="pg-header__title" :class="{ visible: mounted }">Privacy Policies</h1>
         <p class="pg-header__sub" :class="{ visible: mounted }">
-          Privacy policies for every Gauss Dev mobile app.
+          Privacy policies for every Gauss Dev mobile app. The policy for this website and GaussDev
+          Ads Assistant is the
+          <router-link to="/privacy">Gauss Dev Privacy Policy</router-link>.
         </p>
       </div>
     </header>
@@ -38,14 +40,18 @@ import { privacyApps } from '@/data/privacyApps'
 import { useSeo } from '@/composables/useSeo'
 
 useSeo({
-  path: '/privacy',
-  title: 'Privacy Policies',
+  path: '/privacy/apps',
+  title: 'App Privacy Policies',
   description: 'Privacy policies for every Gauss Dev mobile application.',
 })
 
 const apps = privacyApps
 const mounted = ref(false)
-onMounted(() => requestAnimationFrame(() => { mounted.value = true }))
+onMounted(() =>
+  requestAnimationFrame(() => {
+    mounted.value = true
+  }),
+)
 </script>
 
 <style scoped>
@@ -69,12 +75,20 @@ onMounted(() => requestAnimationFrame(() => { mounted.value = true }))
 .pg-header__sub {
   opacity: 0;
   transform: translateY(16px);
-  transition: opacity 0.6s cubic-bezier(0.2, 0.6, 0.2, 1),
+  transition:
+    opacity 0.6s cubic-bezier(0.2, 0.6, 0.2, 1),
     transform 0.6s cubic-bezier(0.2, 0.6, 0.2, 1);
 }
-.pg-header__title { transition-delay: 0.05s; }
-.pg-header__sub { transition-delay: 0.1s; }
-.visible { opacity: 1 !important; transform: translateY(0) !important; }
+.pg-header__title {
+  transition-delay: 0.05s;
+}
+.pg-header__sub {
+  transition-delay: 0.1s;
+}
+.visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
 
 .pg-header__eyebrow {
   font-size: 0.78rem;
@@ -98,6 +112,15 @@ onMounted(() => requestAnimationFrame(() => { mounted.value = true }))
   line-height: 1.7;
   color: #a1a1aa;
 }
+.pg-header__sub a {
+  color: #fff;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.28);
+}
+.pg-header__sub a:hover {
+  color: #faeb92;
+  border-bottom-color: #faeb92;
+}
 
 .list {
   padding: 1rem clamp(1.5rem, 5vw, 4rem) clamp(5rem, 10vw, 7rem);
@@ -120,7 +143,10 @@ onMounted(() => requestAnimationFrame(() => { mounted.value = true }))
   background: rgba(255, 255, 255, 0.015);
   text-decoration: none;
   color: inherit;
-  transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
 }
 .app-card:hover {
   border-color: rgba(255, 255, 255, 0.18);
@@ -143,7 +169,9 @@ onMounted(() => requestAnimationFrame(() => { mounted.value = true }))
 .app-card__arrow {
   color: #71717a;
   font-size: 1.2rem;
-  transition: color 0.2s ease, transform 0.2s ease;
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
 }
 .app-card:hover .app-card__arrow {
   color: #faeb92;
@@ -151,7 +179,9 @@ onMounted(() => requestAnimationFrame(() => { mounted.value = true }))
 }
 
 @media (max-width: 640px) {
-  .pg-header { padding-top: 4rem; }
+  .pg-header {
+    padding-top: 4rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
