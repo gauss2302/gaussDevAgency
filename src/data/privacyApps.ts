@@ -25,6 +25,8 @@ export interface AppPrivacyConfig {
   customRoute?: string
   /** Whether this app also has a Terms of Service page. */
   hasTerms?: boolean
+  /** Whether this app also has a support page. */
+  hasSupport?: boolean
 }
 
 export const privacyApps: readonly AppPrivacyConfig[] = [
@@ -265,6 +267,42 @@ export const privacyApps: readonly AppPrivacyConfig[] = [
           'Delivers optional “News from OnSiteFit” announcements when that setting is on. Workout reminders stay on the device. Operated by Google LLC.',
         privacyUrl: 'https://firebase.google.com/support/privacy',
         privacyLabel: 'Firebase Privacy',
+      },
+    ],
+  },
+  {
+    slug: 'sigh',
+    appName: 'Sigh',
+    platforms: 'iOS',
+    contactEmail: 'general@gaussdev.com',
+    effectiveDate: 'November 22, 2026',
+    collectsPersonalData: false,
+    hasAds: false,
+    customRoute: '/privacy/sigh',
+    hasSupport: true,
+    dataCollected: [
+      'Preferences stored on the device: language, appearance, haptics, session settings and onboarding completion',
+      'A randomly generated purchase identifier stored in the iOS Keychain',
+      'Cached information about Pro access',
+    ],
+    dataUsage: [
+      'To run breathing and grounding exercises on the device',
+      'To remember settings and onboarding completion',
+      'To validate and restore the Sigh Pro lifetime purchase',
+    ],
+    thirdPartyServices: [
+      {
+        name: 'RevenueCat',
+        description:
+          'Validates purchases, restores Sigh Pro and provides purchase analytics. Receives a random app user identifier and purchase information, not a personal account. Operated by RevenueCat, Inc.',
+        privacyUrl: 'https://www.revenuecat.com/privacy/',
+        privacyLabel: 'RevenueCat Privacy Policy',
+      },
+      {
+        name: 'Apple',
+        description: 'Processes payments for Sigh Pro. Sigh does not receive payment card details.',
+        privacyUrl: 'https://www.apple.com/legal/privacy/',
+        privacyLabel: 'Apple Privacy Policy',
       },
     ],
   },

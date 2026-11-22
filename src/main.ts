@@ -13,6 +13,7 @@ import HavamindLegal from './views/legal/HavamindLegal.vue'
 import LumiLegal from './views/legal/LumiLegal.vue'
 import PetCheckerLegal from './views/legal/PetCheckerLegal.vue'
 import OnSiteFitLegal from './views/legal/OnSiteFitLegal.vue'
+import SighLegal from './views/legal/SighLegal.vue'
 
 // Main Route
 const router = createRouter({
@@ -34,6 +35,8 @@ const router = createRouter({
     { path: '/terms/petchecker', component: PetCheckerLegal, meta: { standalone: true } },
     { path: '/privacy/onsitefit', component: OnSiteFitLegal },
     { path: '/terms/onsitefit', component: OnSiteFitLegal },
+    { path: '/privacy/sigh', component: SighLegal },
+    { path: '/support/sigh', component: SighLegal },
     { path: '/privacy/:app', component: PrivacyView },
   ],
   // Restore scroll-to-top on route change; preserves saved position on back/forward.

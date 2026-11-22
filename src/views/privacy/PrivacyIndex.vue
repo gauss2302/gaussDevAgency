@@ -25,6 +25,7 @@
             <p class="app-card__meta">
               {{ app.platforms }} · Updated {{ app.effectiveDate }}
               <span v-if="app.hasTerms"> · Privacy + Terms</span>
+              <span v-else-if="app.hasSupport"> · Privacy + Support</span>
             </p>
           </div>
           <span class="app-card__arrow" aria-hidden="true">→</span>
