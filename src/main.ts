@@ -14,6 +14,8 @@ import LumiLegal from './views/legal/LumiLegal.vue'
 import PetCheckerLegal from './views/legal/PetCheckerLegal.vue'
 import OnSiteFitLegal from './views/legal/OnSiteFitLegal.vue'
 import SighLegal from './views/legal/SighLegal.vue'
+import AppSupport from './views/legal/AppSupport.vue'
+import { redirectAppHost } from '@/lib/appDocs'
 
 // Main Route
 const router = createRouter({
@@ -37,12 +39,20 @@ const router = createRouter({
     { path: '/terms/onsitefit', component: OnSiteFitLegal },
     { path: '/privacy/sigh', component: SighLegal },
     { path: '/support/sigh', component: SighLegal },
+    { path: '/support/:app', component: AppSupport },
     { path: '/privacy/:app', component: PrivacyView },
   ],
   // Restore scroll-to-top on route change; preserves saved position on back/forward.
   scrollBehavior(_to, _from, savedPosition) {
     return savedPosition ?? { top: 0 }
   },
+})
+
+router.beforeEach((to) => {
+  const next = redirectAppHost(to.path, window.location.hostname)
+  if (!next) return
+  window.location.replace(next)
+  return false
 })
 
 const app = createApp(App)

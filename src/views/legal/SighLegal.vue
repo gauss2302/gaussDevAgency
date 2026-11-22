@@ -251,6 +251,7 @@
 import { computed, onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { useHead } from '@unhead/vue'
+import { APPS_ORIGIN, SITE_ORIGIN } from '@/lib/appDocs'
 
 const route = useRoute()
 const isSupport = computed(() => route.path.startsWith('/support'))
@@ -262,8 +263,7 @@ onMounted(() =>
   }),
 )
 
-const origin = 'https://gaussdev.com'
-const image = `${origin}/og-image.png`
+const image = `${SITE_ORIGIN}/og-image.png`
 
 useHead(
   computed(() => {
@@ -272,7 +272,7 @@ useHead(
     const description = support
       ? 'Help for Sigh: breathing sessions, grounding, settings, Sigh Pro, restoring a purchase, widgets, and how to report a problem.'
       : 'Privacy policy for the Sigh breathing and grounding app. Sessions stay on your device. No account, no ads.'
-    const url = `${origin}${support ? '/support/sigh' : '/privacy/sigh'}`
+    const url = `${APPS_ORIGIN}${support ? '/support/sigh' : '/privacy/sigh'}`
 
     return {
       title,

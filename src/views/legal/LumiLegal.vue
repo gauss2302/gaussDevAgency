@@ -45,8 +45,8 @@
           <h2>Overview</h2>
           <p>
             This Privacy Policy describes how Gauss Dev (&ldquo;we&rdquo;, &ldquo;us&rdquo;,
-            &ldquo;our&rdquo;) collects, uses, and protects information in connection with the
-            Lumi mobile application (the &ldquo;App&rdquo;) for iOS and Android.
+            &ldquo;our&rdquo;) collects, uses, and protects information in connection with the Lumi
+            mobile application (the &ldquo;App&rdquo;) for iOS and Android.
           </p>
           <p>
             Lumi is built on a small set of privacy principles that shape every part of the App:
@@ -57,29 +57,24 @@
               sent. Lumis are ambient signals &mdash; a glow, a haptic pulse, a doodle, a color.
             </li>
             <li>
-              <strong>End-to-end encrypted.</strong> Lumis are encrypted on the sender's device
-              and decrypted only on the recipient's device. We cannot read them.
+              <strong>End-to-end encrypted.</strong> Lumis are encrypted on the sender's device and
+              decrypted only on the recipient's device. We cannot read them.
             </li>
             <li>
-              <strong>Ephemeral by default.</strong> Lumis disappear after they are delivered
-              and seen. Only items you explicitly move to the Kept Shelf persist.
+              <strong>Ephemeral by default.</strong> Lumis disappear after they are delivered and
+              seen. Only items you explicitly move to the Kept Shelf persist.
             </li>
             <li>
-              <strong>Subscription-only.</strong> No ads, no data brokers, no behavioral
-              profiling.
+              <strong>Subscription-only.</strong> No ads, no data brokers, no behavioral profiling.
             </li>
           </ul>
-          <p>
-            By installing or using the App, you agree to the practices described here.
-          </p>
+          <p>By installing or using the App, you agree to the practices described here.</p>
         </section>
 
         <section class="lm-section">
           <div class="lm-section-num">02</div>
           <h2>Information We Collect</h2>
-          <p>
-            We collect only what is necessary to deliver Lumis between people in your circle.
-          </p>
+          <p>We collect only what is necessary to deliver Lumis between people in your circle.</p>
 
           <p class="lm-subhead">Account Data</p>
           <ul class="lm-list">
@@ -96,8 +91,8 @@
             <li>The size of the encrypted payload</li>
           </ul>
           <div class="lm-callout">
-            We do not see the contents of a Lumi. The glow, doodle, or color is encrypted
-            end-to-end and only decrypts on the recipient's device.
+            We do not see the contents of a Lumi. The glow, doodle, or color is encrypted end-to-end
+            and only decrypts on the recipient's device.
           </div>
 
           <p class="lm-subhead">Device &amp; Diagnostics</p>
@@ -135,8 +130,8 @@
             parties for marketing purposes.
           </p>
           <p>
-            We do not use any Lumi content, metadata, or behavior to train AI models. Lumi is
-            an explicitly non-AI product.
+            We do not use any Lumi content, metadata, or behavior to train AI models. Lumi is an
+            explicitly non-AI product.
           </p>
         </section>
 
@@ -144,8 +139,8 @@
           <div class="lm-section-num">04</div>
           <h2>Third-Party Services</h2>
           <p>
-            The App relies on a small number of infrastructure providers. Each handles a
-            narrow, well-defined slice of functionality.
+            The App relies on a small number of infrastructure providers. Each handles a narrow,
+            well-defined slice of functionality.
           </p>
 
           <div class="lm-card">
@@ -154,35 +149,51 @@
               Authentication and relay of end-to-end encrypted Lumi payloads and Kept Shelf
               ciphertext. Supabase sees only ciphertext, never decrypted content. Operated by
               Supabase, Inc.
-              <a href="https://supabase.com/privacy" target="_blank" rel="noopener noreferrer">Supabase Privacy Policy ↗</a>
+              <a href="https://supabase.com/privacy" target="_blank" rel="noopener noreferrer"
+                >Supabase Privacy Policy ↗</a
+              >
             </span>
           </div>
 
           <div class="lm-card">
-            <strong>Apple Push Notification service (APNs) &amp; Firebase Cloud Messaging (FCM)</strong>
+            <strong
+              >Apple Push Notification service (APNs) &amp; Firebase Cloud Messaging (FCM)</strong
+            >
             <span>
-              Used to deliver &ldquo;you got a Lumi&rdquo; push notifications on iOS and
-              Android respectively. The notification payload contains no Lumi content &mdash;
-              only a generic prompt. Operated by Apple Inc. and Google LLC.
-              <a href="https://www.apple.com/legal/privacy/en-ww/" target="_blank" rel="noopener noreferrer">Apple Privacy ↗</a>
+              Used to deliver &ldquo;you got a Lumi&rdquo; push notifications on iOS and Android
+              respectively. The notification payload contains no Lumi content &mdash; only a generic
+              prompt. Operated by Apple Inc. and Google LLC.
+              <a
+                href="https://www.apple.com/legal/privacy/en-ww/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Apple Privacy ↗</a
+              >
               ·
-              <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener noreferrer">Firebase Privacy ↗</a>
+              <a
+                href="https://firebase.google.com/support/privacy"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Firebase Privacy ↗</a
+              >
             </span>
           </div>
 
           <div class="lm-card">
             <strong>Sentry</strong>
             <span>
-              Anonymous crash and performance diagnostics. No Lumi content, account
-              identifiers, or message metadata are included in reports. Operated by Functional
-              Software, Inc. d/b/a Sentry.
-              <a href="https://sentry.io/privacy/" target="_blank" rel="noopener noreferrer">Sentry Privacy Policy ↗</a>
+              Anonymous crash and performance diagnostics. No Lumi content, account identifiers, or
+              message metadata are included in reports. Operated by Functional Software, Inc. d/b/a
+              Sentry.
+              <a href="https://sentry.io/privacy/" target="_blank" rel="noopener noreferrer"
+                >Sentry Privacy Policy ↗</a
+              >
             </span>
           </div>
 
           <p class="lm-aside">
-            We do not embed advertising SDKs, social-login SDKs that build cross-app profiles,
-            or analytics SDKs designed for behavioral targeting.
+            We do not embed advertising SDKs, social-login SDKs that build cross-app profiles, or
+            analytics SDKs designed for behavioral targeting.
           </p>
         </section>
 
@@ -190,15 +201,27 @@
           <div class="lm-section-num">05</div>
           <h2>Data Retention</h2>
           <ul class="lm-list">
-            <li><strong>Lumi payloads in transit:</strong> deleted from relay servers immediately after delivery is acknowledged, and at most within 7 days if undelivered</li>
-            <li><strong>Kept Shelf items:</strong> retained, end-to-end encrypted, as long as your account is active or until you delete them</li>
-            <li><strong>Delivery metadata (who-sent-what-when):</strong> retained for up to 30 days for delivery reliability, then deleted</li>
+            <li>
+              <strong>Lumi payloads in transit:</strong> deleted from relay servers immediately
+              after delivery is acknowledged, and at most within 7 days if undelivered
+            </li>
+            <li>
+              <strong>Kept Shelf items:</strong> retained, end-to-end encrypted, as long as your
+              account is active or until you delete them
+            </li>
+            <li>
+              <strong>Delivery metadata (who-sent-what-when):</strong> retained for up to 30 days
+              for delivery reliability, then deleted
+            </li>
             <li><strong>Crash diagnostics:</strong> retained for up to 90 days</li>
-            <li><strong>Account data:</strong> retained as long as your account is active; deleted within 30 days of account deletion</li>
+            <li>
+              <strong>Account data:</strong> retained as long as your account is active; deleted
+              within 30 days of account deletion
+            </li>
           </ul>
           <p>
-            You can delete individual Kept items or your entire account at any time from
-            within the App.
+            You can delete individual Kept items or your entire account at any time from within the
+            App.
           </p>
         </section>
 
@@ -211,13 +234,13 @@
           </p>
           <p>
             Lumi is designed to connect children with their grandparents and other close family
-            adults, but minors must use the App under the supervision of a parent or legal
-            guardian, who is responsible for managing the child's circle.
+            adults, but minors must use the App under the supervision of a parent or legal guardian,
+            who is responsible for managing the child's circle.
           </p>
           <p>
             We do not knowingly collect personal information from children under 13 without
-            verifiable parental consent. If you believe a child has provided us with
-            information, please contact us and we will delete it promptly.
+            verifiable parental consent. If you believe a child has provided us with information,
+            please contact us and we will delete it promptly.
           </p>
         </section>
 
@@ -225,8 +248,8 @@
           <div class="lm-section-num">07</div>
           <h2>Your Rights</h2>
           <p>
-            Depending on where you live (e.g. EEA / UK under GDPR, California under
-            CCPA/CPRA), you may have the right to:
+            Depending on where you live (e.g. EEA / UK under GDPR, California under CCPA/CPRA), you
+            may have the right to:
           </p>
           <ul class="lm-list">
             <li>Access the personal data we hold about you</li>
@@ -238,12 +261,13 @@
           <div class="lm-callout">
             Because Lumi content is end-to-end encrypted, we cannot produce decrypted copies of
             Lumis or Kept Shelf items in response to a data request &mdash; only the encrypted
-            ciphertext we hold and the metadata listed in section 02. To export readable
-            copies, use the in-app export feature on a device where you are signed in.
+            ciphertext we hold and the metadata listed in section 02. To export readable copies, use
+            the in-app export feature on a device where you are signed in.
           </div>
           <p>
             To exercise any of these rights, contact us at
-            <a :href="`mailto:${contactEmail}`">{{ contactEmail }}</a>.
+            <a :href="`mailto:${contactEmail}`">{{ contactEmail }}</a
+            >.
           </p>
         </section>
 
@@ -251,10 +275,19 @@
           <div class="lm-section-num">08</div>
           <h2>End-to-End Encryption</h2>
           <ul class="lm-list">
-            <li>Lumis are encrypted on the sender's device using a per-recipient key derived from a mutual key exchange performed when the two of you joined each other's circles</li>
+            <li>
+              Lumis are encrypted on the sender's device using a per-recipient key derived from a
+              mutual key exchange performed when the two of you joined each other's circles
+            </li>
             <li>We never have access to your private keys</li>
-            <li>Kept Shelf items are encrypted with a key derived from your account; this key never leaves your devices in plaintext</li>
-            <li>If you lose access to all of your devices and your account recovery method, we cannot recover your Kept Shelf for you</li>
+            <li>
+              Kept Shelf items are encrypted with a key derived from your account; this key never
+              leaves your devices in plaintext
+            </li>
+            <li>
+              If you lose access to all of your devices and your account recovery method, we cannot
+              recover your Kept Shelf for you
+            </li>
           </ul>
         </section>
 
@@ -262,13 +295,13 @@
           <div class="lm-section-num">09</div>
           <h2>Security</h2>
           <p>
-            All data is transmitted over encrypted HTTPS / TLS connections. Encrypted payloads
-            sit on infrastructure with industry-standard access controls. Our third-party
-            providers maintain industry-standard security infrastructure.
+            All data is transmitted over encrypted HTTPS / TLS connections. Encrypted payloads sit
+            on infrastructure with industry-standard access controls. Our third-party providers
+            maintain industry-standard security infrastructure.
           </p>
           <p>
-            No method of transmission over the internet is 100% secure, but we apply
-            commercially reasonable measures to protect your information.
+            No method of transmission over the internet is 100% secure, but we apply commercially
+            reasonable measures to protect your information.
           </p>
         </section>
 
@@ -277,9 +310,9 @@
           <h2>International Data Transfers</h2>
           <p>
             The services we use may process data on servers located outside your country of
-            residence, including the United States and the European Union. Where required by
-            law, these transfers are covered by appropriate safeguards such as EU Standard
-            Contractual Clauses.
+            residence, including the United States and the European Union. Where required by law,
+            these transfers are covered by appropriate safeguards such as EU Standard Contractual
+            Clauses.
           </p>
         </section>
 
@@ -287,10 +320,9 @@
           <div class="lm-section-num">11</div>
           <h2>Changes to This Policy</h2>
           <p>
-            We may update this Privacy Policy from time to time. Material changes will be
-            reflected by updating the &ldquo;Last updated&rdquo; date at the top of this page.
-            Continued use of the App after changes become effective constitutes acceptance of
-            the revised policy.
+            We may update this Privacy Policy from time to time. Material changes will be reflected
+            by updating the &ldquo;Last updated&rdquo; date at the top of this page. Continued use
+            of the App after changes become effective constitutes acceptance of the revised policy.
           </p>
         </section>
 
@@ -302,7 +334,9 @@
             <div class="lm-contact-item"><label>App</label><span>Lumi</span></div>
             <div class="lm-contact-item">
               <label>Email</label>
-              <span><a :href="`mailto:${contactEmail}`">{{ contactEmail }}</a></span>
+              <span
+                ><a :href="`mailto:${contactEmail}`">{{ contactEmail }}</a></span
+              >
             </div>
             <div class="lm-contact-item">
               <label>Website</label>
@@ -335,8 +369,8 @@
             (&ldquo;Terms&rdquo;). If you do not agree, do not use the App.
           </p>
           <p>
-            We may update these Terms at any time. Continued use of the App after updates are
-            posted constitutes your acceptance of the revised Terms.
+            We may update these Terms at any time. Continued use of the App after updates are posted
+            constitutes your acceptance of the revised Terms.
           </p>
         </section>
 
@@ -344,9 +378,9 @@
           <div class="lm-section-num">02</div>
           <h2>Description of Service</h2>
           <p>
-            Lumi is a mobile application that lets you send ambient, text-free signals &mdash;
-            a glow, a haptic pulse, a doodle, or a color &mdash; to a small circle of close
-            family members and friends.
+            Lumi is a mobile application that lets you send ambient, text-free signals &mdash; a
+            glow, a haptic pulse, a doodle, or a color &mdash; to a small circle of close family
+            members and friends.
           </p>
           <p>The App is intentionally minimalist:</p>
           <ul class="lm-list">
@@ -362,10 +396,10 @@
           <div class="lm-section-num">03</div>
           <h2>Eligibility</h2>
           <p>
-            You must be at least 13 years old (or the minimum age in your jurisdiction) to use
-            the App. By using the App, you represent that you meet this requirement. Minors
-            must use the App under the supervision of a parent or legal guardian, who accepts
-            these Terms on their behalf.
+            You must be at least 13 years old (or the minimum age in your jurisdiction) to use the
+            App. By using the App, you represent that you meet this requirement. Minors must use the
+            App under the supervision of a parent or legal guardian, who accepts these Terms on
+            their behalf.
           </p>
         </section>
 
@@ -373,12 +407,14 @@
           <div class="lm-section-num">04</div>
           <h2>User Accounts</h2>
           <ul class="lm-list">
-            <li>You are responsible for maintaining the confidentiality of your account credentials</li>
+            <li>
+              You are responsible for maintaining the confidentiality of your account credentials
+            </li>
             <li>You are responsible for all activity that occurs under your account</li>
             <li>
               You must notify us immediately at
-              <a :href="`mailto:${contactEmail}`">{{ contactEmail }}</a> if you suspect
-              unauthorized access
+              <a :href="`mailto:${contactEmail}`">{{ contactEmail }}</a> if you suspect unauthorized
+              access
             </li>
             <li>We reserve the right to suspend or terminate accounts that violate these Terms</li>
           </ul>
@@ -388,20 +424,20 @@
           <div class="lm-section-num">05</div>
           <h2>Your Content</h2>
           <p>
-            You retain full ownership of the Lumis, doodles, Kept Shelf items, and any content
-            you create in the App (&ldquo;Your Content&rdquo;).
+            You retain full ownership of the Lumis, doodles, Kept Shelf items, and any content you
+            create in the App (&ldquo;Your Content&rdquo;).
           </p>
           <p>
-            By using the App, you grant Gauss Dev a limited, non-exclusive, royalty-free
-            license to process Your Content solely as necessary to deliver it to the
-            recipient(s) you have chosen and to sync your Kept Shelf across your own devices.
-            Because Your Content is end-to-end encrypted, this license is effectively a license
-            to move ciphertext on your behalf. This license does not extend to using Your
-            Content for training AI models, advertising, analytics, or any other purpose.
+            By using the App, you grant Gauss Dev a limited, non-exclusive, royalty-free license to
+            process Your Content solely as necessary to deliver it to the recipient(s) you have
+            chosen and to sync your Kept Shelf across your own devices. Because Your Content is
+            end-to-end encrypted, this license is effectively a license to move ciphertext on your
+            behalf. This license does not extend to using Your Content for training AI models,
+            advertising, analytics, or any other purpose.
           </p>
           <p>
-            You are solely responsible for ensuring Your Content does not violate any
-            applicable law or third-party rights.
+            You are solely responsible for ensuring Your Content does not violate any applicable law
+            or third-party rights.
           </p>
         </section>
 
@@ -411,18 +447,29 @@
           <p>You agree not to use the App to:</p>
           <ul class="lm-list">
             <li>Send Lumis to people who have not mutually accepted you into their circle</li>
-            <li>Harass, intimidate, stalk, or otherwise harm any person in your circle or attempt to abuse the App's notification system</li>
-            <li>Attempt to bypass the 12-person circle cap, the mutual-connection requirement, or any other product constraint</li>
-            <li>Attempt to reverse-engineer, decompile, or access non-public areas of the App or its infrastructure</li>
+            <li>
+              Harass, intimidate, stalk, or otherwise harm any person in your circle or attempt to
+              abuse the App's notification system
+            </li>
+            <li>
+              Attempt to bypass the 12-person circle cap, the mutual-connection requirement, or any
+              other product constraint
+            </li>
+            <li>
+              Attempt to reverse-engineer, decompile, or access non-public areas of the App or its
+              infrastructure
+            </li>
             <li>Attempt to break, weaken, or circumvent the App's end-to-end encryption</li>
-            <li>Use the App in any way that could damage, disable, or impair our services or servers</li>
+            <li>
+              Use the App in any way that could damage, disable, or impair our services or servers
+            </li>
             <li>Circumvent any usage limits, rate limits, or subscription restrictions</li>
             <li>Resell or sublicense the App or any access to it without our written consent</li>
           </ul>
           <p>
-            We reserve the right to remove a user from a circle, suspend an account, or
-            terminate access if we receive credible reports of harassment or abuse, even though
-            we cannot read the content of Lumis themselves.
+            We reserve the right to remove a user from a circle, suspend an account, or terminate
+            access if we receive credible reports of harassment or abuse, even though we cannot read
+            the content of Lumis themselves.
           </p>
         </section>
 
@@ -431,18 +478,23 @@
           <h2>Subscriptions &amp; Payments</h2>
           <p>
             The App is offered on a subscription basis, generally with a limited free trial.
-            Subscriptions are billed through the Apple App Store or Google Play Store according
-            to their respective billing terms.
+            Subscriptions are billed through the Apple App Store or Google Play Store according to
+            their respective billing terms.
           </p>
           <ul class="lm-list">
-            <li>Subscriptions auto-renew unless cancelled at least 24 hours before the end of the current period</li>
-            <li>You can manage or cancel subscriptions in your App Store / Play Store account settings</li>
+            <li>
+              Subscriptions auto-renew unless cancelled at least 24 hours before the end of the
+              current period
+            </li>
+            <li>
+              You can manage or cancel subscriptions in your App Store / Play Store account settings
+            </li>
             <li>Refunds are handled according to Apple's or Google's refund policies</li>
             <li>We reserve the right to change pricing with reasonable advance notice</li>
           </ul>
           <p>
-            If your subscription lapses, your account remains intact but your ability to send
-            new Lumis may be limited.
+            If your subscription lapses, your account remains intact but your ability to send new
+            Lumis may be limited.
           </p>
         </section>
 
@@ -450,9 +502,9 @@
           <div class="lm-section-num">08</div>
           <h2>No AI, No Generated Content</h2>
           <p>
-            Lumi is, by design, not an AI product. The App does not generate, suggest, or
-            transform content on your behalf. Any signal you send originates from a direct
-            gesture you made on your device.
+            Lumi is, by design, not an AI product. The App does not generate, suggest, or transform
+            content on your behalf. Any signal you send originates from a direct gesture you made on
+            your device.
           </p>
           <div class="lm-callout">
             We do not use your Lumis, doodles, Kept Shelf items, or behavior to train machine
@@ -464,10 +516,9 @@
           <div class="lm-section-num">09</div>
           <h2>Intellectual Property</h2>
           <p>
-            The App, its design, code, branding, and all content created by Gauss Dev are
-            protected by copyright, trademark, and other intellectual property laws. Nothing in
-            these Terms grants you rights to our intellectual property beyond using the App as
-            described herein.
+            The App, its design, code, branding, and all content created by Gauss Dev are protected
+            by copyright, trademark, and other intellectual property laws. Nothing in these Terms
+            grants you rights to our intellectual property beyond using the App as described herein.
           </p>
         </section>
 
@@ -476,15 +527,15 @@
           <h2>Disclaimers</h2>
           <p>
             The App is provided &ldquo;as is&rdquo; and &ldquo;as available&rdquo; without
-            warranties of any kind, express or implied, including but not limited to warranties
-            of merchantability, fitness for a particular purpose, and non-infringement.
+            warranties of any kind, express or implied, including but not limited to warranties of
+            merchantability, fitness for a particular purpose, and non-infringement.
           </p>
           <p>
-            We do not warrant that the App will be uninterrupted, error-free, or that defects
-            will be corrected. We do not guarantee that any specific Lumi will be delivered
-            within any specific time, that push notifications will always be received, or that
-            recovery of an end-to-end-encrypted Kept Shelf is possible after loss of all
-            devices and recovery methods.
+            We do not warrant that the App will be uninterrupted, error-free, or that defects will
+            be corrected. We do not guarantee that any specific Lumi will be delivered within any
+            specific time, that push notifications will always be received, or that recovery of an
+            end-to-end-encrypted Kept Shelf is possible after loss of all devices and recovery
+            methods.
           </p>
         </section>
 
@@ -492,15 +543,15 @@
           <div class="lm-section-num">11</div>
           <h2>Limitation of Liability</h2>
           <p>
-            To the maximum extent permitted by applicable law, Gauss Dev and its affiliates
-            shall not be liable for any indirect, incidental, special, consequential, or
-            punitive damages, including loss of profits, data, or goodwill, arising from your
-            use of or inability to use the App.
+            To the maximum extent permitted by applicable law, Gauss Dev and its affiliates shall
+            not be liable for any indirect, incidental, special, consequential, or punitive damages,
+            including loss of profits, data, or goodwill, arising from your use of or inability to
+            use the App.
           </p>
           <p>
-            Our total liability for any claim arising from these Terms or your use of the App
-            shall not exceed the amount you paid us in the twelve months preceding the claim,
-            or USD $50, whichever is greater.
+            Our total liability for any claim arising from these Terms or your use of the App shall
+            not exceed the amount you paid us in the twelve months preceding the claim, or USD $50,
+            whichever is greater.
           </p>
         </section>
 
@@ -509,12 +560,12 @@
           <h2>Termination</h2>
           <p>
             You may stop using the App and delete your account at any time. We may suspend or
-            terminate your access at any time if we believe you have violated these Terms, with
-            or without prior notice.
+            terminate your access at any time if we believe you have violated these Terms, with or
+            without prior notice.
           </p>
           <p>
-            Upon termination, your right to use the App ceases immediately. Sections 5, 9, 10,
-            11, and 13 survive termination.
+            Upon termination, your right to use the App ceases immediately. Sections 5, 9, 10, 11,
+            and 13 survive termination.
           </p>
         </section>
 
@@ -522,10 +573,10 @@
           <div class="lm-section-num">13</div>
           <h2>Governing Law &amp; Disputes</h2>
           <p>
-            These Terms are governed by the laws of the Republic of Uzbekistan, without regard
-            to conflict of law principles. Any dispute arising from these Terms shall first be
-            addressed through good-faith negotiation. If unresolved, disputes shall be
-            submitted to the competent courts of Tashkent, Uzbekistan.
+            These Terms are governed by the laws of the Republic of Uzbekistan, without regard to
+            conflict of law principles. Any dispute arising from these Terms shall first be
+            addressed through good-faith negotiation. If unresolved, disputes shall be submitted to
+            the competent courts of Tashkent, Uzbekistan.
           </p>
           <p>
             Notwithstanding the above, we reserve the right to seek injunctive relief in any
@@ -542,7 +593,9 @@
             <div class="lm-contact-item"><label>App</label><span>Lumi</span></div>
             <div class="lm-contact-item">
               <label>Email</label>
-              <span><a :href="`mailto:${contactEmail}`">{{ contactEmail }}</a></span>
+              <span
+                ><a :href="`mailto:${contactEmail}`">{{ contactEmail }}</a></span
+              >
             </div>
             <div class="lm-contact-item">
               <label>Website</label>
@@ -560,6 +613,7 @@ import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useHead } from '@unhead/vue'
 import { useSeo } from '@/composables/useSeo'
+import { APPS_ORIGIN } from '@/lib/appDocs'
 import { findPrivacyApp } from '@/data/privacyApps'
 
 const route = useRoute()
@@ -577,11 +631,9 @@ const contactEmail = lumi?.contactEmail ?? 'general@gaussdev.com'
 // Per-tab SEO via the shared composable, then load Fraunces (used only on this page)
 // via useHead so it tears down when the user navigates away.
 useSeo({
+  origin: APPS_ORIGIN,
   path: route.path,
-  title:
-    mode.value === 'terms'
-      ? 'Lumi — Terms of Service'
-      : 'Lumi — Privacy Policy',
+  title: mode.value === 'terms' ? 'Lumi — Terms of Service' : 'Lumi — Privacy Policy',
   description:
     mode.value === 'terms'
       ? 'Terms of Service for Lumi — the no-text, end-to-end encrypted "thinking of you" app for close family circles, by Gauss Dev.'
@@ -674,8 +726,10 @@ useHead({
   text-decoration: none;
   border: 0;
   cursor: pointer;
-  transition: background 0.2s, color 0.2s;
-  min-height: auto;  /* override global 44px floor — these are nav tabs, not primary CTAs */
+  transition:
+    background 0.2s,
+    color 0.2s;
+  min-height: auto; /* override global 44px floor — these are nav tabs, not primary CTAs */
   display: inline-flex;
   align-items: center;
 }

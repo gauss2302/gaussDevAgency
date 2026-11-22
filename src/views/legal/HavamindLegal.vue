@@ -42,9 +42,8 @@
           <h2>Overview</h2>
           <p>
             This Privacy Policy describes how Gauss Dev (&ldquo;we&rdquo;, &ldquo;us&rdquo;,
-            &ldquo;our&rdquo;) collects, uses, and protects information in connection with
-            the Havamind AI Notes mobile application (the &ldquo;App&rdquo;) for iOS and
-            Android.
+            &ldquo;our&rdquo;) collects, uses, and protects information in connection with the
+            Havamind AI Notes mobile application (the &ldquo;App&rdquo;) for iOS and Android.
           </p>
           <p>
             By installing or using the App, you agree to the practices described here. We are
@@ -61,7 +60,9 @@
           <ul class="hv-list">
             <li>Audio recordings you create within the App to generate notes</li>
             <li>Transcriptions produced from your recordings</li>
-            <li>AI-processed text derived from your voice input (e.g. refined plans, structured notes)</li>
+            <li>
+              AI-processed text derived from your voice input (e.g. refined plans, structured notes)
+            </li>
           </ul>
           <div class="hv-callout">
             Audio recordings are processed to produce transcriptions and then deleted from our
@@ -99,8 +100,8 @@
             advertisers, data brokers, or third parties for marketing purposes.
           </p>
           <p>
-            We do not use your notes or voice data to train AI models without your explicit,
-            opt-in consent.
+            We do not use your notes or voice data to train AI models without your explicit, opt-in
+            consent.
           </p>
         </section>
 
@@ -112,9 +113,14 @@
           <div class="hv-card">
             <strong>OpenAI Whisper / Speech-to-Text API</strong>
             <span>
-              Used to transcribe your voice recordings. Audio is transmitted over encrypted
-              HTTPS. Operated by OpenAI, LLC.
-              <a href="https://openai.com/policies/privacy-policy" target="_blank" rel="noopener noreferrer">OpenAI Privacy Policy ↗</a>
+              Used to transcribe your voice recordings. Audio is transmitted over encrypted HTTPS.
+              Operated by OpenAI, LLC.
+              <a
+                href="https://openai.com/policies/privacy-policy"
+                target="_blank"
+                rel="noopener noreferrer"
+                >OpenAI Privacy Policy ↗</a
+              >
             </span>
           </div>
 
@@ -129,9 +135,11 @@
           <div class="hv-card">
             <strong>Supabase</strong>
             <span>
-              Used for database storage, authentication, and cloud sync of your notes.
-              Operated by Supabase, Inc.
-              <a href="https://supabase.com/privacy" target="_blank" rel="noopener noreferrer">Supabase Privacy Policy ↗</a>
+              Used for database storage, authentication, and cloud sync of your notes. Operated by
+              Supabase, Inc.
+              <a href="https://supabase.com/privacy" target="_blank" rel="noopener noreferrer"
+                >Supabase Privacy Policy ↗</a
+              >
             </span>
           </div>
 
@@ -139,13 +147,18 @@
             <strong>Google Firebase Analytics &amp; Crashlytics</strong>
             <span>
               Used for anonymous usage analytics and crash reporting. Operated by Google LLC.
-              <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener noreferrer">Firebase Privacy ↗</a>
+              <a
+                href="https://firebase.google.com/support/privacy"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Firebase Privacy ↗</a
+              >
             </span>
           </div>
 
           <p class="hv-aside">
-            These providers process data on our behalf under their own privacy terms. We do
-            not embed advertising SDKs in the App.
+            These providers process data on our behalf under their own privacy terms. We do not
+            embed advertising SDKs in the App.
           </p>
         </section>
 
@@ -153,22 +166,33 @@
           <div class="hv-section-num">05</div>
           <h2>Data Retention</h2>
           <ul class="hv-list">
-            <li><strong>Audio recordings:</strong> deleted from our servers within 24 hours of transcription</li>
-            <li><strong>Transcriptions &amp; notes:</strong> retained as long as your account is active, or until you delete them</li>
-            <li><strong>Analytics events:</strong> retained for up to 14 months (provider default), then deleted</li>
+            <li>
+              <strong>Audio recordings:</strong> deleted from our servers within 24 hours of
+              transcription
+            </li>
+            <li>
+              <strong>Transcriptions &amp; notes:</strong> retained as long as your account is
+              active, or until you delete them
+            </li>
+            <li>
+              <strong>Analytics events:</strong> retained for up to 14 months (provider default),
+              then deleted
+            </li>
             <li><strong>Crash diagnostics:</strong> retained for up to 90 days</li>
           </ul>
-          <p>You can delete individual notes or your entire account at any time from within the App.</p>
+          <p>
+            You can delete individual notes or your entire account at any time from within the App.
+          </p>
         </section>
 
         <section class="hv-section">
           <div class="hv-section-num">06</div>
           <h2>Children's Privacy</h2>
           <p>
-            The App is not directed to children under 13 (or the equivalent minimum age in
-            your jurisdiction). We do not knowingly collect personal information from
-            children. If you believe a child has provided us with information, please contact
-            us and we will delete it promptly.
+            The App is not directed to children under 13 (or the equivalent minimum age in your
+            jurisdiction). We do not knowingly collect personal information from children. If you
+            believe a child has provided us with information, please contact us and we will delete
+            it promptly.
           </p>
         </section>
 
@@ -176,8 +200,8 @@
           <div class="hv-section-num">07</div>
           <h2>Your Rights</h2>
           <p>
-            Depending on where you live (e.g. EEA / UK under GDPR, California under
-            CCPA/CPRA), you may have the right to:
+            Depending on where you live (e.g. EEA / UK under GDPR, California under CCPA/CPRA), you
+            may have the right to:
           </p>
           <ul class="hv-list">
             <li>Access the personal data we hold about you</li>
@@ -189,7 +213,8 @@
           </ul>
           <p>
             To exercise any of these rights, contact us at
-            <a :href="`mailto:${contactEmail}`">{{ contactEmail }}</a>.
+            <a :href="`mailto:${contactEmail}`">{{ contactEmail }}</a
+            >.
           </p>
         </section>
 
@@ -198,8 +223,14 @@
           <h2>Opting Out of Analytics</h2>
           <p>You can disable or reset analytics at any time:</p>
           <ul class="hv-list">
-            <li><strong>iOS:</strong> Settings → Privacy &amp; Security → Tracking, and Settings → Privacy &amp; Security → Apple Advertising → turn off Personalized Ads</li>
-            <li><strong>Android:</strong> Settings → Google → Ads → &ldquo;Delete advertising ID&rdquo;, or reset it at any time</li>
+            <li>
+              <strong>iOS:</strong> Settings → Privacy &amp; Security → Tracking, and Settings →
+              Privacy &amp; Security → Apple Advertising → turn off Personalized Ads
+            </li>
+            <li>
+              <strong>Android:</strong> Settings → Google → Ads → &ldquo;Delete advertising
+              ID&rdquo;, or reset it at any time
+            </li>
           </ul>
           <p>Uninstalling the App stops all further data collection from your device.</p>
         </section>
@@ -208,13 +239,13 @@
           <div class="hv-section-num">09</div>
           <h2>Security</h2>
           <p>
-            All data is transmitted over encrypted HTTPS / TLS connections. Notes are stored
-            in encrypted Supabase databases with access controls. Our third-party providers
-            maintain industry-standard security infrastructure.
+            All data is transmitted over encrypted HTTPS / TLS connections. Notes are stored in
+            encrypted Supabase databases with access controls. Our third-party providers maintain
+            industry-standard security infrastructure.
           </p>
           <p>
-            No method of transmission over the internet is 100% secure, but we apply
-            commercially reasonable measures to protect your information.
+            No method of transmission over the internet is 100% secure, but we apply commercially
+            reasonable measures to protect your information.
           </p>
         </section>
 
@@ -223,8 +254,8 @@
           <h2>International Data Transfers</h2>
           <p>
             The services we use may process data on servers located outside your country of
-            residence, including the United States. Where required by law, these transfers
-            are covered by appropriate safeguards such as EU Standard Contractual Clauses.
+            residence, including the United States. Where required by law, these transfers are
+            covered by appropriate safeguards such as EU Standard Contractual Clauses.
           </p>
         </section>
 
@@ -232,10 +263,9 @@
           <div class="hv-section-num">11</div>
           <h2>Changes to This Policy</h2>
           <p>
-            We may update this Privacy Policy from time to time. Material changes will be
-            reflected by updating the &ldquo;Last updated&rdquo; date at the top of this page.
-            Continued use of the App after changes become effective constitutes acceptance of
-            the revised policy.
+            We may update this Privacy Policy from time to time. Material changes will be reflected
+            by updating the &ldquo;Last updated&rdquo; date at the top of this page. Continued use
+            of the App after changes become effective constitutes acceptance of the revised policy.
           </p>
         </section>
 
@@ -247,7 +277,9 @@
             <div class="hv-contact-item"><label>App</label><span>Havamind AI Notes</span></div>
             <div class="hv-contact-item">
               <label>Email</label>
-              <span><a :href="`mailto:${contactEmail}`">{{ contactEmail }}</a></span>
+              <span
+                ><a :href="`mailto:${contactEmail}`">{{ contactEmail }}</a></span
+              >
             </div>
             <div class="hv-contact-item">
               <label>Website</label>
@@ -274,14 +306,14 @@
           <div class="hv-section-num">01</div>
           <h2>Acceptance of Terms</h2>
           <p>
-            By downloading, installing, or using the Havamind AI Notes mobile application
-            (the &ldquo;App&rdquo;), operated by Gauss Dev (&ldquo;we&rdquo;, &ldquo;us&rdquo;,
+            By downloading, installing, or using the Havamind AI Notes mobile application (the
+            &ldquo;App&rdquo;), operated by Gauss Dev (&ldquo;we&rdquo;, &ldquo;us&rdquo;,
             &ldquo;our&rdquo;), you agree to be bound by these Terms of Service
             (&ldquo;Terms&rdquo;). If you do not agree, do not use the App.
           </p>
           <p>
-            We may update these Terms at any time. Continued use of the App after updates are
-            posted constitutes your acceptance of the revised Terms.
+            We may update these Terms at any time. Continued use of the App after updates are posted
+            constitutes your acceptance of the revised Terms.
           </p>
         </section>
 
@@ -289,10 +321,9 @@
           <div class="hv-section-num">02</div>
           <h2>Description of Service</h2>
           <p>
-            Havamind AI Notes is a mobile application that allows you to capture ideas and
-            notes through voice input, which are then transcribed and optionally refined
-            using artificial intelligence. The App may include free and paid subscription
-            tiers.
+            Havamind AI Notes is a mobile application that allows you to capture ideas and notes
+            through voice input, which are then transcribed and optionally refined using artificial
+            intelligence. The App may include free and paid subscription tiers.
           </p>
         </section>
 
@@ -300,10 +331,10 @@
           <div class="hv-section-num">03</div>
           <h2>Eligibility</h2>
           <p>
-            You must be at least 13 years old (or the minimum age in your jurisdiction) to
-            use the App. By using the App, you represent that you meet this requirement. If
-            you are using the App on behalf of an organization, you represent that you have
-            authority to bind that organization to these Terms.
+            You must be at least 13 years old (or the minimum age in your jurisdiction) to use the
+            App. By using the App, you represent that you meet this requirement. If you are using
+            the App on behalf of an organization, you represent that you have authority to bind that
+            organization to these Terms.
           </p>
         </section>
 
@@ -311,12 +342,14 @@
           <div class="hv-section-num">04</div>
           <h2>User Accounts</h2>
           <ul class="hv-list">
-            <li>You are responsible for maintaining the confidentiality of your account credentials</li>
+            <li>
+              You are responsible for maintaining the confidentiality of your account credentials
+            </li>
             <li>You are responsible for all activity that occurs under your account</li>
             <li>
               You must notify us immediately at
-              <a :href="`mailto:${contactEmail}`">{{ contactEmail }}</a> if you suspect
-              unauthorized access
+              <a :href="`mailto:${contactEmail}`">{{ contactEmail }}</a> if you suspect unauthorized
+              access
             </li>
             <li>We reserve the right to suspend or terminate accounts that violate these Terms</li>
           </ul>
@@ -326,19 +359,18 @@
           <div class="hv-section-num">05</div>
           <h2>Your Content</h2>
           <p>
-            You retain full ownership of the notes, recordings, and content you create in the
-            App (&ldquo;Your Content&rdquo;).
+            You retain full ownership of the notes, recordings, and content you create in the App
+            (&ldquo;Your Content&rdquo;).
           </p>
           <p>
-            By using the App, you grant Gauss Dev a limited, non-exclusive, royalty-free
-            license to process Your Content solely as necessary to provide the App's
-            functionality (transcription, AI refinement, sync, backup). This license does not
-            extend to using Your Content for training AI models, advertising, or any other
-            purpose.
+            By using the App, you grant Gauss Dev a limited, non-exclusive, royalty-free license to
+            process Your Content solely as necessary to provide the App's functionality
+            (transcription, AI refinement, sync, backup). This license does not extend to using Your
+            Content for training AI models, advertising, or any other purpose.
           </p>
           <p>
-            You are solely responsible for ensuring Your Content does not violate any
-            applicable law or third-party rights.
+            You are solely responsible for ensuring Your Content does not violate any applicable law
+            or third-party rights.
           </p>
         </section>
 
@@ -347,10 +379,20 @@
           <h2>Acceptable Use</h2>
           <p>You agree not to use the App to:</p>
           <ul class="hv-list">
-            <li>Record or process content that infringes third-party intellectual property rights</li>
-            <li>Generate, store, or distribute content that is unlawful, harmful, harassing, or fraudulent</li>
-            <li>Attempt to reverse-engineer, decompile, or access non-public areas of the App or its infrastructure</li>
-            <li>Use the App in any way that could damage, disable, or impair our services or servers</li>
+            <li>
+              Record or process content that infringes third-party intellectual property rights
+            </li>
+            <li>
+              Generate, store, or distribute content that is unlawful, harmful, harassing, or
+              fraudulent
+            </li>
+            <li>
+              Attempt to reverse-engineer, decompile, or access non-public areas of the App or its
+              infrastructure
+            </li>
+            <li>
+              Use the App in any way that could damage, disable, or impair our services or servers
+            </li>
             <li>Circumvent any usage limits, rate limits, or subscription restrictions</li>
             <li>Resell or sublicense the App or its AI outputs without our written consent</li>
           </ul>
@@ -360,13 +402,17 @@
           <div class="hv-section-num">07</div>
           <h2>Subscriptions &amp; Payments</h2>
           <p>
-            The App may offer free and paid subscription tiers. Paid features are billed
-            through the Apple App Store or Google Play Store according to their respective
-            billing terms.
+            The App may offer free and paid subscription tiers. Paid features are billed through the
+            Apple App Store or Google Play Store according to their respective billing terms.
           </p>
           <ul class="hv-list">
-            <li>Subscriptions auto-renew unless cancelled at least 24 hours before the end of the current period</li>
-            <li>You can manage or cancel subscriptions in your App Store / Play Store account settings</li>
+            <li>
+              Subscriptions auto-renew unless cancelled at least 24 hours before the end of the
+              current period
+            </li>
+            <li>
+              You can manage or cancel subscriptions in your App Store / Play Store account settings
+            </li>
             <li>Refunds are handled according to Apple's or Google's refund policies</li>
             <li>We reserve the right to change pricing with reasonable advance notice</li>
           </ul>
@@ -376,18 +422,18 @@
           <div class="hv-section-num">08</div>
           <h2>AI-Generated Content</h2>
           <p>
-            The App uses third-party AI services (including OpenAI) to process and refine
-            your notes. AI-generated outputs are provided for convenience and may not always
-            be accurate, complete, or appropriate for all purposes.
+            The App uses third-party AI services (including OpenAI) to process and refine your
+            notes. AI-generated outputs are provided for convenience and may not always be accurate,
+            complete, or appropriate for all purposes.
           </p>
           <div class="hv-callout">
-            AI outputs are not a substitute for professional advice (legal, medical,
-            financial, etc.). You are responsible for reviewing and verifying any
-            AI-generated content before relying on it.
+            AI outputs are not a substitute for professional advice (legal, medical, financial,
+            etc.). You are responsible for reviewing and verifying any AI-generated content before
+            relying on it.
           </div>
           <p>
-            We do not guarantee the accuracy, reliability, or fitness for a particular
-            purpose of any AI-generated output.
+            We do not guarantee the accuracy, reliability, or fitness for a particular purpose of
+            any AI-generated output.
           </p>
         </section>
 
@@ -395,10 +441,9 @@
           <div class="hv-section-num">09</div>
           <h2>Intellectual Property</h2>
           <p>
-            The App, its design, code, branding, and all content created by Gauss Dev are
-            protected by copyright, trademark, and other intellectual property laws. Nothing
-            in these Terms grants you rights to our intellectual property beyond using the
-            App as described herein.
+            The App, its design, code, branding, and all content created by Gauss Dev are protected
+            by copyright, trademark, and other intellectual property laws. Nothing in these Terms
+            grants you rights to our intellectual property beyond using the App as described herein.
           </p>
         </section>
 
@@ -407,14 +452,13 @@
           <h2>Disclaimers</h2>
           <p>
             The App is provided &ldquo;as is&rdquo; and &ldquo;as available&rdquo; without
-            warranties of any kind, express or implied, including but not limited to
-            warranties of merchantability, fitness for a particular purpose, and
-            non-infringement.
+            warranties of any kind, express or implied, including but not limited to warranties of
+            merchantability, fitness for a particular purpose, and non-infringement.
           </p>
           <p>
-            We do not warrant that the App will be uninterrupted, error-free, or that defects
-            will be corrected. We are not responsible for the accuracy of transcriptions or
-            AI-generated content.
+            We do not warrant that the App will be uninterrupted, error-free, or that defects will
+            be corrected. We are not responsible for the accuracy of transcriptions or AI-generated
+            content.
           </p>
         </section>
 
@@ -422,15 +466,15 @@
           <div class="hv-section-num">11</div>
           <h2>Limitation of Liability</h2>
           <p>
-            To the maximum extent permitted by applicable law, Gauss Dev and its affiliates
-            shall not be liable for any indirect, incidental, special, consequential, or
-            punitive damages, including loss of profits, data, or goodwill, arising from your
-            use of or inability to use the App.
+            To the maximum extent permitted by applicable law, Gauss Dev and its affiliates shall
+            not be liable for any indirect, incidental, special, consequential, or punitive damages,
+            including loss of profits, data, or goodwill, arising from your use of or inability to
+            use the App.
           </p>
           <p>
-            Our total liability for any claim arising from these Terms or your use of the App
-            shall not exceed the amount you paid us in the twelve months preceding the claim,
-            or USD $50, whichever is greater.
+            Our total liability for any claim arising from these Terms or your use of the App shall
+            not exceed the amount you paid us in the twelve months preceding the claim, or USD $50,
+            whichever is greater.
           </p>
         </section>
 
@@ -439,12 +483,12 @@
           <h2>Termination</h2>
           <p>
             You may stop using the App and delete your account at any time. We may suspend or
-            terminate your access at any time if we believe you have violated these Terms,
-            with or without prior notice.
+            terminate your access at any time if we believe you have violated these Terms, with or
+            without prior notice.
           </p>
           <p>
-            Upon termination, your right to use the App ceases immediately. Sections 5, 9,
-            10, 11, and 13 survive termination.
+            Upon termination, your right to use the App ceases immediately. Sections 5, 9, 10, 11,
+            and 13 survive termination.
           </p>
         </section>
 
@@ -452,10 +496,10 @@
           <div class="hv-section-num">13</div>
           <h2>Governing Law &amp; Disputes</h2>
           <p>
-            These Terms are governed by the laws of the Republic of Uzbekistan, without
-            regard to conflict of law principles. Any dispute arising from these Terms shall
-            first be addressed through good-faith negotiation. If unresolved, disputes shall
-            be submitted to the competent courts of Tashkent, Uzbekistan.
+            These Terms are governed by the laws of the Republic of Uzbekistan, without regard to
+            conflict of law principles. Any dispute arising from these Terms shall first be
+            addressed through good-faith negotiation. If unresolved, disputes shall be submitted to
+            the competent courts of Tashkent, Uzbekistan.
           </p>
           <p>
             Notwithstanding the above, we reserve the right to seek injunctive relief in any
@@ -472,7 +516,9 @@
             <div class="hv-contact-item"><label>App</label><span>Havamind AI Notes</span></div>
             <div class="hv-contact-item">
               <label>Email</label>
-              <span><a :href="`mailto:${contactEmail}`">{{ contactEmail }}</a></span>
+              <span
+                ><a :href="`mailto:${contactEmail}`">{{ contactEmail }}</a></span
+              >
             </div>
             <div class="hv-contact-item">
               <label>Website</label>
@@ -490,6 +536,7 @@ import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useHead } from '@unhead/vue'
 import { useSeo } from '@/composables/useSeo'
+import { APPS_ORIGIN } from '@/lib/appDocs'
 import { findPrivacyApp } from '@/data/privacyApps'
 
 const route = useRoute()
@@ -507,6 +554,7 @@ const contactEmail = havamind?.contactEmail ?? 'general@gaussdev.com'
 // Per-tab SEO via the shared composable, then load Playfair Display (used only on this page)
 // via useHead so it tears down when the user navigates away.
 useSeo({
+  origin: APPS_ORIGIN,
   path: route.path,
   title:
     mode.value === 'terms'
@@ -592,8 +640,10 @@ useHead({
   text-decoration: none;
   border: 0;
   cursor: pointer;
-  transition: background 0.2s, color 0.2s;
-  min-height: auto;  /* override global 44px floor — these are nav tabs, not primary CTAs */
+  transition:
+    background 0.2s,
+    color 0.2s;
+  min-height: auto; /* override global 44px floor — these are nav tabs, not primary CTAs */
   display: inline-flex;
   align-items: center;
 }

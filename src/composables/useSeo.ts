@@ -24,6 +24,8 @@ export interface RouteSeo {
   rawTitle?: boolean
   /** Set `true` to ask crawlers not to index this page. */
   noindex?: boolean
+  /** Canonical origin. App documents use https://apps.gaussdev.com. */
+  origin?: string
 }
 
 /**
@@ -35,7 +37,7 @@ export interface RouteSeo {
 export function useSeo(seo: RouteSeo) {
   const fullTitle = seo.rawTitle ? seo.title : `${seo.title} — ${SITE.name}`
   const description = seo.description ?? SITE.defaultDescription
-  const url = `${SITE.origin}${seo.path}`
+  const url = `${seo.origin ?? SITE.origin}${seo.path}`
   const image = seo.image ?? SITE.defaultImage
   const type = seo.type ?? 'website'
 
@@ -44,7 +46,10 @@ export function useSeo(seo: RouteSeo) {
     link: [{ rel: 'canonical', href: url }],
     meta: [
       { name: 'description', content: description },
-      { name: 'robots', content: seo.noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large' },
+      {
+        name: 'robots',
+        content: seo.noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large',
+      },
 
       // Open Graph
       { property: 'og:type', content: type },

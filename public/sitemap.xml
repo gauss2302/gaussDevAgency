@@ -34,57 +34,82 @@
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://gaussdev.com/privacy/prayer</loc>
+    <loc>https://apps.gaussdev.com/privacy/prayer</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://gaussdev.com/privacy/havamind</loc>
+    <loc>https://apps.gaussdev.com/support/prayer</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://apps.gaussdev.com/privacy/havamind</loc>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://gaussdev.com/terms/havamind</loc>
+    <loc>https://apps.gaussdev.com/terms/havamind</loc>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://gaussdev.com/privacy/lumi</loc>
+    <loc>https://apps.gaussdev.com/support/havamind</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://apps.gaussdev.com/privacy/lumi</loc>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://gaussdev.com/terms/lumi</loc>
+    <loc>https://apps.gaussdev.com/terms/lumi</loc>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://gaussdev.com/privacy/petchecker</loc>
+    <loc>https://apps.gaussdev.com/support/lumi</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://apps.gaussdev.com/privacy/petchecker</loc>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://gaussdev.com/terms/petchecker</loc>
+    <loc>https://apps.gaussdev.com/terms/petchecker</loc>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://gaussdev.com/privacy/onsitefit</loc>
+    <loc>https://apps.gaussdev.com/support/petchecker</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://apps.gaussdev.com/privacy/onsitefit</loc>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://gaussdev.com/terms/onsitefit</loc>
+    <loc>https://apps.gaussdev.com/terms/onsitefit</loc>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://gaussdev.com/privacy/sigh</loc>
+    <loc>https://apps.gaussdev.com/support/onsitefit</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://apps.gaussdev.com/privacy/sigh</loc>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://gaussdev.com/support/sigh</loc>
+    <loc>https://apps.gaussdev.com/support/sigh</loc>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>

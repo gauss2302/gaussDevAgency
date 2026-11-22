@@ -5,8 +5,8 @@
         <p class="pg-header__eyebrow" :class="{ visible: mounted }">Legal</p>
         <h1 class="pg-header__title" :class="{ visible: mounted }">Privacy Policies</h1>
         <p class="pg-header__sub" :class="{ visible: mounted }">
-          Privacy policies for every Gauss Dev mobile app. The policy for this website and GaussDev
-          Ads Assistant is the
+          Privacy, terms and support for every Gauss Dev mobile app are published at
+          apps.gaussdev.com. The policy for this website and GaussDev Ads Assistant is the
           <router-link to="/privacy">Gauss Dev Privacy Policy</router-link>.
         </p>
       </div>
@@ -14,22 +14,17 @@
 
     <section class="list">
       <div class="list__inner">
-        <router-link
-          v-for="app in apps"
-          :key="app.slug"
-          :to="app.customRoute ?? `/privacy/${app.slug}`"
-          class="app-card"
-        >
+        <article v-for="app in apps" :key="app.slug" class="app-card">
           <div class="app-card__main">
             <h2 class="app-card__title">{{ app.appName }}</h2>
-            <p class="app-card__meta">
-              {{ app.platforms }} · Updated {{ app.effectiveDate }}
-              <span v-if="app.hasTerms"> · Privacy + Terms</span>
-              <span v-else-if="app.hasSupport"> · Privacy + Support</span>
-            </p>
+            <p class="app-card__meta">{{ app.platforms }} · Updated {{ app.effectiveDate }}</p>
           </div>
-          <span class="app-card__arrow" aria-hidden="true">→</span>
-        </router-link>
+          <nav class="app-card__docs" :aria-label="`${app.appName} documents`">
+            <a :href="docHref(app.customRoute ?? `/privacy/${app.slug}`)">Privacy</a>
+            <a v-if="app.hasTerms" :href="docHref(`/terms/${app.slug}`)">Terms</a>
+            <a :href="docHref(`/support/${app.slug}`)">Support</a>
+          </nav>
+        </article>
       </div>
     </section>
   </div>
@@ -38,6 +33,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import { privacyApps } from '@/data/privacyApps'
+import { appDocumentHref } from '@/lib/appDocs'
 import { useSeo } from '@/composables/useSeo'
 
 useSeo({
@@ -47,6 +43,7 @@ useSeo({
 })
 
 const apps = privacyApps
+const docHref = appDocumentHref
 const mounted = ref(false)
 onMounted(() =>
   requestAnimationFrame(() => {
@@ -142,17 +139,30 @@ onMounted(() =>
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 0.75rem;
   background: rgba(255, 255, 255, 0.015);
-  text-decoration: none;
   color: inherit;
-  transition:
-    border-color 0.2s ease,
-    background 0.2s ease,
-    transform 0.2s ease;
 }
-.app-card:hover {
-  border-color: rgba(255, 255, 255, 0.18);
-  background: rgba(255, 255, 255, 0.03);
-  transform: translateY(-1px);
+.app-card__docs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.4rem;
+}
+.app-card__docs a {
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 0.8rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #a1a1aa;
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+.app-card__docs a:hover {
+  color: #08080c;
+  background: #faeb92;
+  border-color: #faeb92;
 }
 
 .app-card__title {
@@ -167,21 +177,17 @@ onMounted(() =>
   color: #71717a;
   margin: 0;
 }
-.app-card__arrow {
-  color: #71717a;
-  font-size: 1.2rem;
-  transition:
-    color 0.2s ease,
-    transform 0.2s ease;
-}
-.app-card:hover .app-card__arrow {
-  color: #faeb92;
-  transform: translateX(2px);
-}
 
 @media (max-width: 640px) {
   .pg-header {
     padding-top: 4rem;
+  }
+  .app-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .app-card__docs {
+    justify-content: flex-start;
   }
 }
 

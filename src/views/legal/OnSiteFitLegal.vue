@@ -511,6 +511,7 @@
 import { computed, onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { useHead } from '@unhead/vue'
+import { APPS_ORIGIN, SITE_ORIGIN } from '@/lib/appDocs'
 
 const route = useRoute()
 const isTerms = computed(() => route.path.startsWith('/terms'))
@@ -522,8 +523,7 @@ onMounted(() =>
   }),
 )
 
-const origin = 'https://gaussdev.com'
-const image = `${origin}/og-image.png`
+const image = `${SITE_ORIGIN}/og-image.png`
 
 useHead(
   computed(() => {
@@ -534,7 +534,7 @@ useHead(
     const description = terms
       ? 'Terms of Use for the OnSiteFit mobile app, including OnSiteFit Plus, exercise safety, and subscriptions.'
       : 'Privacy policy for the OnSiteFit mobile app. Progress stays on your device. No account, no ads.'
-    const url = `${origin}${terms ? '/terms/onsitefit' : '/privacy/onsitefit'}`
+    const url = `${APPS_ORIGIN}${terms ? '/terms/onsitefit' : '/privacy/onsitefit'}`
 
     return {
       title,

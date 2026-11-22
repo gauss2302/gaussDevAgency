@@ -17,6 +17,10 @@
     {
       "pattern": "www.gaussdev.com",
       "custom_domain": true
+    },
+    {
+      "pattern": "apps.gaussdev.com",
+      "custom_domain": true
     }
   ]
 }
